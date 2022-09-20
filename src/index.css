@@ -4,11 +4,11 @@
   --dark: #05111e;
   --bright: #3be28f;
   --background: #f9f9f9;
-  --white: #f9f9f9;
+  --white: #ffffff;
   --red: #ee2c2c;
   --gray: #eaeaea;
-  --dark_gray: #969696;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -18,24 +18,7 @@
 }
 
 body {
-  font-size: 12px;
-  line-height: 18px;
+  font-size: 14px;
+  font-weight: 500;
   background: var(--background);
-}
-
-.movable {
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--white);
-  position: absolute;
-  z-index: 1;
-  /* transform: translate(0%, 0%); */
-  border-radius: 50%;
-  pointer-events: none;
-  transition: background 0.5s;
-  font-size: 4em;
-  color: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

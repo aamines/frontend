@@ -1,18 +1,23 @@
-//packages
 import React from "react";
 import styled from "styled-components";
 
-//components
-import Devices from "../components/devices";
-import Home from "../components/home";
-import Contact from "../components/contact";
+//sections
+import Hero from "../components/main/hero";
+import About from "../components/main/about";
+import Testimonials from "../components/main/testimonials";
 
 const Main = () => {
   return (
     <Container>
-      <Home />
-      <Devices />
-      <Contact />
+      <div className="hero">
+        <Hero />
+      </div>
+      <div className="about">
+        <About />
+      </div>
+      <div className="testimonials">
+        <Testimonials />
+      </div>
     </Container>
   );
 };
@@ -20,75 +25,24 @@ const Main = () => {
 const Container = styled.div`
   width: 100%;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  @media only screen and (max-width: 600px) {
-    #home {
-      height: 700px;
-    }
-
-    #devices {
-      height: 1100px;
-    }
-
-    #contact {
-      height: 1000px;
-    }
+  .hero {
+    width: 100%;
+    height: auto;
   }
 
-  @media only screen and (min-width: 600px) and (max-width: 768px) {
-    #home {
-      height: 500px;
-    }
-
-    #devices {
-      height: 550px;
-    }
-
-    #contact {
-      height: 550px;
-    }
+  .about {
+    width: 100%;
+    height: auto;
+    padding: 40px 20px;
   }
 
-  @media only screen and (min-width: 769px) and (max-width: 992px) {
-    #home {
-      height: 600px;
-    }
-
-    #devices {
-      height: 550px;
-    }
-
-    #contact {
-      height: 550px;
-    }
-  }
-
-  @media only screen and (min-width: 993px) and (max-width: 1200px) {
-    #home {
-      height: 600px;
-    }
-
-    #devices {
-      height: 600px;
-    }
-
-    #contact {
-      height: 600px;
-    }
-  }
-
-  @media only screen and (min-width: 1200px) {
-    #home {
-      height: 650px;
-    }
-
-    #devices {
-      height: 650px;
-    }
-
-    #contact {
-      height: 650px;
-    }
+  .testimonials {
+    width: 100%;
+    height: auto;
   }
 `;
 

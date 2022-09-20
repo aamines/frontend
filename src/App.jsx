@@ -3,11 +3,12 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //files
-import Nav from "./components/nav";
-import Login from "./pages/login";
 import Main from "./pages/main";
-import Signup from "./pages/signup";
-import Waitlist from "./pages/waitlist";
+import Nav from "./components/nav";
+
+//globals
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (
@@ -15,9 +16,6 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" exact element={<Main />} />
-        <Route path="/waitlist" exact element={<Waitlist />} />
-        <Route path="/login" exact element={<Login />} />
-        <Route path="/signup" exact element={<Signup />} />
       </Routes>
     </Router>
   );

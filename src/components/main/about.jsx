@@ -1,0 +1,235 @@
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+
+const About = () => {
+  const [scrolled, setScrolled] = useState();
+  const nav = useRef();
+
+  useEffect(() => {
+    window.onscroll = function () {
+      if (nav.current.getClientRects()[0].top <= 0) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+  });
+
+  return (
+    <Container>
+      <div className={scrolled ? "shadow nav" : "nav"} ref={nav}>
+        <a href="#post">Post</a>
+        <a href="#share">Share</a>
+        <a href="#chat">Chat</a>
+        <a href="#communicate">Communicate</a>
+        <a href="#community">Community</a>
+      </div>
+      <div className="container">
+        <div className="row">
+          <div className="content">
+            <p className="header">
+              Post your <span>achievements</span> in your community.
+            </p>
+            <div className="down">
+              <img src="/icons/line.svg" alt="line" />
+              <div className="para">
+                <p className="bold">
+                  Create a post: an achivement, a project or an update and share
+                  with your community.
+                </p>
+                <p>
+                  Get different feedbacks and insights from people within your
+                  community.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="visual"></div>
+        </div>
+        <div className="row">
+          <div className="visual"></div>
+          <div className="content">
+            <p className="header">
+              Share your <span>moments</span> in your community.
+            </p>
+            <div className="down">
+              <img src="/icons/line.svg" alt="line" />
+              <div className="para">
+                <p className="bold">
+                  Share your moments with people from within your community and
+                  let them know what’s going on.
+                </p>
+                <p>
+                  Show people from your community something you are about to
+                  achieve or a project about to launch.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="content">
+            <p className="header">
+              <span>Chat</span> with your community mates.
+            </p>
+            <div className="down">
+              <img src="/icons/line.svg" alt="line" />
+              <div className="para">
+                <p className="bold">
+                  Communicate with your community mates, share ideas and
+                  information.
+                </p>
+                <p>
+                  Message or call your comminuty mates to talk and share ideas
+                  with your community.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="visual"></div>
+        </div>
+        <div className="row">
+          <div className="visual"></div>
+          <div className="content">
+            <p className="header">
+              <span>Communicate</span> with your community mates.
+            </p>
+            <div className="down">
+              <img src="/icons/line.svg" alt="line" />
+              <div className="para">
+                <p className="bold">
+                  Send a notice or a communique to everyone in your commounity.
+                </p>
+                <p>
+                  Give announcements and reminders to people within your
+                  community.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="content">
+            <p className="header">
+              Create and manage a <span>community</span>.
+            </p>
+            <div className="down">
+              <img src="/icons/line.svg" alt="line" />
+              <div className="para">
+                <p className="bold">
+                  Create and manage a community using a featureful platform.
+                </p>
+                <p>
+                  Projectia gives you a bunch of features to help you improve
+                  and manage your community life.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="visual"></div>
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+const Container = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+
+  .shadow {
+    box-shadow: 0px 0px 30px -4px rgba(100, 100, 100, 0.15);
+  }
+
+  .nav {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0px;
+    border-radius: 10px 10px 0 0;
+    background: var(--white);
+
+    a {
+      text-decoration: none;
+      color: var(--dark);
+    }
+  }
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0 40px 0;
+    border-radius: 0 0 10px 10px;
+    background: var(--white);
+
+    .row {
+      width: 85%;
+      height: 350px;
+      margin: 0 0 50px 0;
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      justify-content: space-between;
+
+      .content {
+        width: 40%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        p.header {
+          font-size: 2rem;
+          line-height: 40px;
+          font-weight: 800;
+          color: var(--dark);
+
+          span {
+            color: var(--bright);
+          }
+        }
+
+        .down {
+          width: 100%;
+          height: 70%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .para {
+            margin: 0 0 0 10px;
+            color: var(--dark);
+
+            p {
+              margin: 0 0 10px 0;
+            }
+
+            .bold {
+              font-weight: 800;
+            }
+          }
+        }
+      }
+
+      .visual {
+        width: 60%;
+        height: 100%;
+      }
+    }
+  }
+`;
+
+export default About;

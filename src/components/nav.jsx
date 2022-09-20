@@ -1,161 +1,84 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = () => {
-  const [scrolled, setScrolled] = useState();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    window.onscroll = function () {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-  });
-
-  const goHome = () => {
-    navigate("/");
-  };
-
   return (
     <Container>
-      <div className={scrolled ? "shadow container" : "container"}>
-        <div className="left">
-          <div className="logo" onClick={goHome}>
-            <img src="/max_logo.svg" alt="logo" />
-          </div>
-          <div className="nav">
-            <a href="/#home">Home</a>
-            <a href="/#devices">Devices</a>
-            <a href="/#contact">Contact</a>
-          </div>
-        </div>
-        <div
-          className="right"
-          style={scrolled ? { cursor: "initial" } : { cursor: "none" }}
-        >
-          <Link
-            to="/waitlist"
-            // style={scrolled ? { cursor: "pointer" } : { cursor: "none" }}
-          >
-            Join
-          </Link>
-        </div>
+      <div className="logo">
+        <img src="/min_logo.svg" alt="logo" />
+      </div>
+      <div className="nav">
+        <Link to="/">Home</Link>
+        <Link to="/explore">Explore</Link>
+        <Link to="/contact">Contact</Link>
+      </div>
+      <div className="buttons">
+        <Link to="/login">Login</Link>
+        <Link to="/signup" className="signup">
+          Signup
+        </Link>
       </div>
     </Container>
   );
 };
 
 const Container = styled.div`
-  .shadow {
-    box-shadow: 0px 0px 30px -4px rgba(100, 100, 100, 0.15);
-    background: var(--background);
-  }
-  .container {
-    width: 100%;
-    height: 70px;
-    padding: 0 30px;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  padding: 0 20px;
+  flex-direction: row;
+  align-items: center;
+  background: var(--white);
+  justify-content: space-between;
+
+  .logo {
+    width: 20%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    z-index: 10;
+    justify-content: flex-start;
 
-    .left {
-      width: 40%;
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-
-      .logo {
-        width: auto;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-
-        img {
-          width: 130px;
-        }
-      }
-
-      .nav {
-        width: 65%;
-        height: 100%;
-        margin: 0 0 0 20px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-around;
-
-        a {
-          text-decoration: none;
-          color: var(--dark);
-          font-weight: 600;
-        }
-      }
-    }
-
-    .right {
-      width: 50%;
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-end;
-      cursor: none;
-
-      a {
-        padding: 6px 40px;
-        border-radius: 3px;
-        text-decoration: none;
-        font-weight: 600;
-        background: var(--bright);
-        color: var(--white);
-      }
+    img {
+      width: 30px;
     }
   }
 
-  @media only screen and (max-width: 600px) {
-    .container {
-      padding: 0 10px;
+  .nav {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
-      .left {
-        .nav {
-          display: none;
-        }
-      }
+    a {
+      margin: 0 30px;
+      text-decoration: none;
+      color: var(--dark);
     }
   }
 
-  @media only screen and (min-width: 600px) and (max-width: 768px) {
-    .container {
-      .left {
-        width: 78%;
-      }
+  .buttons {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
 
-      .right {
-        width: 20%;
-      }
+    a {
+      margin: 0 0 0 30px;
+      text-decoration: none;
+      color: var(--dark);
     }
-  }
 
-  @media only screen and (min-width: 769px) and (max-width: 992px) {
-    .container {
-      .left {
-        width: 50%;
-      }
-
-      .right {
-        width: 40%;
-      }
+    .signup {
+      padding: 6px 30px;
+      background: var(--bright);
+      border-radius: 20px;
     }
   }
 `;
