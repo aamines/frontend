@@ -33,12 +33,16 @@ const Footer = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: 300px;
-  background: #e6f7ee;
+  height: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 17, 30, 1) 0%,
+    rgba(8, 28, 50, 1) 35%
+  );
 
   .logo {
     font-size: 2rem;
@@ -58,7 +62,7 @@ const Container = styled.div`
     a {
       margin: 0 20px;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
     }
   }
 
@@ -78,11 +82,11 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       margin: 0 20px;
-      border: 1px solid var(--dark);
+      border: 1px solid var(--white);
 
       .icon {
         font-size: 1em;
-        color: var(--dark);
+        color: var(--white);
       }
     }
   }

@@ -41,7 +41,6 @@ const Container = styled.div`
   .about {
     width: 100%;
     height: auto;
-    padding: 40px 20px;
   }
 
   .testimonials {

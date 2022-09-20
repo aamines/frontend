@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
     <Container>
+      <div className="image">
+        <img src="/images/one.png" alt="one" />
+      </div>
       <div className="content">
         <p className="header">
           Assemble your professional <span>Community</span>.
@@ -12,7 +16,10 @@ const Hero = () => {
           Create and Manage your community through a rich and feature-ful
           professional platform.
         </p>
-        <a href="/login">Join now</a>
+        <Link to="/login">Join now</Link>
+      </div>
+      <div className="image">
+        <img src="/images/two.png" alt="two" />
       </div>
     </Container>
   );
@@ -20,22 +27,31 @@ const Hero = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: calc(100vh - 70px);
-  background: #e6f7ee;
+  height: 100vh;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 17, 30, 1) 0%,
+    rgba(8, 28, 50, 1) 35%
+  );
+  padding: 100px 20px 0 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+
+  .image {
+    width: 25%;
+  }
 
   .content {
-    width: 40%;
+    width: 41%;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     p {
-      color: var(--dark);
+      color: var(--white);
       text-align: center;
       margin: 0 0 20px 0;
     }

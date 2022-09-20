@@ -165,14 +165,19 @@ const Container = styled.div`
   }
 
   .container {
-    width: 100%;
+    width: 90%;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 60px 0 40px 0;
     border-radius: 0 0 10px 10px;
-    background: var(--white);
+    background: linear-gradient(
+      90deg,
+      rgba(5, 17, 30, 1) 0%,
+      rgba(8, 28, 50, 1) 35%
+    );
+    border-radius: 10px;
 
     .row {
       width: 85%;
@@ -195,7 +200,7 @@ const Container = styled.div`
           font-size: 2rem;
           line-height: 40px;
           font-weight: 800;
-          color: var(--dark);
+          color: var(--white);
 
           span {
             color: var(--bright);
@@ -211,7 +216,7 @@ const Container = styled.div`
 
           .para {
             margin: 0 0 0 10px;
-            color: var(--dark);
+            color: var(--white);
 
             p {
               margin: 0 0 10px 0;

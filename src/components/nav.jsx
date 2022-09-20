@@ -27,11 +27,13 @@ const Container = styled.div`
   width: 100%;
   height: 70px;
   display: flex;
-  padding: 0 20px;
+  padding: 0 40px;
   flex-direction: row;
   align-items: center;
-  background: var(--white);
   justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
 
   .logo {
     width: 20%;
@@ -57,7 +59,7 @@ const Container = styled.div`
     a {
       margin: 0 30px;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
     }
   }
 
@@ -72,7 +74,7 @@ const Container = styled.div`
     a {
       margin: 0 0 0 30px;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
     }
 
     .signup {
