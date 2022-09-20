@@ -27,13 +27,13 @@ const Hero = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 70px);
   background: linear-gradient(
     90deg,
     rgba(5, 17, 30, 1) 0%,
     rgba(8, 28, 50, 1) 35%
   );
-  padding: 100px 20px 0 20px;
+  padding: 7% 20px 0 20px;
   display: flex;
   flex-direction: row;
   align-items: center;

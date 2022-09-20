@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-scroll";
 
 const About = () => {
   const [scrolled, setScrolled] = useState();
@@ -18,11 +19,21 @@ const About = () => {
   return (
     <Container>
       <div className={scrolled ? "shadow nav" : "nav"} ref={nav}>
-        <a href="#post">Post</a>
-        <a href="#share">Share</a>
-        <a href="#chat">Chat</a>
-        <a href="#communicate">Communicate</a>
-        <a href="#community">Community</a>
+        <Link activeClass="current" smooth spy to="post">
+          Post
+        </Link>
+        <Link activeClass="current" smooth spy to="share">
+          Share
+        </Link>
+        <Link activeClass="current" smooth spy to="chat">
+          Chat
+        </Link>
+        <Link activeClass="current" smooth spy to="communicate">
+          Communicate
+        </Link>
+        <Link activeClass="current" smooth spy to="community">
+          Community
+        </Link>
       </div>
       <div className="container">
         <div className="row" id="post">
@@ -156,11 +167,15 @@ const Container = styled.div`
     position: -webkit-sticky;
     top: 0px;
     border-radius: 10px 10px 0 0;
-    background: var(--white);
+    background: var(--background);
 
     a {
       text-decoration: none;
       color: var(--dark);
+    }
+
+    .current {
+      color: var(--bright);
     }
   }
 
@@ -170,36 +185,37 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 60px 0 40px 0;
+    padding: 0 0 100px 0;
+    border-radius: 10px;
     border-radius: 0 0 10px 10px;
     background: linear-gradient(
       90deg,
       rgba(5, 17, 30, 1) 0%,
       rgba(8, 28, 50, 1) 35%
     );
-    border-radius: 10px;
 
     .row {
       width: 85%;
-      height: 350px;
-      margin: 0 0 50px 0;
+      height: 450px;
       display: flex;
       flex-direction: row;
-      align-content: center;
+      align-content: flex-end;
       justify-content: space-between;
 
       .content {
         width: 40%;
-        height: 100%;
+        height: 70%;
         display: flex;
+        align-self: flex-end;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: space-between;
+        justify-content: flex-end;
 
         p.header {
           font-size: 2rem;
           line-height: 40px;
           font-weight: 800;
+          margin: 0 0 10px 0;
           color: var(--white);
 
           span {

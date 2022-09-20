@@ -22,3 +22,16 @@ body {
   font-weight: 500;
   background: var(--background);
 }
+
+body::-webkit-scrollbar {
+  width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+  display: none;
+}
+
+body::-webkit-scrollbar-thumb {
+  width: 3px;
+  background: var(--dark);
+}

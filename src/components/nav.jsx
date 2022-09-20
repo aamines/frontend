@@ -1,17 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = () => {
+  const [active, setActive] = React.useState("");
+  const router = useLocation();
+
+  useEffect(() => {
+    console.log(router.pathname);
+    setActive(router.pathname);
+  }, []);
+
   return (
     <Container>
       <div className="logo">
         <img src="/min_logo.svg" alt="logo" />
       </div>
       <div className="nav">
-        <Link to="/">Home</Link>
-        <Link to="/explore">Explore</Link>
-        <Link to="/contact">Contact</Link>
+        <Link to="/" className={active == "/" ? "active" : ""}>
+          Home
+        </Link>
+        <Link to="/explore" className={active == "explore" ? "active" : ""}>
+          Explore
+        </Link>
+        <Link to="/contact" className={active == "contact" ? "active" : ""}>
+          Contact
+        </Link>
       </div>
       <div className="buttons">
         <Link to="/login">Login</Link>
@@ -31,9 +45,6 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  position: absolute;
-  top: 0;
-  left: 0;
 
   .logo {
     width: 20%;
@@ -59,7 +70,11 @@ const Container = styled.div`
     a {
       margin: 0 30px;
       text-decoration: none;
-      color: var(--white);
+      color: var(--dark);
+    }
+
+    .active {
+      color: var(--bright);
     }
   }
 
@@ -74,7 +89,7 @@ const Container = styled.div`
     a {
       margin: 0 0 0 30px;
       text-decoration: none;
-      color: var(--white);
+      color: var(--dark);
     }
 
     .signup {

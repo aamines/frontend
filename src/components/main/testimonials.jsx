@@ -30,13 +30,7 @@ const Testimonials = () => {
         <p>What clients say</p>
       </div>
       <div className="content">
-        <Slider
-          dots={true}
-          arrows={true}
-          prevArrow={<BsChevronDoubleLeft />}
-          nextArrow={<BsChevronDoubleRight />}
-          useCSS={true}
-        >
+        <Slider dots={true} useCSS={true}>
           {testimonials.map((testimonial, index) => (
             <div className="testimonial" key={index}>
               <p className="text">{testimonial.text}</p>
