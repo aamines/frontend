@@ -25,7 +25,7 @@ const About = () => {
         <a href="#community">Community</a>
       </div>
       <div className="container">
-        <div className="row">
+        <div className="row" id="post">
           <div className="content">
             <p className="header">
               Post your <span>achievements</span> in your community.
@@ -46,7 +46,7 @@ const About = () => {
           </div>
           <div className="visual"></div>
         </div>
-        <div className="row">
+        <div className="row" id="share">
           <div className="visual"></div>
           <div className="content">
             <p className="header">
@@ -67,7 +67,7 @@ const About = () => {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row" id="chat">
           <div className="content">
             <p className="header">
               <span>Chat</span> with your community mates.
@@ -88,7 +88,7 @@ const About = () => {
           </div>
           <div className="visual"></div>
         </div>
-        <div className="row">
+        <div className="row" id="communicate">
           <div className="visual"></div>
           <div className="content">
             <p className="header">
@@ -108,7 +108,7 @@ const About = () => {
             </div>
           </div>
         </div>
-        <div className="row">
+        <div className="row" id="community">
           <div className="content">
             <p className="header">
               Create and manage a <span>community</span>.
@@ -147,7 +147,7 @@ const Container = styled.div`
 
   .nav {
     width: 100%;
-    height: 60px;
+    height: 70px;
     display: flex;
     flex-direction: row;
     align-items: center;
