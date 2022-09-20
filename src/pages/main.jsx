@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 //sections
+import Footer from "../components/footer";
 import Hero from "../components/main/hero";
 import About from "../components/main/about";
 import Testimonials from "../components/main/testimonials";
@@ -17,6 +18,9 @@ const Main = () => {
       </div>
       <div className="testimonials">
         <Testimonials />
+      </div>
+      <div className="footer">
+        <Footer />
       </div>
     </Container>
   );
@@ -41,6 +45,11 @@ const Container = styled.div`
   }
 
   .testimonials {
+    width: 100%;
+    height: auto;
+  }
+
+  .footer {
     width: 100%;
     height: auto;
   }
