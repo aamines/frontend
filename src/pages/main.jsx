@@ -13,6 +13,7 @@ const Main = () => {
       <div className="hero">
         <Hero />
       </div>
+
       <div className="about">
         <About />
       </div>

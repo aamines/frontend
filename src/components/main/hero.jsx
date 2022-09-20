@@ -33,18 +33,18 @@ const Container = styled.div`
     rgba(5, 17, 30, 1) 0%,
     rgba(8, 28, 50, 1) 35%
   );
-  padding: 7% 20px 0 20px;
+  padding: 0 60px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 
   .image {
-    width: 25%;
+    width: 30%;
   }
 
   .content {
-    width: 41%;
+    width: 45%;
     height: auto;
     display: flex;
     flex-direction: column;

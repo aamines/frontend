@@ -41,7 +41,7 @@ const Container = styled.div`
   width: 100%;
   height: 70px;
   display: flex;
-  padding: 0 40px;
+  padding: 0 80px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
