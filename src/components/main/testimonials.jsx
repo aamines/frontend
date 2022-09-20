@@ -1,27 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
 
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
 
 const Testimonials = () => {
-  const [testimonials, setTestimonials] = React.useState([
-    {
-      name: "John Doe",
-      position: "CEO, Company",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl.",
-    },
-    {
-      name: "John Doe",
-      position: "CTO, Company",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl.",
-    },
-    {
-      name: "John Doe",
-      position: "Hiring Manager, Company",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl.",
-    },
-  ]);
+  const [testimonials, setTestimonials] = React.useState([]);
+
+  useEffect(() => {
+    setTestimonials([
+      {
+        name: "John Doe",
+        position: "CEO, Company",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl.",
+      },
+      {
+        name: "John Doe",
+        position: "CTO, Company",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl.",
+      },
+      {
+        name: "John Doe",
+        position: "Hiring Manager, Company",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl. Sed euismod, nunc vel tincidunt lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl sit amet nisl.",
+      },
+    ]);
+  }, []);
 
   return (
     <Container>
@@ -30,7 +34,13 @@ const Testimonials = () => {
         <p>What clients say</p>
       </div>
       <div className="content">
-        <Slider dots={true} useCSS={true}>
+        <Slider
+          dots={true}
+          arrows={true}
+          prevArrow={<BsChevronDoubleLeft />}
+          nextArrow={<BsChevronDoubleRight />}
+          useCSS={true}
+        >
           {testimonials.map((testimonial, index) => (
             <div className="testimonial" key={index}>
               <p className="text">{testimonial.text}</p>

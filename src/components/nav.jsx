@@ -9,7 +9,7 @@ const Nav = () => {
   useEffect(() => {
     console.log(router.pathname);
     setActive(router.pathname);
-  }, []);
+  }, [router.pathname]);
 
   return (
     <Container>
@@ -17,13 +17,13 @@ const Nav = () => {
         <img src="/min_logo.svg" alt="logo" />
       </div>
       <div className="nav">
-        <Link to="/" className={active == "/" ? "active" : ""}>
+        <Link to="/" className={active === "/" ? "active" : ""}>
           Home
         </Link>
-        <Link to="/explore" className={active == "explore" ? "active" : ""}>
+        <Link to="/explore" className={active === "explore" ? "active" : ""}>
           Explore
         </Link>
-        <Link to="/contact" className={active == "contact" ? "active" : ""}>
+        <Link to="/contact" className={active === "contact" ? "active" : ""}>
           Contact
         </Link>
       </div>
