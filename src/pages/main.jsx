@@ -6,6 +6,7 @@ import Footer from "../components/footer";
 import Some from "../components/main/some";
 import Hero from "../components/main/hero";
 import About from "../components/main/about";
+import Founder from "../components/main/founder";
 import Testimonials from "../components/main/testimonials";
 
 const Main = () => {
@@ -19,6 +20,9 @@ const Main = () => {
       </div>
       <div className="about">
         <About />
+      </div>
+      <div className="founder">
+        <Founder />
       </div>
       <div className="testimonials">
         <Testimonials />
@@ -54,6 +58,15 @@ const Container = styled.div`
   .about {
     width: 100%;
     height: auto;
+  }
+
+  .founder {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 
   .testimonials {
