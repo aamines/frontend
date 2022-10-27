@@ -7,6 +7,7 @@ import Some from "../components/main/some";
 import Hero from "../components/main/hero";
 import About from "../components/main/about";
 import Founder from "../components/main/founder";
+import Clients from "../components/main/clients";
 import Testimonials from "../components/main/testimonials";
 
 const Main = () => {
@@ -23,6 +24,9 @@ const Main = () => {
       </div>
       <div className="founder">
         <Founder />
+      </div>
+      <div className="clients">
+        <Clients />
       </div>
       <div className="testimonials">
         <Testimonials />
@@ -61,6 +65,15 @@ const Container = styled.div`
   }
 
   .founder {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .clients {
     width: 100%;
     height: auto;
     display: flex;
