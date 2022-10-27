@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <Container>
       <div className="image">
-        <img src="/images/one.png" alt="one" />
+        <img src="/images/one.png" alt="one" className="one" />
       </div>
       <div className="content">
         <p className="header">
@@ -19,7 +19,7 @@ const Hero = () => {
         <Link to="/login">Join now</Link>
       </div>
       <div className="image">
-        <img src="/images/two.png" alt="two" />
+        <img src="/images/two.png" alt="two" className="two" />
       </div>
     </Container>
   );
@@ -27,20 +27,29 @@ const Hero = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: calc(100vh - 70px);
-  background: linear-gradient(
-    90deg,
-    rgba(5, 17, 30, 1) 0%,
-    rgba(8, 28, 50, 1) 35%
-  );
-  padding: 0 60px;
+  height: calc(100vh + 150px);
+  background: var(--hero);
+  padding: 150px 60px;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: center;
 
   .image {
     width: 30%;
+    position: absolute;
+
+    .one {
+      position: absolute;
+      left: -400px;
+      top: -100px;
+    }
+
+    .two {
+      position: absolute;
+      right: -400px;
+      top: -80px;
+    }
   }
 
   .content {
@@ -51,7 +60,7 @@ const Container = styled.div`
     align-items: center;
 
     p {
-      color: var(--white);
+      color: var(--dark);
       text-align: center;
       margin: 0 0 20px 0;
     }

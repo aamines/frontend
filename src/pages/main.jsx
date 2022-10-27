@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 //sections
 import Footer from "../components/footer";
+import Some from "../components/main/some";
 import Hero from "../components/main/hero";
 import About from "../components/main/about";
 import Testimonials from "../components/main/testimonials";
@@ -13,7 +14,9 @@ const Main = () => {
       <div className="hero">
         <Hero />
       </div>
-
+      <div className="some">
+        <Some />
+      </div>
       <div className="about">
         <About />
       </div>
@@ -37,6 +40,15 @@ const Container = styled.div`
   .hero {
     width: 100%;
     height: auto;
+  }
+
+  .some {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
   }
 
   .about {

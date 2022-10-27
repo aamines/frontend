@@ -157,7 +157,7 @@ const Container = styled.div`
   }
 
   .nav {
-    width: 100%;
+    width: 90%;
     height: 70px;
     display: flex;
     flex-direction: row;
@@ -167,7 +167,7 @@ const Container = styled.div`
     position: -webkit-sticky;
     top: 0px;
     border-radius: 10px 10px 0 0;
-    background: var(--background);
+    background: var(--white);
 
     a {
       text-decoration: none;
@@ -188,11 +188,7 @@ const Container = styled.div`
     padding: 0 0 100px 0;
     border-radius: 10px;
     border-radius: 0 0 10px 10px;
-    background: linear-gradient(
-      90deg,
-      rgba(5, 17, 30, 1) 0%,
-      rgba(8, 28, 50, 1) 35%
-    );
+    background: var(--white);
 
     .row {
       width: 85%;
@@ -216,7 +212,7 @@ const Container = styled.div`
           line-height: 40px;
           font-weight: 800;
           margin: 0 0 10px 0;
-          color: var(--white);
+          color: var(--dark);
 
           span {
             color: var(--bright);
@@ -232,7 +228,7 @@ const Container = styled.div`
 
           .para {
             margin: 0 0 0 10px;
-            color: var(--white);
+            color: var(--dark);
 
             p {
               margin: 0 0 10px 0;
