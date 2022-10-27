@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //files
 import Main from "./pages/main";
 import Nav from "./components/nav";
+import Contact from "./pages/contact";
 
 //globals
 import "slick-carousel/slick/slick.css";
@@ -16,6 +17,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" exact element={<Main />} />
+        <Route path="/contact" exact element={<Contact />} />
       </Routes>
     </Router>
   );

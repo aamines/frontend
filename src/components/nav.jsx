@@ -20,10 +20,10 @@ const Nav = () => {
         <Link to="/" className={active === "/" ? "active" : ""}>
           Home
         </Link>
-        <Link to="/explore" className={active === "explore" ? "active" : ""}>
+        <Link to="/explore" className={active === "/explore" ? "active" : ""}>
           Explore
         </Link>
-        <Link to="/contact" className={active === "contact" ? "active" : ""}>
+        <Link to="/contact" className={active === "/contact" ? "active" : ""}>
           Contact
         </Link>
       </div>
