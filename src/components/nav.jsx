@@ -25,7 +25,9 @@ const Nav = () => {
           </Link>
         </div>
         <div className="buttons">
-          <Link to="/login">Login</Link>
+          <Link to="/login" className={active === "/login" ? "active" : ""}>
+            Login
+          </Link>
           <Link to="/signup" className="signup">
             Signup
           </Link>
@@ -41,7 +43,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--white);
+  background: var(--dark);
 
   @media only screen and (min-width: 1200px) {
     .content {
@@ -78,6 +80,10 @@ const Container = styled.div`
     }
   }
 
+  .active {
+    color: var(--bright) !important;
+  }
+
   .nav {
     width: 60%;
     height: 100%;
@@ -89,11 +95,7 @@ const Container = styled.div`
     a {
       margin: 0 30px;
       text-decoration: none;
-      color: var(--dark);
-    }
-
-    .active {
-      color: var(--bright);
+      color: var(--white);
     }
   }
 
@@ -108,7 +110,7 @@ const Container = styled.div`
     a {
       margin: 0 0 0 30px;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
     }
 
     .signup {
