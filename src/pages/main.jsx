@@ -48,6 +48,9 @@ const Container = styled.div`
   .hero {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .some {
@@ -62,6 +65,9 @@ const Container = styled.div`
   .about {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .founder {
@@ -85,11 +91,17 @@ const Container = styled.div`
   .testimonials {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .footer {
     width: 100%;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 

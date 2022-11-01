@@ -55,12 +55,19 @@ const Testimonials = () => {
 };
 
 const Container = styled.div`
-  width: 100%;
   height: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 40px 0;
+
+  @media only screen and (min-width: 1200px) {
+    width: 1200px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 90%;
+  }
 
   .header {
     width: 100%;

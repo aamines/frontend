@@ -31,12 +31,19 @@ const Some = () => {
 };
 
 const Container = styled.div`
-  width: 90%;
   height: 125%;
   background: var(--white);
   position: absolute;
   top: -200px;
   border-radius: 10px;
+
+  @media only screen and (min-width: 1200px) {
+    width: 1200px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 90%;
+  }
 
   .header {
     width: 100%;

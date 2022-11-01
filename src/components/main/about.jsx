@@ -145,19 +145,26 @@ const About = () => {
 };
 
 const Container = styled.div`
-  width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
 
+  @media only screen and (min-width: 1200px) {
+    width: 1200px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 90%;
+  }
+
   .shadow {
     box-shadow: 0px 0px 30px -4px rgba(100, 100, 100, 0.15);
   }
 
   .nav {
-    width: 90%;
+    width: 100%;
     height: 70px;
     display: flex;
     flex-direction: row;
@@ -180,7 +187,7 @@ const Container = styled.div`
   }
 
   .container {
-    width: 90%;
+    width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;

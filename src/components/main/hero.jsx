@@ -26,14 +26,20 @@ const Hero = () => {
 };
 
 const Container = styled.div`
-  width: 100%;
-  height: calc(100vh + 150px);
-  background: var(--hero);
+  height: 750px;
   padding: 150px 60px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
+
+  @media only screen and (min-width: 1200px) {
+    width: 1200px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 90%;
+  }
 
   .image {
     width: 30%;
@@ -41,19 +47,19 @@ const Container = styled.div`
 
     .one {
       position: absolute;
-      left: -400px;
+      left: -75%;
       top: -100px;
     }
 
     .two {
       position: absolute;
-      right: -400px;
+      right: -75%;
       top: -80px;
     }
   }
 
   .content {
-    width: 45%;
+    width: 50%;
     height: auto;
     display: flex;
     flex-direction: column;

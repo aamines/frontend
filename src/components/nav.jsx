@@ -7,31 +7,29 @@ const Nav = () => {
   const router = useLocation();
 
   useEffect(() => {
-    console.log(router.pathname);
     setActive(router.pathname);
   }, [router.pathname]);
 
   return (
     <Container>
-      <div className="logo">
-        <img src="/min_logo.svg" alt="logo" />
-      </div>
-      <div className="nav">
-        <Link to="/" className={active === "/" ? "active" : ""}>
-          Home
-        </Link>
-        <Link to="/explore" className={active === "/explore" ? "active" : ""}>
-          Explore
-        </Link>
-        <Link to="/contact" className={active === "/contact" ? "active" : ""}>
-          Contact
-        </Link>
-      </div>
-      <div className="buttons">
-        <Link to="/login">Login</Link>
-        <Link to="/signup" className="signup">
-          Signup
-        </Link>
+      <div className="content">
+        <div className="logo">
+          <img src="/min_logo.svg" alt="logo" />
+        </div>
+        <div className="nav">
+          <Link to="/" className={active === "/" ? "active" : ""}>
+            Home
+          </Link>
+          <Link to="/contact" className={active === "/contact" ? "active" : ""}>
+            Contact
+          </Link>
+        </div>
+        <div className="buttons">
+          <Link to="/login">Login</Link>
+          <Link to="/signup" className="signup">
+            Signup
+          </Link>
+        </div>
       </div>
     </Container>
   );
@@ -41,11 +39,31 @@ const Container = styled.div`
   width: 100%;
   height: 70px;
   display: flex;
-  padding: 0 80px;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background: var(--white);
+
+  @media only screen and (min-width: 1200px) {
+    .content {
+      width: 1200px;
+      display: flex;
+      padding: 0 80px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .content {
+      width: 90%;
+      display: flex;
+      padding: 0 80px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
 
   .logo {
     width: 20%;

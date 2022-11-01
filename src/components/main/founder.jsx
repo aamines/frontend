@@ -22,12 +22,19 @@ const Founder = () => {
 };
 
 const Container = styled.div`
-  width: 90%;
   height: 500px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (min-width: 1200px) {
+    width: 1200px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 90%;
+  }
 
   .content {
     width: 43%;
