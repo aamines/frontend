@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 //components
 import Footer from "../components/footer";
@@ -17,7 +18,23 @@ const Login = () => {
             </p>
           </div>
           <div className="icons">
-            <div className="row"></div>
+            <div className="row">
+              <img src="/icons/linkedin.png" alt="linkedin" />
+              <p>Login with Linkedin</p>
+            </div>
+            <div className="row">
+              <img src="/icons/google.png" alt="google" />
+              <p>Login with Google</p>
+            </div>
+            <div className="row">
+              <img src="/icons/facebook.png" alt="facebook" />
+              <p>Login with Facebook</p>
+            </div>
+          </div>
+          <div className="or">
+            <p>
+              Already have an account!? <Link to="#">Login here</Link>{" "}
+            </p>
           </div>
         </div>
         <div className="image">
@@ -62,9 +79,65 @@ const Container = styled.div`
       width: 60%;
       height: 90%;
       z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 10px 0;
       border-radius: 10px;
       box-shadow: 0px -5px 90px rgba(0, 0, 0, 0.1);
       background: var(--white);
+
+      .header {
+        width: 100%;
+        height: 25%;
+        display: flex;
+        padding: 0 40px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        p.head {
+          font-size: 2rem;
+          font-weight: 800;
+          color: var(--dark);
+        }
+
+        p {
+          color: var(--dark);
+        }
+      }
+
+      .icons {
+        width: 50%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .row {
+          width: 100%;
+          height: 25%;
+          display: flex;
+          cursor: pointer;
+          flex-direction: row;
+          align-items: center;
+          border-radius: 5px;
+          justify-content: space-between;
+          padding: 0 25%;
+          background: var(--gray);
+        }
+      }
+
+      .or {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
     }
 
     .image {
