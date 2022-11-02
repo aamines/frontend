@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Main from "./pages/main";
 import Login from "./pages/login";
 import Nav from "./components/nav";
+import Signup from "./pages/signup";
 import Contact from "./pages/contact";
 
 //globals
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" exact element={<Main />} />
         <Route path="/contact" exact element={<Contact />} />
         <Route path="/login" exact element={<Login />} />
+        <Route path="/signup" exact element={<Signup />} />
       </Routes>
     </Router>
   );

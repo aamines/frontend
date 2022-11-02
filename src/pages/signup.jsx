@@ -5,35 +5,35 @@ import { Link } from "react-router-dom";
 //components
 import Footer from "../components/footer";
 
-const Login = () => {
+const Signup = () => {
   return (
     <Container>
       <div className="content">
         <div className="div">
           <div className="header">
-            <p className="head">Welcome back!</p>
+            <p className="head">Welcome here!</p>
             <p className="para">
-              You know what's great about coming back? You are always assured of
-              a pleasant welcome!
+              The flags are flying. The balloons are ready for release. It's a
+              great day one we've been planning and waiting for.
             </p>
           </div>
           <div className="icons">
             <div className="row">
               <img src="/icons/linkedin.png" alt="linkedin" />
-              <p>Login with Linkedin</p>
+              <p>Signup with Linkedin</p>
             </div>
             <div className="row">
               <img src="/icons/google.png" alt="google" />
-              <p>Login with Google</p>
+              <p>Signup with Google</p>
             </div>
             <div className="row">
               <img src="/icons/facebook.png" alt="facebook" />
-              <p>Login with Facebook</p>
+              <p>Signup with Facebook</p>
             </div>
           </div>
           <div className="or">
             <p>
-              Don't have an account!? <Link to="#">Signup here</Link>
+              Already have an account!? <Link to="#">Login here</Link>
             </p>
           </div>
         </div>
@@ -105,6 +105,7 @@ const Container = styled.div`
 
         p {
           color: var(--dark);
+          text-align: center;
         }
       }
 
@@ -165,4 +166,4 @@ const Container = styled.div`
   }
 `;
 
-export default Login;
+export default Signup;
