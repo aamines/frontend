@@ -2,10 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-//components
-import Footer from "../components/footer";
-
 const Signup = () => {
+  const handleGoogle = () => {};
+
   return (
     <Container>
       <div className="content">
@@ -22,7 +21,7 @@ const Signup = () => {
               <img src="/icons/linkedin.png" alt="linkedin" />
               <p>Signup with Linkedin</p>
             </div>
-            <div className="row">
+            <div className="row" onClick={handleGoogle}>
               <img src="/icons/google.png" alt="google" />
               <p>Signup with Google</p>
             </div>
