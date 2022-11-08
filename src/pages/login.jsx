@@ -8,7 +8,7 @@ const Login = () => {
       <div className="left"></div>
       <div className="right">
         <div className="header">
-          <p className="head">Welcome here!</p>
+          <p className="head">Welcome back!</p>
           <p className="para">Welcome back to your professional community.</p>
         </div>
         <form action="#">
@@ -46,13 +46,13 @@ const Container = styled.div`
   justify-content: center;
 
   .left {
-    width: 50%;
+    width: 40%;
     height: 100%;
     background: var(--dark);
   }
 
   .right {
-    width: 50%;
+    width: 60%;
     height: 100%;
     display: flex;
     flex-direction: column;
