@@ -3,22 +3,15 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = () => {
-  const [transparent, setTransparent] = React.useState(false);
   const [active, setActive] = React.useState("");
   const router = useLocation();
 
   useEffect(() => {
     setActive(router.pathname);
-
-    if (router.pathname === "/login" || router.pathname === "/signup") {
-      setTransparent(true);
-    } else {
-      setTransparent(false);
-    }
   }, [router.pathname]);
 
   return (
-    <Container transparent={transparent}>
+    <Container>
       <div className="content">
         <div className="logo">
           <img src="/min_logo.svg" alt="logo" />
@@ -50,7 +43,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${(props) => (props.transparent ? "transparent" : "var(--dark)")};
+  background: var(--dark);
+  filter: drop-shadow(0px 16px 25px rgba(0, 0, 0, 0.25));
 
   @media only screen and (min-width: 1200px) {
     .content {
@@ -102,7 +96,7 @@ const Container = styled.div`
     a {
       margin: 0 30px;
       text-decoration: none;
-      color: ${(props) => (props.transparent ? "var(--dark)" : "var(--white)")};
+      color: var(--white);
     }
   }
 
@@ -117,7 +111,7 @@ const Container = styled.div`
     a {
       margin: 0 0 0 30px;
       text-decoration: none;
-      color: ${(props) => (props.transparent ? "var(--dark)" : "var(--white)")};
+      color: var(--white);
     }
 
     .signup {
