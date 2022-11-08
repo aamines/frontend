@@ -1,11 +1,48 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
 
-//components
-import Footer from "../components/footer";
+//features
+import app from "../features/firebase";
 
 const Login = () => {
+  const [gloading, setGLoading] = React.useState(false);
+  const [floading, setFLoading] = React.useState(false);
+  const [lloading, setLLoading] = React.useState(false);
+
+  //google signup
+  const handleGoogle = async () => {
+    setGLoading(true);
+    const googleProvider = new GoogleAuthProvider();
+    const auth = getAuth(app);
+    const { user } = await signInWithPopup(auth, googleProvider).then((res) => {
+      setGLoading(false);
+      return res;
+    });
+
+    console.log(user);
+  };
+
+  //facebook signup
+  const handleFacebook = async () => {
+    setFLoading(true);
+    setTimeout(() => {
+      setFLoading(false);
+    }, 2000);
+  };
+
+  //linkedin signup
+  const handleLinkedin = () => {
+    setLLoading(true);
+    setTimeout(() => {
+      setLLoading(false);
+    }, 2000);
+  };
+
+  //doNothing
+  const doNothing = () => {};
+
   return (
     <Container>
       <div className="content">
@@ -18,22 +55,46 @@ const Login = () => {
             </p>
           </div>
           <div className="icons">
-            <div className="row">
-              <img src="/icons/linkedin.png" alt="linkedin" />
-              <p>Login with Linkedin</p>
+            <div
+              className="row opacity"
+              onClick={lloading ? doNothing : handleLinkedin}
+            >
+              {lloading ? (
+                <img src="/loader.svg" alt="loader" className="loader" />
+              ) : (
+                <>
+                  <img src="/icons/linkedin.png" alt="linkedin" />
+                  <p>Login with Linkedin</p>
+                </>
+              )}
             </div>
-            <div className="row">
-              <img src="/icons/google.png" alt="google" />
-              <p>Login with Google</p>
+            <div className="row" onClick={gloading ? doNothing : handleGoogle}>
+              {gloading ? (
+                <img src="/loader.svg" alt="loader" className="loader" />
+              ) : (
+                <>
+                  <img src="/icons/google.png" alt="google" />
+                  <p>Login with Google</p>
+                </>
+              )}
             </div>
-            <div className="row">
-              <img src="/icons/facebook.png" alt="facebook" />
-              <p>Login with Facebook</p>
+            <div
+              className="row opacity"
+              onClick={floading ? doNothing : handleFacebook}
+            >
+              {floading ? (
+                <img src="/loader.svg" alt="loader" className="loader" />
+              ) : (
+                <>
+                  <img src="/icons/facebook.png" alt="facebook" />
+                  <p>Login with Facebook</p>
+                </>
+              )}
             </div>
           </div>
           <div className="or">
             <p>
-              Don't have an account!? <Link to="#">Signup here</Link>
+              Already have an account!? <Link to="#">Login here</Link>
             </p>
           </div>
         </div>
@@ -105,6 +166,7 @@ const Container = styled.div`
 
         p {
           color: var(--dark);
+          text-align: center;
         }
       }
 
@@ -124,9 +186,21 @@ const Container = styled.div`
           flex-direction: row;
           align-items: center;
           border-radius: 5px;
-          justify-content: space-between;
-          padding: 0 25%;
+          justify-content: center;
           background: var(--gray);
+
+          p {
+            margin: 0 10px;
+          }
+
+          .loader {
+            justify-self: center;
+            width: 30%;
+          }
+        }
+
+        .opacity {
+          opacity: 0.5;
         }
       }
 
