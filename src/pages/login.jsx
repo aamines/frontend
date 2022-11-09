@@ -1,8 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+
+//features
+import app from "../features/firebase";
 
 const Login = () => {
+  const [gloading, GLoading] = React.useState(false);
+  const [loading, Loading] = React.useState(false);
+
+  //handle google login
+  const handleGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth(app);
+
+    //popup
+    signInWithPopup(auth, provider).then((result) => {
+      console.log(result);
+    });
+  };
+
   return (
     <Container>
       <div className="left"></div>
@@ -24,13 +42,13 @@ const Login = () => {
             </div>
           </div>
           <button type="submit">Login</button>
-          <div className="google">
+          <div className="google" onClick={handleGoogle}>
             <img src="/icons/google.png" alt="Google" />
             <p>Sign in with google</p>
           </div>
         </form>
         <p>
-          Don't have an account yet? <Link to="#">Sign up</Link>
+          Don't have an account yet? <Link to="/signup">Sign up</Link>
         </p>
       </div>
     </Container>

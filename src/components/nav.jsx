@@ -1,19 +1,24 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate, useRoutes } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = () => {
   const [active, setActive] = React.useState("");
-  const router = useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setActive(router.pathname);
-  }, [router.pathname]);
+    setActive(location.pathname);
+  }, [location.pathname]);
+
+  const goHome = () => {
+    navigate("/");
+  };
 
   return (
     <Container>
       <div className="content">
-        <div className="logo">
+        <div className="logo" onClick={goHome}>
           <img src="/min_logo.svg" alt="logo" />
         </div>
         <div className="nav">
