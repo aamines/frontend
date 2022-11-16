@@ -1,2 +1,2 @@
-# Projectia
+# Frontend
 ### Projectia frontend codebase
