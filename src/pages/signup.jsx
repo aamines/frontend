@@ -1,14 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+
+//features
+import axios from "../features/axios";
 
 //features
 import app from "../features/firebase";
 
 const Signup = () => {
-  const [gloading, GLoading] = React.useState(false);
-  const [loading, Loading] = React.useState(false);
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+
+  const [gloading, setGLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   //handle google signup
   const handleGoogle = () => {
@@ -21,6 +28,23 @@ const Signup = () => {
     });
   };
 
+  const handleSubmision = (data) => {
+    setLoading(true);
+    axios
+      .post("/users/signup", {
+        names: data.names,
+        email: data.email,
+        country: data.country,
+        password: data.password,
+        usedGoogle: false,
+      })
+      .then((res) => {
+        setLoading(false);
+        window.localStorage.setItem("token", res.data.token);
+        navigate("/home");
+      });
+  };
+
   return (
     <Container>
       <div className="content">
@@ -28,18 +52,45 @@ const Signup = () => {
           <p className="head">Welcome here!</p>
           <p className="para">Create an account and start having fun.</p>
         </div>
-        <form action="#">
-          <input type="text" placeholder="Names" />
-          <input type="text" placeholder="Email" />
-          <select name="country" id="country" placeholder="Country">
+        <form action="#" onSubmit={handleSubmit(handleSubmision)}>
+          <input
+            type="text"
+            placeholder="Names"
+            {...register("names", {
+              minLength: 3,
+              maxLength: 30,
+              required: true,
+            })}
+          />
+          <input
+            type="text"
+            placeholder="Email"
+            {...register("email", {
+              required: true,
+            })}
+          />
+          <select
+            name="country"
+            id="country"
+            placeholder="Country"
+            {...register("country", {
+              required: true,
+            })}
+          >
             <option value="Rwanda">Rwanda</option>
           </select>
-          <input type="password" placeholder="Password" />
+          <input
+            type="password"
+            placeholder="Password"
+            {...register("password", { required: true })}
+          />
           <div className="row" onClick={handleGoogle}>
             <img src="/icons/google.png" alt="Google" />
             <p>Sign in with Google</p>
           </div>
-          <button type="submit">Sign up</button>
+          <button type="submit">
+            {loading ? <img src="/loader.svg" alt="loader" /> : "Sign up"}
+          </button>
         </form>
       </div>
       <div className="login">
@@ -105,7 +156,7 @@ const Container = styled.div`
 
       input {
         width: 100%;
-        height: 70%;
+        height: 50px;
         padding: 0 15px;
         border: none;
         border-radius: 5px;
@@ -115,7 +166,7 @@ const Container = styled.div`
 
       select {
         width: 100%;
-        height: 70%;
+        height: 50px;
         padding: 0 15px;
         border: none;
         border-radius: 5px;
@@ -125,12 +176,19 @@ const Container = styled.div`
 
       button {
         width: 100%;
-        height: 70%;
+        height: 50px;
         padding: 0 15px;
         border: none;
         border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         outline: none;
         background: var(--bright);
+
+        img {
+          width: 12%;
+        }
       }
 
       .row {
