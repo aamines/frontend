@@ -48,8 +48,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--dark);
-  filter: drop-shadow(0px 16px 25px rgba(0, 0, 0, 0.25));
+  background: var(--white);
 
   @media only screen and (min-width: 1200px) {
     .content {
@@ -101,7 +100,7 @@ const Container = styled.div`
     a {
       margin: 0 30px;
       text-decoration: none;
-      color: var(--white);
+      color: var(--dark);
     }
   }
 
@@ -116,7 +115,7 @@ const Container = styled.div`
     a {
       margin: 0 0 0 30px;
       text-decoration: none;
-      color: var(--white);
+      color: var(--dark);
     }
 
     .signup {

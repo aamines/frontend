@@ -66,7 +66,7 @@ const Container = styled.div`
   .left {
     width: 40%;
     height: 100%;
-    background: var(--dark);
+    background: var(--gray);
   }
 
   .right {

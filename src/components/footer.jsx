@@ -38,11 +38,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    90deg,
-    rgba(5, 17, 30, 1) 0%,
-    rgba(8, 28, 50, 1) 35%
-  );
+  background: var(--white);
 
   .logo {
     font-size: 2rem;
@@ -62,7 +58,7 @@ const Container = styled.div`
     a {
       margin: 0 20px;
       text-decoration: none;
-      color: var(--white);
+      color: var(--dark);
     }
   }
 
@@ -82,11 +78,11 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       margin: 0 20px;
-      border: 1px solid var(--white);
+      border: 1px solid var(--dark);
 
       .icon {
         font-size: 1em;
-        color: var(--white);
+        color: var(--dark);
       }
     }
   }
