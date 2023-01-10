@@ -10,18 +10,18 @@ const Some = () => {
       </div>
       <div className="content">
         <div className="box">
-          <p className="header">Boost connection and communication.</p>
+          <p className="head">Boost connection and communication.</p>
           <p className="para">
             With feature-ful chat system, host online meetings, sharing moments
-            and posts plus more community experience and features.{" "}
+            and posts plus more community experience and features.
           </p>
           <div className="image"></div>
         </div>
         <div className="box">
-          <p className="header">Get statistics on your community.</p>
+          <p className="head">Get statistics on your community.</p>
           <p className="para">
-            Assess the health and growth of your online community with our deep
-            integrations and deep analytics.
+            Assess the health and growth of your community according to your
+            vision with our deep integrations and analytics.
           </p>
           <div className="image"></div>
         </div>
@@ -76,7 +76,7 @@ const Container = styled.div`
       width: 32%;
       height: 90%;
       background: var(--hero);
-      padding: 30px 20px;
+      padding: 20px 20px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -84,9 +84,14 @@ const Container = styled.div`
       margin: 0 40px;
       border-radius: 10px;
 
-      p.header {
+      p.head {
         font-size: 2em;
         font-weight: 700;
+        line-height: 35px;
+      }
+
+      p.para {
+        line-height: 20px;
       }
 
       .image {

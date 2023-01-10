@@ -7,9 +7,9 @@ const Founder = () => {
       <div className="content">
         <p className="para">
           <span>Projectia</span> is a great online platform for communities to
-          boost connection and communication. All that is needed for the growth
-          and health of your community can be found in one place for free or few
-          dollars.
+          boost connection and management, with the deep integration and
+          analytics from OrcasAI, the platform will keep the community
+          on-vision.
         </p>
         <p>Byiringiro saad</p>
         <p className="position">Founder, CEO of Mines</p>

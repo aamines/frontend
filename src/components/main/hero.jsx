@@ -71,13 +71,13 @@ const Container = styled.div`
 
     .one {
       position: absolute;
-      left: -100%;
+      left: -110%;
       top: -100px;
     }
 
     .two {
       position: absolute;
-      right: -100%;
+      right: -110%;
       top: -80px;
     }
   }
