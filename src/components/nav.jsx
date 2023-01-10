@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { Link, useLocation, useNavigate, useRoutes } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = () => {
-  const [active, setActive] = React.useState("");
   const location = useLocation();
   const navigate = useNavigate();
+  const [active, setActive] = React.useState("");
 
   useEffect(() => {
     setActive(location.pathname);
@@ -79,6 +79,7 @@ const Container = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    cursor: pointer;
 
     img {
       width: 30px;

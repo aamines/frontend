@@ -34,11 +34,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    180deg,
-    rgba(59, 226, 143, 0.15) 0%,
-    rgba(59, 226, 143, 0) 100%
-  );
 
   .container {
     height: 100%;

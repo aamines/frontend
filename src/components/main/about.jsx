@@ -122,17 +122,17 @@ const About = () => {
         <div className="row" id="community">
           <div className="content">
             <p className="header">
-              Create and manage a <span>community</span>.
+              Get well detailed insights over the <span>Vision</span>.
             </p>
             <div className="down">
               <img src="/icons/line.svg" alt="line" />
               <div className="para">
                 <p className="bold">
-                  Create and manage a community using a featureful platform.
+                  Projectia will assess your community according to your vision.
                 </p>
                 <p>
-                  Projectia gives you a bunch of features to help you improve
-                  and manage your community life.
+                  Projectia will provide insights to help you improve and manage
+                  your community life.
                 </p>
               </div>
             </div>
