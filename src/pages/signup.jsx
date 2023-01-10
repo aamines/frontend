@@ -92,11 +92,11 @@ const Signup = () => {
             {loading ? <img src="/loader.svg" alt="loader" /> : "Sign up"}
           </button>
         </form>
-      </div>
-      <div className="login">
-        <p>
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
+        <div className="login">
+          <p>
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
+        </div>
       </div>
     </Container>
   );
@@ -111,7 +111,7 @@ const Container = styled.div`
   justify-content: center;
 
   .content {
-    height: auto;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,7 +130,7 @@ const Container = styled.div`
       height: auto;
       display: flex;
       padding: 0 40px;
-      margin: 50px;
+      margin: 80px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -150,6 +150,7 @@ const Container = styled.div`
     form {
       width: 70%;
       height: auto;
+      margin: 0 0 80px 0;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 50px;
@@ -211,23 +212,21 @@ const Container = styled.div`
         }
       }
     }
-  }
 
-  .login {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
+    .login {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    p {
-      color: var(--dark);
+      p {
+        color: var(--dark);
 
-      a {
-        color: var(--bright);
-        text-decoration: none;
+        a {
+          color: var(--bright);
+          text-decoration: none;
+        }
       }
     }
   }
