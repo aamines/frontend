@@ -7,20 +7,28 @@ const Hero = () => {
     <Container>
       <div className="container">
         <div className="image">
-          <img src="/images/one.png" alt="one" className="one" />
+          <img src="/images/One.gif" alt="one" className="one" />
         </div>
         <div className="content">
-          <p className="header">
-            Assemble your professional <span>Community</span>.
-          </p>
+          <div className="header">
+            <p>Let's keep your</p>
+            <div className="down">
+              <p>Community</p>
+              <div className="words">
+                <span>managed.</span>
+                <span>connected.</span>
+                <span>on-vision.</span>
+              </div>
+            </div>
+          </div>
           <p className="para">
-            Create and Manage your community through a rich and feature-ful
-            professional platform.
+            Management and communication, let’s keep your organization inline
+            and on-vision focused.
           </p>
           <Link to="/login">Join now</Link>
         </div>
         <div className="image">
-          <img src="/images/two.png" alt="two" className="two" />
+          <img src="/images/Two.gif" alt="two" className="two" />
         </div>
       </div>
     </Container>
@@ -80,6 +88,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 100;
 
     p {
       color: var(--dark);
@@ -88,11 +97,65 @@ const Container = styled.div`
     }
 
     .header {
-      font-size: 2.5rem;
-      font-weight: 800;
-      line-height: 50px;
+      width: auto;
+      height: auto;
+
+      p {
+        font-size: 3em;
+        font-weight: 800;
+        line-height: 35px;
+      }
+
+      .down {
+        width: auto;
+        height: auto;
+        display: flex;
+
+        .words {
+          width: auto;
+          height: 50px;
+          overflow: hidden;
+
+          span {
+            font-size: 3em;
+            font-weight: 800;
+            line-height: 35px;
+            margin: 0 0 20px 7px;
+            animation: spin 6s infinite;
+
+            @keyframes spin {
+              0% {
+                transform: translateY(70px);
+              }
+              15% {
+                transform: translateY(0);
+              }
+              30% {
+                transform: translateY(0);
+              }
+              45% {
+                transform: translateY(-70px);
+              }
+              60% {
+                transform: translateY(-70px);
+              }
+              75% {
+                transform: translateY(-140px);
+              }
+              90% {
+                transform: translateY(-140px);
+              }
+              100% {
+                transform: translateY(-210px);
+              }
+            }
+          }
+        }
+      }
 
       span {
+        display: block;
+        height: 100%;
         color: var(--bright);
       }
     }

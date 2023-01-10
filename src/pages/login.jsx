@@ -64,24 +64,25 @@ const Container = styled.div`
   justify-content: center;
 
   .left {
-    width: 40%;
+    width: 50%;
     height: 100%;
     background: var(--gray);
   }
 
   .right {
-    width: 60%;
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px 0;
     background: var(--light);
 
     .header {
       width: 100%;
       height: 100px;
+      margin: 0 0 50px 0;
       display: flex;
       padding: 0 40px;
       flex-direction: column;
@@ -106,6 +107,7 @@ const Container = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 0 0 50px 0;
 
       input[type="text"] {
         width: 100%;

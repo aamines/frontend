@@ -32,7 +32,7 @@ const About = () => {
           Communicate
         </Link>
         <Link activeClass="current" smooth spy to="community">
-          Community
+          Vision
         </Link>
       </div>
       <div className="container">
@@ -179,6 +179,7 @@ const Container = styled.div`
     a {
       text-decoration: none;
       color: var(--dark);
+      cursor: pointer;
     }
 
     .current {

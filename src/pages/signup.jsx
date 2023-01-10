@@ -108,7 +108,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   .content {
     height: auto;
@@ -127,7 +127,7 @@ const Container = styled.div`
 
     .header {
       width: 100%;
-      height: 100px;
+      height: auto;
       display: flex;
       padding: 0 40px;
       margin: 50px;
@@ -149,7 +149,7 @@ const Container = styled.div`
 
     form {
       width: 70%;
-      height: 220px;
+      height: auto;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 50px;
@@ -162,12 +162,14 @@ const Container = styled.div`
         border-radius: 5px;
         outline: none;
         background: var(--gray);
+        margin: 0 0 15px 0;
       }
 
       select {
         width: 100%;
         height: 50px;
         padding: 0 15px;
+        margin: 0 0 15px 0;
         border: none;
         border-radius: 5px;
         outline: none;
@@ -178,6 +180,7 @@ const Container = styled.div`
         width: 100%;
         height: 50px;
         padding: 0 15px;
+        margin: 0 0 15px 0;
         border: none;
         border-radius: 5px;
         display: flex;
@@ -216,6 +219,8 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    bottom: 0;
 
     p {
       color: var(--dark);
