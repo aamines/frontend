@@ -14,7 +14,6 @@ const Signup = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
-  const [gloading, setGLoading] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
   //handle google signup

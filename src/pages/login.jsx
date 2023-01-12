@@ -7,9 +7,6 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "../features/firebase";
 
 const Login = () => {
-  const [gloading, GLoading] = React.useState(false);
-  const [loading, Loading] = React.useState(false);
-
   //handle google login
   const handleGoogle = () => {
     const provider = new GoogleAuthProvider();
