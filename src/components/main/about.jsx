@@ -231,6 +231,7 @@ const Container = styled.div`
           width: 100%;
           height: 70%;
           display: flex;
+          margin: 10px 0 0 0;
           flex-direction: row;
           align-items: center;
 
