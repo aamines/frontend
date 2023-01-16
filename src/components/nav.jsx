@@ -38,6 +38,7 @@ const Nav = () => {
         <div className="content">
           <div className="logo" onClick={goHome}>
             <img src="/min_logo.svg" alt="logo" />
+            <input type="text" placeholder="Search here..." />
           </div>
           <div className="nav">
             <Link to="/home" className={active === "/home" ? "active" : ""}>
@@ -131,7 +132,7 @@ const Container = styled.div`
   }
 
   .logo {
-    width: 20%;
+    width: 25%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -142,6 +143,17 @@ const Container = styled.div`
     img {
       width: 30px;
     }
+
+    input {
+      width: calc(100% - 40px);
+      height: 35px;
+      border: none;
+      background: var(--gray);
+      border-radius: 50px;
+      margin: 0 0 0 10px;
+      padding: 3px 10px 0 15px;
+      outline: none;
+    }
   }
 
   .active {
@@ -149,7 +161,7 @@ const Container = styled.div`
   }
 
   .nav {
-    width: 60%;
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -180,7 +192,7 @@ const Container = styled.div`
   }
 
   .buttons {
-    width: 20%;
+    width: 25%;
     height: 100%;
     display: flex;
     flex-direction: row;
