@@ -8,6 +8,7 @@ import Login from "./pages/login";
 import Nav from "./components/nav";
 import Signup from "./pages/signup";
 import Contact from "./pages/contact";
+import Profile from "./pages/profile/profile";
 
 //globals
 import "slick-carousel/slick/slick.css";
@@ -18,10 +19,13 @@ function App() {
     <Router>
       <Nav />
       <Routes>
+        {/* indexes */}
         <Route path="/" exact element={<Main />} />
         <Route path="/contact" exact element={<Contact />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/signup" exact element={<Signup />} />
+        {/* Posting */}
+        <Route path="/profile" exact element={<Profile />} />
       </Routes>
     </Router>
   );
