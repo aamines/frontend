@@ -3,12 +3,15 @@ import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 //icons
+import { FaUserAlt } from "react-icons/fa";
 import { RiHome6Fill } from "react-icons/ri";
 import { HiUserGroup } from "react-icons/hi";
+import { BiLogOutCircle } from "react-icons/bi";
 import {
   BsFillChatFill,
   BsBellFill,
   BsFillCaretDownFill,
+  BsFillCaretUpFill,
 } from "react-icons/bs";
 
 const Nav = () => {
@@ -19,8 +22,10 @@ const Nav = () => {
   //local data
   const [active, setActive] = React.useState("");
   const [authenticated, setAuthenticated] = React.useState(true);
+  const [down, setDown] = React.useState(false);
 
   useEffect(() => {
+    setDown(false);
     setActive(location.pathname);
   }, [location.pathname]);
 
@@ -30,6 +35,10 @@ const Nav = () => {
 
   const goTo = (path) => {
     navigate(path);
+  };
+
+  const handleDown = () => {
+    setDown(!down);
   };
 
   return (
@@ -64,11 +73,38 @@ const Nav = () => {
             >
               <BsBellFill className="icon" />
             </div>
-            <div className="profile">
+            <div className="profile" onClick={handleDown}>
               <div className="image"></div>
               <p className="name">Byiringiro</p>
-              <BsFillCaretDownFill className="icon" />
+              {down ? (
+                <BsFillCaretUpFill className="icon" />
+              ) : (
+                <BsFillCaretDownFill className="icon" />
+              )}
             </div>
+            {down && (
+              <div className="down">
+                <div className="row" onClick={() => goTo("/profile")}>
+                  <FaUserAlt className="icon" />
+                  <p>Profile</p>
+                </div>
+                <div className="row">
+                  <BiLogOutCircle className="icon" />
+                  <p>Logout</p>
+                </div>
+                <div className="big">
+                  <p className="header">Communities</p>
+                  <ul className="communities">
+                    <li>
+                      <p className="no">No Communities</p>
+                    </li>
+                    <li className="community">
+                      <button>Create Community</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       ) : (
@@ -113,10 +149,11 @@ const Container = styled.div`
     .content {
       width: 1200px;
       display: flex;
-      padding: 0 80px;
+      /* padding: 0 50px; */
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
+      position: relative;
     }
   }
 
@@ -237,6 +274,77 @@ const Container = styled.div`
 
       .icon {
         margin: 0 0 0 15px;
+      }
+    }
+
+    .down {
+      width: 210px;
+      height: 250px;
+      background: var(--background);
+      z-index: 1000;
+      position: absolute;
+      bottom: -265px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      right: -5px;
+      padding: 10px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+      .row {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 10px;
+        cursor: pointer;
+        border-radius: 5px;
+
+        .icon {
+          font-size: 1.1em;
+          margin: 0 10px 0 0;
+        }
+
+        :hover {
+          background: var(--gray);
+        }
+      }
+
+      .big {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 0 10px;
+
+        p.header {
+          line-height: 50px;
+        }
+
+        ul {
+          width: 100%;
+
+          li {
+            height: 40px;
+            width: 100%;
+            list-style: none;
+            margin: 0 0 0 10px;
+
+            .no {
+              width: 100%;
+              color: var(--grayish);
+            }
+
+            button {
+              width: 95%;
+              height: 30px;
+              border: none;
+              background: var(--gray);
+              border-radius: 5px;
+            }
+          }
+        }
       }
     }
 
