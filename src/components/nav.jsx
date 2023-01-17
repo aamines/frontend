@@ -98,7 +98,10 @@ const Nav = () => {
                     <li>
                       <p className="no">No Communities</p>
                     </li>
-                    <li className="community">
+                    <li
+                      className="community"
+                      onClick={() => goTo("/community/new")}
+                    >
                       <button>Create Community</button>
                     </li>
                   </ul>
