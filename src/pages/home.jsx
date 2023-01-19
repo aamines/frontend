@@ -55,6 +55,11 @@ const Container = styled.div`
       width: 25%;
       height: auto;
     }
+
+    .stats {
+      width: 20%;
+      height: auto;
+    }
   }
 `;
 
