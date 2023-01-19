@@ -28,8 +28,8 @@ const Post = () => {
           </p>
         </div>
         <div className="media">
-          <img src="/images/first.jpg" alt="first" />
-          <img src="/images/second.jpg" alt="second" />
+          <img src="/images/first.jpg" alt="first" loading="lazy" />
+          <img src="/images/second.jpg" alt="second" loading="lazy" />
         </div>
         <div className="stats">
           <div className="reactions">
