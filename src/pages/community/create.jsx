@@ -1,10 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { Outlet, useNavigate } from "react-router";
 
 //icons
 import { TbListDetails } from "react-icons/tb";
 
 const CreateCommunity = () => {
+  //config
+  const navigate = useNavigate();
+
+  const goTo = (path) => {
+    navigate(path);
+  };
+
   return (
     <Container>
       <div className="container">
@@ -13,7 +21,7 @@ const CreateCommunity = () => {
         </div>
         <div className="content">
           <div className="sidebar">
-            <div className="row">
+            <div className="row" onClick={() => goTo("/community/new")}>
               <div className="icon">
                 <TbListDetails className="one" />
               </div>
@@ -23,7 +31,7 @@ const CreateCommunity = () => {
               </div>
             </div>
             <div className="line"></div>
-            <div className="row">
+            <div className="row" onClick={() => goTo("/community/new/two")}>
               <div className="icon">
                 <TbListDetails className="one" />
               </div>
@@ -33,7 +41,7 @@ const CreateCommunity = () => {
               </div>
             </div>
             <div className="line"></div>
-            <div className="row">
+            <div className="row" onClick={() => goTo("/community/new/three")}>
               <div className="icon">
                 <TbListDetails className="one" />
               </div>
@@ -43,7 +51,9 @@ const CreateCommunity = () => {
               </div>
             </div>
           </div>
-          <div className="right"></div>
+          <div className="right">
+            <Outlet />
+          </div>
         </div>
       </div>
     </Container>
@@ -95,6 +105,7 @@ const Container = styled.div`
       .sidebar {
         width: 350px;
         height: 450px;
+        margin: 0 20px 0 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -111,6 +122,22 @@ const Container = styled.div`
           align-items: center;
           justify-content: flex-start;
           cursor: pointer;
+
+          :hover {
+            .icon {
+              border: 1px solid var(--dark);
+
+              .one {
+                color: var(--dark);
+              }
+            }
+
+            .para {
+              p {
+                color: var(--dark);
+              }
+            }
+          }
 
           .icon {
             width: 65px;
@@ -138,6 +165,7 @@ const Container = styled.div`
 
             p {
               line-height: 25px;
+              color: var(--grayish);
             }
           }
         }
@@ -145,9 +173,14 @@ const Container = styled.div`
         .line {
           width: 77%;
           height: 60px;
-          margin: 5px 0;
+          margin: 10px 0;
           border-left: 2px solid var(--grayish);
         }
+      }
+
+      .right {
+        width: 700px;
+        height: 450px;
       }
     }
   }

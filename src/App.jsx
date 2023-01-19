@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-//files
+//pages
 import Home from "./pages/home";
 import Main from "./pages/main";
 import Login from "./pages/login";
@@ -11,6 +11,11 @@ import Signup from "./pages/signup";
 import Contact from "./pages/contact";
 import Profile from "./pages/profile/profile";
 import CreateCommunity from "./pages/community/create";
+
+//components
+import One from "./components/community/one";
+import Two from "./components/community/two";
+import Three from "./components/community/three";
 
 //globals
 import "slick-carousel/slick/slick.css";
@@ -27,7 +32,11 @@ function App() {
         <Route path="/login" exact element={<Login />} />
         <Route path="/signup" exact element={<Signup />} />
         {/* Community */}
-        <Route path="/community/new" exact element={<CreateCommunity />} />
+        <Route path="/community/new/" exact element={<CreateCommunity />}>
+          <Route path="" exact element={<One />} />
+          <Route path="two" exact element={<Two />} />
+          <Route path="three" exact element={<Three />} />
+        </Route>
         {/* Posting */}
         <Route path="/profile" exact element={<Profile />} />
         <Route path="/home" exact element={<Home />} />

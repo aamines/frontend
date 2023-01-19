@@ -344,6 +344,7 @@ const Container = styled.div`
               height: 30px;
               border: none;
               background: var(--gray);
+              cursor: pointer;
               border-radius: 5px;
             }
           }
