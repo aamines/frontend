@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 //components
+import Add from "../components/posts/add";
 import Stats from "../components/home/stats";
 import Profile from "../components/home/profile";
 import Status from "../components/status/container";
@@ -15,6 +16,7 @@ const Home = () => {
         </div>
         <div className="content">
           <Status />
+          <Add />
         </div>
         <div className="stats">
           <Stats />
