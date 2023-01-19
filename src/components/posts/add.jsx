@@ -66,10 +66,12 @@ const Container = styled.div`
         padding: 5px 20px;
         margin: 0 10px 15px 0;
         border-radius: 5px;
+        cursor: pointer;
 
         .icon {
           font-size: 1.4em;
           margin: 0 5px 0 0;
+          color: var(--dark);
         }
 
         .big {
@@ -87,6 +89,7 @@ const Container = styled.div`
       justify-content: center;
       border-radius: 5px;
       background: var(--bright);
+      cursor: pointer;
     }
   }
 `;

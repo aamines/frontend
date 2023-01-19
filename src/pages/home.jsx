@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Add from "../components/posts/add";
 import Stats from "../components/home/stats";
 import Profile from "../components/home/profile";
+import Posts from "../components/posts/container";
 import Status from "../components/status/container";
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
         <div className="content">
           <Status />
           <Add />
+          <Posts />
         </div>
         <div className="stats">
           <Stats />
