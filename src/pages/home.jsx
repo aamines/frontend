@@ -4,6 +4,7 @@ import styled from "styled-components";
 //components
 import Stats from "../components/home/stats";
 import Profile from "../components/home/profile";
+import Status from "../components/status/container";
 
 const Home = () => {
   return (
@@ -12,7 +13,9 @@ const Home = () => {
         <div className="profile">
           <Profile />
         </div>
-        <div className="content"></div>
+        <div className="content">
+          <Status />
+        </div>
         <div className="stats">
           <Stats />
         </div>
@@ -53,6 +56,11 @@ const Container = styled.div`
 
     .profile {
       width: 25%;
+      height: auto;
+    }
+
+    .content {
+      width: 51%;
       height: auto;
     }
 
