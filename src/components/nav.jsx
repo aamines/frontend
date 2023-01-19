@@ -41,6 +41,10 @@ const Nav = () => {
     setDown(!down);
   };
 
+  useEffect(() => {
+    setAuthenticated(true);
+  }, []);
+
   return (
     <Container>
       {authenticated ? (

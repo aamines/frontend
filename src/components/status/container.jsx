@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 //icons
@@ -14,6 +14,10 @@ const Status = () => {
   const onNext = () => {};
 
   const onPrevious = () => {};
+
+  useEffect(() => {
+    setStatuses(100);
+  }, []);
 
   return (
     <Container>
