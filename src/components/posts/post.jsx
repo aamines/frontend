@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 //icons
+import { BiUpvote } from "react-icons/bi";
 import { MdModeComment } from "react-icons/md";
+import { BsHandThumbsUpFill } from "react-icons/bs";
+
+//components
+import Comments from "./comments";
 
 const Post = () => {
+  const [showComments, setShowComments] = useState(false);
+
+  const handleShowComments = () => {
+    setShowComments(!showComments);
+  };
+
   return (
     <Container>
       <div className="top">
-        <div className="profile">
+        <div className="pro">
+          <img src="/images/user.jpg" alt="user" />
           <div className="active"></div>
         </div>
         <div className="about">
@@ -31,21 +43,36 @@ const Post = () => {
           <img src="/images/first.jpg" alt="first" loading="lazy" />
           <img src="/images/second.jpg" alt="second" loading="lazy" />
         </div>
-        <div className="stats">
-          <div className="reactions">
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-            <p>356 Reactions</p>
-          </div>
-          <div className="comments">
-            <MdModeComment className="icon" />
-            <p>100 Comments</p>
-          </div>
+      </div>
+      <div className="infos">
+        <div className="reactions">
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+          <p>356 Reactions</p>
+        </div>
+        <div className="commentstats">
+          <MdModeComment className="icon" />
+          <p>100 Comments</p>
         </div>
       </div>
+      <div className="options">
+        <div className="one">
+          <BsHandThumbsUpFill className="icon up" />
+          <p>React</p>
+        </div>
+        <div className="one" onClick={handleShowComments}>
+          <MdModeComment className="icon" />
+          <p>Comment</p>
+        </div>
+        <div className="one">
+          <BiUpvote className="icon" />
+          <p>React</p>
+        </div>
+      </div>
+      <Comments />
     </Container>
   );
 };
@@ -67,17 +94,28 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
 
-    .profile {
-      width: 60px;
+    .pro {
+      width: auto;
       height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 50%;
       position: relative;
-      background: var(--gray);
+
+      img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
 
       .active {
         width: 10px;
         height: 10px;
+        z-index: 10;
         border-radius: 50%;
         background: var(--bright);
         position: absolute;
@@ -133,70 +171,96 @@ const Container = styled.div`
         width: 49%;
       }
     }
+  }
 
-    .stats {
-      width: 100%;
-      height: 70px;
+  .infos {
+    width: 100%;
+    height: 50px;
+    margin: 20px 0 10px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    .reactions {
+      width: auto;
+      height: 30px;
+      display: flex;
+      padding: 0 0 0 10px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      border-right: 2px solid var(--gray);
+      margin: 0 10px 0 0;
+
+      p {
+        margin: 0 20px 0 10px;
+      }
+
+      ul {
+        width: auto;
+        height: auto;
+        display: flex;
+        margin: 0 0 0 10px;
+
+        li {
+          list-style: none;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          background: var(--dark);
+          margin: 0 0 0 -10px;
+        }
+      }
+    }
+
+    .commentstats {
+      width: auto;
+      height: 30px;
       display: flex;
       flex-direction: row;
       align-items: center;
+      padding: 0 20px 0 20px;
+      border-left: 2px solid var(--gray);
 
-      .reactions {
-        width: auto;
-        height: 45px;
-        display: flex;
-        padding: 0 0 0 10px;
-        flex-direction: row;
-        align-items: center;
-        border-right: 2px solid var(--gray);
+      .icon {
+        font-size: 1.4em;
         margin: 0 10px 0 0;
-        cursor: pointer;
+      }
+    }
+  }
 
-        :hover {
-          background: var(--gray);
-          border-radius: 5px;
-        }
+  .options {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    padding: 10px 0 0 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--gray);
 
-        p {
-          margin: 0 20px 0 10px;
-        }
+    .one {
+      width: 30%;
+      height: 70%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 5px;
 
-        ul {
-          width: auto;
-          height: auto;
-          display: flex;
-          margin: 0 0 0 10px;
-
-          li {
-            list-style: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: var(--dark);
-            margin: 0 0 0 -10px;
-          }
-        }
+      .icon {
+        font-size: 1.6em;
+        margin: 0 10px 0 0;
       }
 
-      .comments {
-        width: auto;
-        height: 45px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 0 20px 0 20px;
-        border-left: 2px solid var(--gray);
-        cursor: pointer;
+      .up {
+        margin-top: -6px;
+      }
 
-        :hover {
-          background: var(--gray);
-          border-radius: 5px;
-        }
-
-        .icon {
-          font-size: 1.4em;
-          margin: 0 10px 0 0;
-        }
+      :hover {
+        border: 1px solid var(--bright);
       }
     }
   }

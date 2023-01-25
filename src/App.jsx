@@ -33,7 +33,7 @@ function App() {
         <Route path="/signup" exact element={<Signup />} />
         {/* Community */}
         <Route path="/community/new/" exact element={<CreateCommunity />}>
-          <Route path="" exact element={<One />} />
+          <Route index exact element={<One />} />
           <Route path="two" exact element={<Two />} />
           <Route path="three" exact element={<Three />} />
         </Route>
