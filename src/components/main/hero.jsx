@@ -13,7 +13,7 @@ const Hero = () => {
           <div className="header">
             <p>Let's keep your</p>
             <div className="down">
-              <p>Community</p>
+              <p>Organization</p>
               <div className="words">
                 <span>managed.</span>
                 <span>connected.</span>

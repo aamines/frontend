@@ -10,17 +10,17 @@ const Some = () => {
       </div>
       <div className="content">
         <div className="box">
-          <p className="head">Boost connection and communication.</p>
+          <p className="head">Boost connection and management.</p>
           <p className="para">
             With feature-ful chat system, host online meetings, sharing moments
-            and posts plus more community experience and features.
+            and posts plus more organization experience and features.
           </p>
           <div className="image"></div>
         </div>
         <div className="box">
-          <p className="head">Get statistics on your community.</p>
+          <p className="head">Keep your organization focused on vision.</p>
           <p className="para">
-            Assess the health and growth of your community according to your
+            Assess the health and growth of your organization according to your
             vision with our deep integrations and analytics.
           </p>
           <div className="image"></div>

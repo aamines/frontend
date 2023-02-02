@@ -6,10 +6,9 @@ const Founder = () => {
     <Container>
       <div className="content">
         <p className="para">
-          <span>Projectia</span> is a great online platform for communities to
-          boost connection and management, with the deep integration and
-          analytics from OrcasAI, the platform will keep the community
-          on-vision.
+          Using advanced AI algorithms, we generate insightful analysis and
+          visualization to help organizations achieve both operational and
+          successful outcomes. thus keeping them focused on their vision.
         </p>
         <p>Byiringiro saad</p>
         <p className="position">Founder, CEO of Mines</p>
@@ -37,7 +36,7 @@ const Container = styled.div`
   }
 
   .content {
-    width: 43%;
+    width: 45%;
     height: 100%;
     display: flex;
     flex-direction: column;

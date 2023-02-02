@@ -20,37 +20,34 @@ const About = () => {
     <Container>
       <div className={scrolled ? "shadow nav" : "nav"} ref={nav}>
         <Link activeClass="current" smooth spy to="post">
-          Post
+          Vision
         </Link>
         <Link activeClass="current" smooth spy to="share">
-          Share
+          Communication
         </Link>
         <Link activeClass="current" smooth spy to="chat">
-          Chat
+          Data
         </Link>
         <Link activeClass="current" smooth spy to="communicate">
-          Communicate
+          Integration
         </Link>
         <Link activeClass="current" smooth spy to="community">
-          Vision
+          Security
         </Link>
       </div>
       <div className="container">
         <div className="row" id="post">
           <div className="content">
             <p className="header">
-              Post your <span>achievements</span> in your community.
+              <span>Vision</span> setting and tracking.
             </p>
             <div className="down">
               <img src="/icons/line.svg" alt="line" />
               <div className="para">
-                <p className="bold">
-                  Create a post: an achivement, a project or an update and share
-                  with your community.
-                </p>
+                <p className="bold">Create, set and track your vision.</p>
                 <p>
-                  Get different feedbacks and insights from people within your
-                  community.
+                  Monitor progress of your organization according to your
+                  vision.
                 </p>
               </div>
             </div>
@@ -61,27 +58,7 @@ const About = () => {
           <div className="visual"></div>
           <div className="content">
             <p className="header">
-              Share your <span>moments</span> in your community.
-            </p>
-            <div className="down">
-              <img src="/icons/line.svg" alt="line" />
-              <div className="para">
-                <p className="bold">
-                  Share your moments with people from within your community and
-                  let them know what’s going on.
-                </p>
-                <p>
-                  Show people from your community something you are about to
-                  achieve or a project about to launch.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row" id="chat">
-          <div className="content">
-            <p className="header">
-              <span>Chat</span> with your community mates.
+              <span>Communication</span> and collaboration.
             </p>
             <div className="down">
               <img src="/icons/line.svg" alt="line" />
@@ -91,8 +68,27 @@ const About = () => {
                   information.
                 </p>
                 <p>
-                  Message or call your comminuty mates to talk and share ideas
-                  with your community.
+                  Plan and assign tasks for team mates and track their progress
+                  in real time.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row" id="chat">
+          <div className="content">
+            <p className="header">
+              <span>Data</span> analysis and visualization.
+            </p>
+            <div className="down">
+              <img src="/icons/line.svg" alt="line" />
+              <div className="para">
+                <p className="bold">
+                  Visualize and understand your progress in various areas.
+                </p>
+                <p>
+                  Get detailed review and analysis of your organization’s
+                  progress according to the set vision
                 </p>
               </div>
             </div>
@@ -103,17 +99,15 @@ const About = () => {
           <div className="visual"></div>
           <div className="content">
             <p className="header">
-              <span>Communicate</span> with your community mates.
+              <span>Integration</span> with other tools.
             </p>
             <div className="down">
               <img src="/icons/line.svg" alt="line" />
               <div className="para">
-                <p className="bold">
-                  Send a notice or a communique to everyone in your commounity.
-                </p>
+                <p className="bold">Need to connect to third party app!?</p>
                 <p>
-                  Give announcements and reminders to people within your
-                  community.
+                  Integrate and use third party apps directly from your
+                  organization’s workspace.
                 </p>
               </div>
             </div>
@@ -122,17 +116,18 @@ const About = () => {
         <div className="row" id="community">
           <div className="content">
             <p className="header">
-              Get well detailed insights over the <span>Vision</span>.
+              <span>Security</span> and data privacy.
             </p>
             <div className="down">
               <img src="/icons/line.svg" alt="line" />
               <div className="para">
                 <p className="bold">
-                  Projectia will assess your community according to your vision.
+                  We care about the security of your data and privacy.
                 </p>
                 <p>
-                  Projectia will provide insights to help you improve and manage
-                  your community life.
+                  With data privacy being a major concern for many
+                  organizations, Our platform is built with security and privacy
+                  in mind.
                 </p>
               </div>
             </div>
