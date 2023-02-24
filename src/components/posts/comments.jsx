@@ -4,9 +4,8 @@ import './comments.css'
 
 //icons
 import { BsEmojiHeartEyesFill } from "react-icons/bs";
-import { BiUpvote } from "react-icons/bi";
 import { MdModeComment } from "react-icons/md";
-import { BsHandThumbsUpFill } from "react-icons/bs";
+import SingleComment from "./singleComment";
 
 const Comments = () => {
   return (
@@ -22,75 +21,10 @@ const Comments = () => {
       </div>
 
       {/* comments */}
-
-      <div className="comments">
-        <img src="/images/user.jpg" alt="user" className="commenterImg"/>
-        <div className="commentContent">Happy for the team behind the product, we have been really waiting 
-        for this and we can all agree that it doesn’t dissapoint, Good luck along the way😊😊!</div>
-      </div>
-      <div className="commentReactions">
-      <div className="reactions">
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-          <p className="f-low">356</p>
-        </div>
-        <div className="commentstats">
-          <MdModeComment className="icon" />
-          <p className="f-low">100</p>
-        </div>
-
-        <p className="f-left">Load replies</p>
-      </div>
-
-      <div className="comments">
-        <img src="/images/user.jpg" alt="user" className="commenterImg"/>
-        <div className="commentContent">Happy for the team behind the product, we have been really waiting 
-        for this and we can all agree that it doesn’t dissapoint, Good luck along the way😊😊!</div>
-      </div>
-      <div className="commentReactions">
-      <div className="reactions">
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-          <p className="f-low">356</p>
-        </div>
-        <div className="commentstats">
-          <MdModeComment className="icon" />
-          <p className="f-low">100</p>
-        </div>
-
-        <p className="f-left">Load replies</p>
-        
-      </div>
-      <div className="comments">
-        <img src="/images/user.jpg" alt="user" className="commenterImg"/>
-        <div className="commentContent">Happy for the team behind the product, we have been really waiting 
-        for this and we can all agree that it doesn’t dissapoint, Good luck along the way😊😊!</div>
-      </div>
-      <div className="commentReactions">
-      <div className="reactions">
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-          <p className="f-low">356</p>
-        </div>
-        <div className="commentstats">
-          <MdModeComment className="icon" />
-          <p className="f-low">100</p>
-        </div>
-
-        <p className="f-left">Load replies</p>
-
-        <br/>
-        
-      </div>
+      <SingleComment commentContent="Happy for the team behind the product, we have been really waiting 
+        for this and we can all agree that it doesn’t dissapoint, Good luck along the way😊😊!" pic="/images/three.png"/>
+      <SingleComment commentContent="Conglatulations for the progress!" pic="/images/user.jpg"/>
+      <p className="p">Show all comments</p>
     </Container>
   );
 };

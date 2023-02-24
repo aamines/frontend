@@ -1,6 +1,6 @@
 .comments{
     display: flex;
-    /* background: green; */
+    width: 80%;
   }
   .commenterImg{
        width: 50px !important;
@@ -83,4 +83,11 @@
       .commentstats .f-low{
         /* color: red; */
         margin-left: -4px !important;
+      }
+
+      .p{
+        position: relative;
+        width: 100%;
+        font-size: 12px;
+        cursor: pointer;
       }
