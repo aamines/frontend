@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import './comments.css'
 
 //icons
 import { BsEmojiHeartEyesFill } from "react-icons/bs";

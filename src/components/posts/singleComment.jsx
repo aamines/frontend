@@ -1,6 +1,8 @@
 import React from "react";
 import './comments.css'
 import { MdModeComment } from "react-icons/md";
+import styled from "styled-components";
+
 const SingleComment = ({commentContent,pic})=>{
     return(
         <>
@@ -26,5 +28,6 @@ const SingleComment = ({commentContent,pic})=>{
       </div></>
     )
 }
+
 
 export default SingleComment
