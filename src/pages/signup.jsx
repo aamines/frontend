@@ -30,17 +30,17 @@ const Signup = () => {
   const handleSubmision = (data) => {
     setLoading(true);
     axios
-      .post("/users/signup", {
+      .post("/auth/register", {
         names: data.names,
         email: data.email,
         country: data.country,
         password: data.password,
-        usedGoogle: false,
       })
       .then((res) => {
-        setLoading(false);
-        window.localStorage.setItem("token", res.data.token);
-        navigate("/home");
+        // setLoading(false);
+        // window.localStorage.setItem("token", res.data.token);
+        // navigate("/home");
+        console.log(res);
       });
   };
 

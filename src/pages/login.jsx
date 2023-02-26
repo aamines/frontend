@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 //features
 import app from "../features/firebase";
 
 const Login = () => {
+  //configs
+  const { register, handleSubmit } = useForm();
+
   //handle google login
   const handleGoogle = () => {
     const provider = new GoogleAuthProvider();
@@ -18,17 +22,35 @@ const Login = () => {
     });
   };
 
+  //handle email login
+  const handleEmail = (data) => {
+    console.log(data);
+  };
+
   return (
     <Container>
-      <div className="left"></div>
       <div className="right">
         <div className="header">
           <p className="head">Welcome back!</p>
           <p className="para">Welcome back to your professional community.</p>
         </div>
-        <form action="#">
-          <input type="text" placeholder="Username / Email" />
-          <input type="text" placeholder="Password" />
+        <form onSubmit={handleSubmit(handleEmail)}>
+          <input
+            type="text"
+            placeholder="Username / Email"
+            {...register("user", {
+              required: true,
+              min: 3,
+            })}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            {...register("password", {
+              required: true,
+              min: 3,
+            })}
+          />
           <div className="row">
             <div className="left_">
               <input type="checkbox" name="remember" id="remember" />
@@ -48,6 +70,7 @@ const Login = () => {
           Don't have an account yet? <Link to="/signup">Sign up</Link>
         </p>
       </div>
+      <div className="left"></div>
     </Container>
   );
 };
@@ -99,14 +122,15 @@ const Container = styled.div`
     }
 
     form {
-      width: 50%;
+      width: 500px;
       height: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       margin: 0 0 50px 0;
 
-      input[type="text"] {
+      input[type="text"],
+      input[type="password"] {
         width: 100%;
         height: 45px;
         margin: 8px 0;

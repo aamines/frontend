@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 //icons
@@ -20,15 +20,16 @@ const Nav = () => {
   const navigate = useNavigate();
 
   //local data
-  const [active, setActive] = React.useState("");
-  const [authenticated, setAuthenticated] = React.useState(true);
-  const [down, setDown] = React.useState(false);
+  const [active, setActive] = useState("");
+  const [down, setDown] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
     setDown(false);
     setActive(location.pathname);
   }, [location.pathname]);
 
+  //Functions
   const goHome = () => {
     navigate("/");
   };

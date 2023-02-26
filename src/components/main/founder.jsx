@@ -6,9 +6,9 @@ const Founder = () => {
     <Container>
       <div className="content">
         <p className="para">
-          Using advanced AI algorithms, we generate insightful analysis and
-          visualization to help organizations achieve both operational and
-          successful outcomes. thus keeping them focused on their vision.
+          Operational excellence is the foundation, but success is the
+          destination. With Projectia, organizations can navigate their journey
+          with confidence and clarity.
         </p>
         <p>Byiringiro saad</p>
         <p className="position">Founder, CEO of Mines</p>
