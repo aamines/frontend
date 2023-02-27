@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 //icons
 import { BsEmojiHeartEyesFill } from "react-icons/bs";
+import { MdModeComment } from "react-icons/md";
+import SingleComment from "./singleComment";
 
 const Comments = () => {
   return (
@@ -16,16 +18,12 @@ const Comments = () => {
           <BsEmojiHeartEyesFill className="icon" />
         </div>
       </div>
-      <div className="comments">
-        <div className="all">
-          <div className="comment">
-            <div className="user">
-              <img src="/images/user.jpg" alt="user" />
-            </div>
-            <div className="comment_content"></div>
-          </div>
-        </div>
-      </div>
+
+      {/* comments */}
+      <SingleComment commentContent="Happy for the team behind the product, we have been really waiting 
+        for this and we can all agree that it doesn’t dissapoint, Good luck along the way😊😊!" pic="/images/three.png"/>
+      <SingleComment commentContent="Conglatulations for the progress!" pic="/images/user.jpg"/>
+      <p className="p">Show all comments</p>
     </Container>
   );
 };
