@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 //icons
 import { BsEmojiHeartEyesFill } from "react-icons/bs";
-import { MdModeComment } from "react-icons/md";
-import SingleComment from "./singleComment";
+
+//components
+import Comment from "./comment";
 
 const Comments = () => {
   return (
@@ -18,12 +19,11 @@ const Comments = () => {
           <BsEmojiHeartEyesFill className="icon" />
         </div>
       </div>
-
-      {/* comments */}
-      <SingleComment commentContent="Happy for the team behind the product, we have been really waiting 
-        for this and we can all agree that it doesn’t dissapoint, Good luck along the way😊😊!" pic="/images/three.png"/>
-      <SingleComment commentContent="Conglatulations for the progress!" pic="/images/user.jpg"/>
-      <p className="p">Show all comments</p>
+      <div className="comments">
+        <Comment content="Happy for the team behind the product, we have been really waiting for this and we can all agree that it doesn’t dissapoint, Good luck along the way😊😊!" />
+        <Comment content="Conglatulations for the progress!" />
+      </div>
+      <p className="more">Show all comments</p>
     </Container>
   );
 };
@@ -33,7 +33,7 @@ const Container = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 
   .search {
     width: 100%;
@@ -81,6 +81,16 @@ const Container = styled.div`
         }
       }
     }
+  }
+
+  .comments {
+    width: 95%;
+    height: auto;
+  }
+
+  p.more {
+    align-self: flex-start;
+    cursor: pointer;
   }
 `;
 

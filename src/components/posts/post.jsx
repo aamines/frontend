@@ -7,7 +7,7 @@ import { MdModeComment } from "react-icons/md";
 import { BsHandThumbsUpFill } from "react-icons/bs";
 
 //components
-import Comments from "./comments";
+import Comments from "../comments/comments";
 
 const Post = () => {
   const [showComments, setShowComments] = useState(false);
