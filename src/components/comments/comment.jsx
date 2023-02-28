@@ -123,7 +123,7 @@ const Container = styled.div`
         border-left: 1px solid var(--grayish);
 
         .icon {
-          font-size: 1.6em;
+          font-size: 1.4em;
           margin: 0 5px 0 0;
         }
       }
