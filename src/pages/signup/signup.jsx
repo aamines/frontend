@@ -5,10 +5,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 //features
-import axios from "../features/axios";
+import axios from "../../features/axios";
 
 //features
-import app from "../features/firebase";
+import app from "../../features/firebase";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -37,10 +37,9 @@ const Signup = () => {
         password: data.password,
       })
       .then((res) => {
-        // setLoading(false);
-        // window.localStorage.setItem("token", res.data.token);
-        // navigate("/home");
         console.log(res);
+        setLoading(false);
+        navigate("/verify");
       });
   };
 
