@@ -20,6 +20,7 @@ import Three from "./components/community/three";
 //globals
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Story from "./pages/story";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         {/* Posting */}
         <Route path="/profile" exact element={<Profile />} />
         <Route path="/home" exact element={<Home />} />
+        <Route path="/stories" exact element={<Story />} />
       </Routes>
     </Router>
   );
