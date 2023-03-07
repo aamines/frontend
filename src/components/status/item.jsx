@@ -1,24 +1,26 @@
-import React from "react";
 import styled from "styled-components";
 
-const Item = () => {
+const Item = ({data}) => {
   return (
     <Container>
-      <div className="one"></div>
-      <p>Saad</p>
+       {data.map((item,index)=>(
+      <div className="cont"><div className="one"></div><p>{item.name}</p></div>
+      ))}
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 70px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 10px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 
+  .cont{
+    width: 100%;
+    margin-left: 10px;
+  }
   .one {
+    cursor: pointer;
     width: 70px;
     height: 70px;
     display: flex;
