@@ -1,6 +1,6 @@
-import data from "../../store/reducers/data";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import data from "../../store/reducers/data";
 import styled, { css } from "styled-components";
 
 //icons
@@ -35,13 +35,13 @@ const SlideShow = (props) => {
   return (
     <>
       <NavButton position="left">
-        <AiOutlineLeft onClick={moveTo(activeIndex - 1)}/>
+        <AiOutlineLeft onClick={moveTo(activeIndex - 1)} />
       </NavButton>
       <ImageBox>
         <img alt={items[activeIndex].id} src={items[activeIndex].image} />
       </ImageBox>
       <NavButton position="right">
-        <AiOutlineRight onClick={moveTo(activeIndex + 1)}/>
+        <AiOutlineRight onClick={moveTo(activeIndex + 1)} />
       </NavButton>
     </>
   );

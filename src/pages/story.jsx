@@ -1,9 +1,10 @@
-import { Outlet } from "react-router";
 import styled from "styled-components";
-import Item from "../components/status/item";
-import { IoMdAdd } from "react-icons/io";
-import { useNavigate } from "react-router";
 import data from "../store/reducers/data";
+import Item from "../components/status/item";
+import { Outlet, useNavigate } from "react-router";
+
+//icons
+import { IoMdAdd } from "react-icons/io";
 
 const Story = () => {
   const navigate = useNavigate();
