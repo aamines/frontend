@@ -1,18 +1,11 @@
-import {useState, useEffect} from "react";
 import { Outlet } from "react-router";
 import styled from "styled-components";
 import Item from "../components/status/item";
 import { IoMdAdd } from "react-icons/io";
 import { useNavigate } from "react-router";
-import data from '../components/story/data'
+import data from "../store/reducers/data";
 
 const Story = () => {
-  const [statuses, setStatuses] = useState(100);
-
-  useEffect(() => {
-    setStatuses(100);
-  }, []);
-
   const navigate = useNavigate();
   const goTo = (path) => {
     navigate(path);
@@ -27,7 +20,7 @@ const Story = () => {
         <p>You</p>
       </YouStatus>
       <ThumbnailList>
-            <Item data={data}/>
+        <Item data={data} />
       </ThumbnailList>
     </Container>
   );
@@ -37,7 +30,7 @@ const Container = styled.div`
   position: relative;
   background-color: #f2f2f2;
   width: 50%;
-  height: 60vh; 
+  height: 60vh;
   margin: auto;
   top: 50px;
   border-radius: 5px;
@@ -66,7 +59,7 @@ const ThumbnailList = styled.div`
   }
   .notseen {
     border: 3px solid #3be28f;
-  }  
+  }
 `;
 
 const YouStatus = styled.div`
@@ -92,22 +85,7 @@ const YouStatus = styled.div`
     }
   }
   p {
-      margin-top: 7px;
-    }
-`; 
-const Thumbnail = styled.div`
-  cursor: pointer;
-  opacity: ${({ active }) => (active ? 1 : 0.6)};
-  background-image: url(${({ src }) => src});
-  background-size: cover;
-  background-position: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-
-  :hover {
-    opacity: 1;
+    margin-top: 7px;
   }
 `;
 export default Story;
-

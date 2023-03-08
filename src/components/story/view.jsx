@@ -1,4 +1,4 @@
-import data from "./data";
+import data from "../../store/reducers/data";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import styled, { css } from "styled-components";
