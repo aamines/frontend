@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import { useDropzone } from "react-dropzone";
@@ -6,24 +6,7 @@ import { useDropzone } from "react-dropzone";
 //icons
 import uploadImg from "../../assets/upload.png";
 
-const CreateMedia = (props) => {
-  const wrapperRef = useRef(null);
-  const [fileList, setFileList] = useState([]);
-
-  const onDragEnter = () => wrapperRef.current.classList.add("dragover");
-
-  const onDragLeave = () => wrapperRef.current.classList.remove("dragover");
-
-  const onDrop = () => wrapperRef.current.classList.remove("dragover");
-
-  const onFileDrop = (e) => {
-    const newFile = e.target.files[0];
-    if (newFile) {
-      const updatedList = [...fileList, newFile];
-      setFileList(updatedList);
-      props.onFileChange(updatedList);
-    }
-  };
+const CreateMedia = () => {
   const navigate = useNavigate();
   const goTo = (path) => {
     navigate(path);
@@ -43,6 +26,7 @@ const CreateMedia = (props) => {
       );
     },
   });
+
   return (
     <Container>
       <div className="textmedia">
@@ -51,20 +35,18 @@ const CreateMedia = (props) => {
           Media
         </p>
       </div>
-      <div
-        ref={wrapperRef}
-        className="drop-file-input"
-        onDragEnter={onDragEnter}
-        onDragLeave={onDragLeave}
-        onDrop={onDrop}
-      >
+      <div className="drop-file-input">
         <div className="drop-file-input__label" {...getRootProps()}>
           <input {...getInputProps()} />
+          {image.length == 0 ? (
+            <img className="upload-icon" src={uploadImg} alt="upload" />
+          ) : (
+            ""
+          )}
           {image.map((upfile) => (
             <img className="img-preview" src={upfile.preview} alt="preview" />
           ))}
         </div>
-        <input type="file" value="" onChange={onFileDrop} />
       </div>
       <input className="text" type="text" placeholder="Say Something..." />
       <button>Send</button>
@@ -98,15 +80,17 @@ const Container = styled.div`
     top: 80px;
     cursor: pointer;
 
-    /* img{
-            width: 50px;
-            height: 50px;
-        } */
+    .upload-icon {
+      width: 50px;
+      height: 50px;
+    }
+    .display {
+      display: none;
+    }
     .img-preview {
       position: relative;
       max-width: 100%;
       max-height: 100%;
-      /* background-position: center; */
       object-fit: cover;
     }
   }
@@ -131,7 +115,7 @@ const Container = styled.div`
     border: none;
     border-bottom: 2px solid #717171;
     background: none;
-    margin-top: 60px;
+    margin-top: 100px;
   }
   .textmedia {
     display: flex;

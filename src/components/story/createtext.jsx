@@ -109,6 +109,9 @@ const Container = styled.div`
       .fifth {
         background: #26c7d1;
       }
+      .black-border {
+        border: 2px solid #000;
+      }
     }
   }
   .textmedia {
@@ -143,10 +146,6 @@ const Container = styled.div`
     float: right;
     right: 20px;
     cursor: pointer;
-  }
-
-  .black-border {
-    border: 2px solid #000;
   }
 `;
 
