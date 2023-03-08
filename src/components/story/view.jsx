@@ -4,10 +4,7 @@ import { useNavigate } from "react-router";
 import styled, { css } from "styled-components";
 
 //icons
-import { IoMdAdd } from "react-icons/io";
-import { AiOutlineLeft } from "react-icons/ai";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 const View = () => <SlideShow items={data} />;
 
@@ -38,16 +35,13 @@ const SlideShow = (props) => {
   return (
     <>
       <NavButton position="left">
-        <FontAwesomeIcon icon={faAngleLeft} onClick={moveTo(activeIndex - 1)} />
+        <AiOutlineLeft onClick={moveTo(activeIndex - 1)}/>
       </NavButton>
       <ImageBox>
         <img alt={items[activeIndex].id} src={items[activeIndex].image} />
       </ImageBox>
       <NavButton position="right">
-        <FontAwesomeIcon
-          icon={faAngleRight}
-          onClick={moveTo(activeIndex + 1)}
-        />
+        <AiOutlineRight onClick={moveTo(activeIndex + 1)}/>
       </NavButton>
     </>
   );
@@ -88,12 +82,16 @@ const NavButton = styled.button`
     position === "left" &&
     css`
       left: -50px;
+      font-size: 2em;
+      font-weight: bold;
     `}
 
   ${({ position }) =>
     position === "right" &&
     css`
       right: -50px;
+      font-size: 2em;
+      font-weight: bold;
     `}
 `;
 

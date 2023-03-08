@@ -7,9 +7,17 @@ const CreateText = () => {
   const goTo = (path) => {
     navigate(path);
   };
-  const changeColor = (color)=>{
-    document.getElementById('textarea').style.backgroundColor = color
-    }
+  const changeColor = (color) => {
+    document
+      .getElementsByClassName("black-border")[0]
+      .classList.remove("black-border");
+
+    document.addEventListener("click", (event) => {
+      let clickedElement = event.target;
+      clickedElement.classList.add("black-border");
+    });
+    document.getElementById("textarea").style.backgroundColor = color;
+  };
 
   return (
     <Container>
@@ -28,11 +36,14 @@ const CreateText = () => {
           Type Something...
         </div>
         <div className="colors">
-          <div className="first" onClick={()=>changeColor('#3be28f')}></div>
-          <div className="second" onClick={()=>changeColor('#ff347d')}></div>
-          <div className="third" onClick={()=>changeColor('#ce18d1')}></div>
-          <div className="fourth" onClick={()=>changeColor('#4f1dde')}></div>
-          <div className="fifth" onClick={()=>changeColor('#26c7d1')}></div>
+          <div
+            className="first black-border"
+            onClick={() => changeColor("#3be28f")}
+          ></div>
+          <div className="second" onClick={() => changeColor("#ff347d")}></div>
+          <div className="third" onClick={() => changeColor("#ce18d1")}></div>
+          <div className="fourth" onClick={() => changeColor("#4f1dde")}></div>
+          <div className="fifth" onClick={() => changeColor("#26c7d1")}></div>
         </div>
       </div>
       <button>Send</button>
@@ -132,6 +143,10 @@ const Container = styled.div`
     float: right;
     right: 20px;
     cursor: pointer;
+  }
+
+  .black-border {
+    border: 2px solid #000;
   }
 `;
 
