@@ -1,96 +1,116 @@
-import {useRef, useState} from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
+import { useDropzone } from "react-dropzone";
 
 //icons
-import uploadImg from '../../assets/upload.png'
+import uploadImg from "../../assets/upload.png";
 
-const CreateMedia = (props)=>{
-    const wrapperRef = useRef(null);
-    const [fileList, setFileList] = useState([]);
+const CreateMedia = (props) => {
+  const wrapperRef = useRef(null);
+  const [fileList, setFileList] = useState([]);
 
-    const onDragEnter = () => wrapperRef.current.classList.add('dragover');
+  const onDragEnter = () => wrapperRef.current.classList.add("dragover");
 
-    const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
+  const onDragLeave = () => wrapperRef.current.classList.remove("dragover");
 
-    const onDrop = () => wrapperRef.current.classList.remove('dragover');
+  const onDrop = () => wrapperRef.current.classList.remove("dragover");
 
-    const onFileDrop = (e) => {
-        const newFile = e.target.files[0];
-        if (newFile) {
-            const updatedList = [...fileList, newFile];
-            setFileList(updatedList);
-            props.onFileChange(updatedList);
-        }
+  const onFileDrop = (e) => {
+    const newFile = e.target.files[0];
+    if (newFile) {
+      const updatedList = [...fileList, newFile];
+      setFileList(updatedList);
+      props.onFileChange(updatedList);
     }
+  };
+  const navigate = useNavigate();
+  const goTo = (path) => {
+    navigate(path);
+  };
 
-    const fileRemove = (file) => {
-        const updatedList = [...fileList];
-        updatedList.splice(fileList.indexOf(file), 1);
-        setFileList(updatedList);
-        props.onFileChange(updatedList);
-    }
-    const navigate = useNavigate();
-
-    const goTo = (path)=>{
-        navigate(path);
-    }
-    return(
-        <Container>
-            <div className="textmedia">
-                <p onClick={() => goTo('/stories/create-text')}>Text</p>
-                <p className="active"  onClick={() => goTo('/stories/create-media')}>Media</p>
-            </div>
-        <div
+  //drag and drop image
+  const [image, setImage] = useState([]);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: "image/*",
+    onDrop: (acceptfiles) => {
+      setImage(
+        acceptfiles.map((uploadedfile) =>
+          Object.assign(uploadedfile, {
+            preview: URL.createObjectURL(uploadedfile),
+          })
+        )
+      );
+    },
+  });
+  return (
+    <Container>
+      <div className="textmedia">
+        <p onClick={() => goTo("/stories/create-text")}>Text</p>
+        <p className="active" onClick={() => goTo("/stories/create-media")}>
+          Media
+        </p>
+      </div>
+      <div
         ref={wrapperRef}
         className="drop-file-input"
         onDragEnter={onDragEnter}
         onDragLeave={onDragLeave}
-        onDrop={onDrop}>
-
-        <div className="drop-file-input__label">
-            <img src={uploadImg} alt="" />
+        onDrop={onDrop}
+      >
+        <div className="drop-file-input__label" {...getRootProps()}>
+          <input {...getInputProps()} />
+          {image.map((upfile) => (
+            <img className="img-preview" src={upfile.preview} alt="preview" />
+          ))}
         </div>
-        <input type="file" value="" onChange={onFileDrop}/>
-         </div>
-         <input className="text" type="text" placeholder="Say Something..."/>
-         <button>Send</button>
-</Container>
-)
-}
-export default CreateMedia
+        <input type="file" value="" onChange={onFileDrop} />
+      </div>
+      <input className="text" type="text" placeholder="Say Something..." />
+      <button>Send</button>
+    </Container>
+  );
+};
+export default CreateMedia;
 
-const Container= styled.div`
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .drop-file-input {
+    width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .drop-file-input__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 200px;
+    background: #eaeaea;
+    width: 60%;
+    border-radius: 5px;
+    position: relative;
+    top: 80px;
+    cursor: pointer;
 
-    .drop-file-input{
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-    .drop-file-input__label{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 200px;
-        background: #EAEAEA;
-        width: 60%;
-        border-radius: 5px;
-        position: relative;
-        top: 80px;
-        
-
-        img{
+    /* img{
             width: 50px;
             height: 50px;
-        }
+        } */
+    .img-preview {
+      position: relative;
+      max-width: 100%;
+      max-height: 100%;
+      /* background-position: center; */
+      object-fit: cover;
     }
-   .drop-file-input input {
+  }
+  .drop-file-input input {
     opacity: 0;
     position: relative;
     top: -150px;
@@ -99,21 +119,21 @@ const Container= styled.div`
     cursor: pointer;
     background: purple;
     bottom: 100px;
-}
-.drop-file-input__label:hover,
-.drop-file-input.dragover {
+  }
+  .drop-file-input__label:hover,
+  .drop-file-input.dragover {
     opacity: 0.6;
-}
+  }
 
-.text{
+  .text {
     width: 60%;
     outline: none;
     border: none;
     border-bottom: 2px solid #717171;
     background: none;
     margin-top: 60px;
-}
-.textmedia {
+  }
+  .textmedia {
     display: flex;
     position: relative;
     top: 40px;
@@ -146,4 +166,4 @@ const Container= styled.div`
     bottom: 32px;
     left: 270px;
   }
-`
+`;
