@@ -22,7 +22,7 @@ const Nav = () => {
   //local data
   const [active, setActive] = useState("");
   const [down, setDown] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(true);
 
   useEffect(() => {
     setDown(false);
@@ -43,7 +43,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    setAuthenticated(true);
+    setAuthenticated(false);
   }, []);
 
   return (

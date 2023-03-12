@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 
 //reducers
 import groups from "./reducers/groups";
+import countries from "./reducers/countries";
 import milestones from "./reducers/milestones";
 import achievements from "./reducers/achievements";
 
@@ -10,6 +11,7 @@ const store = configureStore({
     milestones: milestones,
     achievements: achievements,
     groups: groups,
+    countries: countries,
   },
 });
 

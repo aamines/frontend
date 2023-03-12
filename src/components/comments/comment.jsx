@@ -9,7 +9,7 @@ const Comment = ({ content, pic }) => {
     <Container>
       <div className="comment">
         <div className="image"></div>
-        <div className="content">{content}</div>
+        <div className="comment_content">{content}</div>
       </div>
       <div className="down">
         <div className="left">
@@ -54,7 +54,7 @@ const Container = styled.div`
       background: var(--dark);
     }
 
-    .content {
+    .comment_content {
       width: 89%;
       margin: 0 0 0 10px;
       display: 100%;
