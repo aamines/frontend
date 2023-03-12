@@ -102,7 +102,7 @@ const Login = () => {
               <label htmlFor="remember">Remember Me</label>
             </div>
             <div className="right_">
-              <Link to="#">Recover password!</Link>
+              <Link to="#">Forgot password?</Link>
             </div>
           </div>
           <button type="submit">
