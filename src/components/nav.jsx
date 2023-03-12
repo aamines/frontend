@@ -43,8 +43,14 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    setAuthenticated(false);
-  }, []);
+    const token = localStorage.getItem("projectia_auth_token");
+    if (token) {
+      setAuthenticated(true);
+    } else {
+      navigate("/login");
+      setAuthenticated(false);
+    }
+  }, [navigate]);
 
   return (
     <Container>
