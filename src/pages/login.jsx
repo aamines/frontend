@@ -1,15 +1,25 @@
-import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 //features
 import app from "../features/firebase";
+import axios from "../features/axios";
 
 const Login = () => {
   //configs
-  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  //local data
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   //handle google login
   const handleGoogle = () => {
@@ -23,8 +33,22 @@ const Login = () => {
   };
 
   //handle email login
-  const handleEmail = (data) => {
-    console.log(data);
+  const onSubmit = (data) => {
+    setLoading(true);
+    axios
+      .post("/auth/login", {
+        email: data.email,
+        password: data.password,
+      })
+      .then((res) => {
+        setLoading(false);
+        localStorage.setItem("projectia_auth_token", res.data.token);
+        navigate("/home");
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError(error.response.data.message);
+      });
   };
 
   return (
@@ -34,23 +58,44 @@ const Login = () => {
           <p className="head">Welcome back!</p>
           <p className="para">Welcome back to your professional community.</p>
         </div>
-        <form onSubmit={handleSubmit(handleEmail)}>
-          <input
-            type="text"
-            placeholder="Username / Email"
-            {...register("user", {
-              required: true,
-              min: 3,
-            })}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            {...register("password", {
-              required: true,
-              min: 3,
-            })}
-          />
+        <div className="error_message">
+          <p>{error}</p>
+        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="box">
+            <p className="error">
+              {errors.email?.type === "required" && "Email is required"}
+              {errors.email?.type === "minLength" && "Email is too short"}
+              {errors.email?.type === "maxLength" && "Email is too long"}
+            </p>
+            <input
+              type="text"
+              placeholder="Email"
+              className={errors.email ? "has_error" : ""}
+              {...register("email", {
+                required: true,
+                minLength: 10,
+                maxLength: 60,
+              })}
+            />
+          </div>
+          <div className="box">
+            <p className="error">
+              {errors.password?.type === "required" && "Password is required"}
+              {errors.password?.type === "minLength" && "Password is too short"}
+              {errors.password?.type === "maxLength" && "Password is too long"}
+            </p>
+            <input
+              type="password"
+              placeholder="Password"
+              className={errors.password ? "has_error" : ""}
+              {...register("password", {
+                required: true,
+                minLength: 8,
+                maxLength: 15,
+              })}
+            />
+          </div>
           <div className="row">
             <div className="left_">
               <input type="checkbox" name="remember" id="remember" />
@@ -60,7 +105,9 @@ const Login = () => {
               <Link to="#">Recover password!</Link>
             </div>
           </div>
-          <button type="submit">Login</button>
+          <button type="submit">
+            {loading ? <img src="/loader.svg" alt="loader" /> : "Login"}
+          </button>
           <div className="google" onClick={handleGoogle}>
             <img src="/icons/google.png" alt="Google" />
             <p>Sign in with google</p>
@@ -102,7 +149,7 @@ const Container = styled.div`
     .header {
       width: 100%;
       height: 100px;
-      margin: 0 0 50px 0;
+      margin: 0 0 10px 0;
       display: flex;
       padding: 0 40px;
       flex-direction: column;
@@ -121,6 +168,19 @@ const Container = styled.div`
       }
     }
 
+    .error_message {
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 30px;
+
+      p {
+        color: var(--red);
+      }
+    }
+
     form {
       width: 500px;
       height: auto;
@@ -128,6 +188,24 @@ const Container = styled.div`
       flex-direction: column;
       align-items: center;
       margin: 0 0 50px 0;
+
+      .box {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+
+        p.error {
+          color: var(--red);
+          margin: 0 0 5px 0;
+        }
+      }
+
+      .has_error {
+        border: 1px solid var(--red);
+      }
 
       input[type="text"],
       input[type="password"] {

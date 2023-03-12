@@ -1,42 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 //features
 import axios from "../../features/axios";
 
-//features
-import app from "../../features/firebase";
-
 const Verify = () => {
-  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
   const [loading, setLoading] = React.useState(false);
 
-  //handle google signup
-  const handleGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth(app);
-
-    //popup
-    signInWithPopup(auth, provider).then((result) => {
-      console.log(result);
-    });
-  };
-
   const handleSubmision = (data) => {
     setLoading(true);
-    axios
-      .post("/auth/verify-email", {
-        names: data.names,
-        email: data.email,
-        country: data.country,
-        password: data.password,
-      })
-      .then((res) => {});
+    axios.post("/auth/verify-email", {}).then((res) => {});
   };
 
   return (

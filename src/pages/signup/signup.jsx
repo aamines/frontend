@@ -248,6 +248,10 @@ const Container = styled.div`
         }
       }
 
+      .has_error {
+        border: 1px solid var(--red);
+      }
+
       input {
         width: 100%;
         height: 50px;
