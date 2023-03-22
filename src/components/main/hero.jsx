@@ -7,7 +7,7 @@ const Hero = () => {
     <Container>
       <div className="container">
         <div className="image">
-          <img src="/images/One.gif" alt="one" className="one" />
+          {/* <img src="/images/One.gif" alt="one" className="one" /> */}
         </div>
         <div className="content">
           <div className="header">
@@ -28,7 +28,7 @@ const Hero = () => {
           <Link to="/login">Join now</Link>
         </div>
         <div className="image">
-          <img src="/images/Two.gif" alt="two" className="two" />
+          {/* <img src="/images/Two.gif" alt="two" className="two" /> */}
         </div>
       </div>
     </Container>
@@ -42,6 +42,9 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(0deg, rgba(5, 17, 30), rgba(0, 0, 0, 0.1)),
+    url("/images/Hero/Hero.png");
+  background-size: cover;
 
   .container {
     height: 100%;
@@ -91,7 +94,7 @@ const Container = styled.div`
     z-index: 100;
 
     p {
-      color: var(--dark);
+      color: var(--white);
       text-align: center;
       margin: 0 0 20px 0;
     }
@@ -169,7 +172,7 @@ const Container = styled.div`
       background: var(--bright);
       border-radius: 40px;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
     }
   }
 `;

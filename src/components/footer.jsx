@@ -38,7 +38,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--white);
+  background: var(--dark);
 
   .logo {
     font-size: 2rem;
@@ -58,7 +58,7 @@ const Container = styled.div`
     a {
       margin: 0 20px;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
     }
   }
 
@@ -78,11 +78,11 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       margin: 0 20px;
-      border: 1px solid var(--dark);
+      border: 1px solid var(--white);
 
       .icon {
         font-size: 1em;
-        color: var(--dark);
+        color: var(--white);
       }
     }
   }

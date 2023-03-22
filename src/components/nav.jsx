@@ -157,7 +157,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--white);
+  background: var(--dark);
 
   @media only screen and (min-width: 1200px) {
     .content {
@@ -199,11 +199,12 @@ const Container = styled.div`
       width: calc(100% - 40px);
       height: 35px;
       border: none;
-      background: var(--gray);
+      background: var(--grayish);
       border-radius: 50px;
       margin: 0 0 0 10px;
       padding: 3px 10px 0 15px;
       outline: none;
+      color: var(--white);
     }
   }
 
@@ -222,10 +223,10 @@ const Container = styled.div`
     a {
       margin: 0 30px;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
 
       .icon {
-        color: var(--dark);
+        color: var(--white);
       }
 
       .one {
@@ -258,11 +259,12 @@ const Container = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--gray);
+      background: var(--grayish);
       cursor: pointer;
 
       .icon {
         font-size: 1.4em;
+        color: var(--white);
       }
     }
 
@@ -275,8 +277,12 @@ const Container = styled.div`
       justify-content: flex-start;
       padding: 0 7px;
       border-radius: 50px;
-      background: var(--gray);
+      background: var(--grayish);
       cursor: pointer;
+
+      p {
+        color: var(--white);
+      }
 
       .image {
         width: 30px;
@@ -288,13 +294,14 @@ const Container = styled.div`
 
       .icon {
         margin: 0 0 0 15px;
+        color: var(--white);
       }
     }
 
     .down {
       width: 210px;
       height: 250px;
-      background: var(--background);
+      background: var(--grayish);
       z-index: 1000;
       position: absolute;
       bottom: -265px;
@@ -303,7 +310,7 @@ const Container = styled.div`
       flex-direction: column;
       right: -5px;
       padding: 10px;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      box-shadow: rgba(0, 0, 0, 0.432) 0px 1px 4px;
 
       .row {
         width: 100%;
@@ -315,13 +322,18 @@ const Container = styled.div`
         cursor: pointer;
         border-radius: 5px;
 
+        p {
+          color: var(--white);
+        }
+
         .icon {
           font-size: 1.1em;
           margin: 0 10px 0 0;
+          color: var(--white);
         }
 
         :hover {
-          background: var(--gray);
+          background: var(--dark);
         }
       }
 
@@ -334,6 +346,7 @@ const Container = styled.div`
 
         p.header {
           line-height: 50px;
+          color: var(--white);
         }
 
         ul {
@@ -347,16 +360,17 @@ const Container = styled.div`
 
             .no {
               width: 100%;
-              color: var(--grayish);
+              color: var(--gray);
             }
 
             button {
               width: 95%;
               height: 30px;
               border: none;
-              background: var(--gray);
+              background: var(--bright);
               cursor: pointer;
               border-radius: 5px;
+              color: var(--white);
             }
           }
         }
@@ -366,7 +380,7 @@ const Container = styled.div`
     a {
       margin: 0 0 0 30px;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
     }
 
     .signup {

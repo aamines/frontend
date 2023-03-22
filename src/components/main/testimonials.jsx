@@ -81,7 +81,7 @@ const Container = styled.div`
     p.head {
       font-size: 2rem;
       font-weight: 800;
-      color: var(--dark);
+      color: var(--white);
     }
 
     p {
@@ -103,6 +103,7 @@ const Container = styled.div`
       p {
         text-align: center;
         margin: 10px 0;
+        color: var(--white);
       }
 
       .name {

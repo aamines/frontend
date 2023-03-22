@@ -15,7 +15,9 @@ const Some = () => {
             With feature-ful chat system, host online meetings, sharing moments
             and posts plus more organization experience and features.
           </p>
-          <div className="image"></div>
+          <div className="image">
+            <img src="/images/What/One.png" alt="one" />
+          </div>
         </div>
         <div className="box">
           <p className="head">Keep your organization focused on vision.</p>
@@ -23,7 +25,9 @@ const Some = () => {
             Assess the health and growth of your organization according to your
             vision with our deep integrations and analytics.
           </p>
-          <div className="image"></div>
+          <div className="image">
+            <img src="/images/What/Two.png" alt="two" />
+          </div>
         </div>
       </div>
     </Container>
@@ -32,7 +36,7 @@ const Some = () => {
 
 const Container = styled.div`
   height: 125%;
-  background: var(--white);
+  background: var(--dark);
   position: absolute;
   top: -200px;
   border-radius: 10px;
@@ -56,7 +60,7 @@ const Container = styled.div`
     p.head {
       font-size: 2rem;
       font-weight: 800;
-      color: var(--dark);
+      color: var(--white);
     }
 
     p {
@@ -66,16 +70,16 @@ const Container = styled.div`
 
   .content {
     width: 100%;
-    height: 75%;
+    height: 70%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 
     .box {
-      width: 32%;
+      width: 35%;
       height: 90%;
-      background: var(--hero);
+      background: var(--background);
       padding: 20px 20px;
       display: flex;
       flex-direction: column;
@@ -88,17 +92,25 @@ const Container = styled.div`
         font-size: 2em;
         font-weight: 700;
         line-height: 35px;
+        color: var(--white);
       }
 
       p.para {
         line-height: 20px;
+        color: var(--white);
       }
 
       .image {
-        width: 100%;
+        width: 99%;
         height: 55%;
+        overflow: hidden;
         border-radius: 10px;
         background: var(--white);
+
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
       }
     }
   }

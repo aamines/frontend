@@ -52,10 +52,14 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="visual"></div>
+          <div className="visual">
+            <img src="/images/What/Two.png" alt="two" />
+          </div>
         </div>
         <div className="row" id="share">
-          <div className="visual"></div>
+          <div className="visual">
+            <img src="/images/About/One.png" alt="one" />
+          </div>
           <div className="content">
             <p className="header">
               <span>Communication</span> and collaboration.
@@ -169,11 +173,11 @@ const Container = styled.div`
     position: -webkit-sticky;
     top: 0px;
     border-radius: 10px 10px 0 0;
-    background: var(--white);
+    background: var(--dark);
 
     a {
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
       cursor: pointer;
     }
 
@@ -191,7 +195,7 @@ const Container = styled.div`
     padding: 0 0 100px 0;
     border-radius: 10px;
     border-radius: 0 0 10px 10px;
-    background: var(--white);
+    background: var(--dark);
 
     .row {
       width: 85%;
@@ -215,7 +219,7 @@ const Container = styled.div`
           line-height: 40px;
           font-weight: 800;
           margin: 0 0 10px 0;
-          color: var(--dark);
+          color: var(--white);
 
           span {
             color: var(--bright);
@@ -232,7 +236,7 @@ const Container = styled.div`
 
           .para {
             margin: 0 0 0 10px;
-            color: var(--dark);
+            color: var(--white);
 
             p {
               margin: 0 0 10px 0;
@@ -248,6 +252,21 @@ const Container = styled.div`
       .visual {
         width: 60%;
         height: 100%;
+        display: flex;
+        align-items: flex-end;
+        padding: 0 0 20px 0;
+
+        :nth-child(even) {
+          justify-content: center;
+        }
+
+        :nth-child(odd) {
+          justify-content: flex-start;
+        }
+
+        img {
+          width: 75%;
+        }
       }
     }
   }

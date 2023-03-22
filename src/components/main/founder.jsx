@@ -44,10 +44,15 @@ const Container = styled.div`
     justify-content: center;
     margin: 0 20px;
 
+    p {
+      color: var(--white);
+    }
+
     p.para {
       font-size: 1.5em;
       font-weight: 600;
       margin: 0 0 10px 0;
+      color: var(--white);
 
       span {
         color: var(--bright);
@@ -57,6 +62,7 @@ const Container = styled.div`
     p.position {
       font-weight: 600;
       margin: 10px 0 0 0;
+      color: var(--white);
     }
   }
 

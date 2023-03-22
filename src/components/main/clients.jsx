@@ -51,7 +51,7 @@ const Container = styled.div`
     p.head {
       font-size: 2rem;
       font-weight: 800;
-      color: var(--dark);
+      color: var(--white);
     }
 
     p {
@@ -74,10 +74,11 @@ const Container = styled.div`
       border-radius: 50px;
       padding: 30px 50px;
       margin: 0 15px;
-      background: var(--hero);
+      background: var(--grayish);
 
       p {
         font-weight: 700;
+        color: var(--white);
       }
     }
   }
