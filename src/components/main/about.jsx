@@ -97,7 +97,9 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="visual"></div>
+          <div className="visual">
+            <img src="/images/About/Three.jpg" alt="three" />
+          </div>
         </div>
         <div className="row" id="communicate">
           <div className="visual">
@@ -138,7 +140,9 @@ const About = () => {
               </div>
             </div>
           </div>
-          <div className="visual"></div>
+          <div className="visual">
+            <img src="/images/About/Four.jpg" alt="three" />
+          </div>
         </div>
       </div>
     </Container>
@@ -268,6 +272,7 @@ const Container = styled.div`
 
         img {
           width: 75%;
+          border-radius: 10px;
         }
       }
     }
