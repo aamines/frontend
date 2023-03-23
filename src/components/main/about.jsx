@@ -100,7 +100,9 @@ const About = () => {
           <div className="visual"></div>
         </div>
         <div className="row" id="communicate">
-          <div className="visual"></div>
+          <div className="visual">
+            <img src="/images/About/Two.png" alt="two" />
+          </div>
           <div className="content">
             <p className="header">
               <span>Integration</span> with other tools.
