@@ -38,6 +38,7 @@ const Container = styled.div`
       font-size: 1.2em;
       text-align: start;
       text-transform: capitalize;
+      color: var(--white);
     }
   }
 
@@ -54,7 +55,7 @@ const Container = styled.div`
       height: 100px;
 
       p {
-        color: var(--grayish);
+        color: var(--gray);
         text-transform: capitalize;
       }
     }

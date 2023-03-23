@@ -120,21 +120,26 @@ const Container = styled.div`
       justify-content: flex-end;
 
       button {
-        width: 120px;
-        height: 30px;
+        width: 140px;
+        height: 40px;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         border: none;
-        background: var(--gray);
+        background: var(--grayish);
         border-radius: 5px;
+
+        p {
+          color: var(--white);
+        }
 
         .icon {
           display: flex;
           margin: -2px 5px 0 5px;
           align-items: center;
           justify-content: center;
+          color: var(--white);
         }
       }
     }
@@ -151,7 +156,7 @@ const Container = styled.div`
         height: 250px;
         border-radius: 5px;
         position: relative;
-        background: var(--gray);
+        background: var(--grayish);
 
         .edit {
           width: 35px;
@@ -223,9 +228,13 @@ const Container = styled.div`
               display: flex;
               margin: 15px 0 15px 0;
 
+              p {
+                color: var(--white);
+              }
+
               p.handle {
                 margin: 0 0 0 15px;
-                color: var(--grayish);
+                color: var(--gray);
               }
             }
 
@@ -235,7 +244,7 @@ const Container = styled.div`
               margin: 0 0 15px 0;
 
               p {
-                color: var(--grayish);
+                color: var(--gray);
               }
             }
 
@@ -248,9 +257,15 @@ const Container = styled.div`
                 width: auto;
                 height: auto;
                 display: flex;
-                margin: 0 25px 0 0;
+                align-items: center;
+                margin: 0 40px 0 0;
+
+                p {
+                  color: var(--white);
+                }
 
                 img {
+                  width: 15px;
                   margin: 0 5px 0 0;
                 }
               }
@@ -273,10 +288,11 @@ const Container = styled.div`
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: var(--gray);
+            background: var(--grayish);
 
             p.head {
               font-size: 1.1em;
+              color: var(--white);
             }
           }
 
@@ -289,6 +305,7 @@ const Container = styled.div`
 
             p.head {
               font-size: 1.1em;
+              color: var(--white);
             }
 
             .list {
@@ -307,10 +324,12 @@ const Container = styled.div`
 
                 button {
                   width: 100px;
-                  height: 25px;
-                  background: var(--gray);
+                  height: 35px;
+                  background: var(--grayish);
+                  color: var(--white);
                   border: none;
                   border-radius: 50px;
+                  cursor: pointer;
                 }
               }
             }
