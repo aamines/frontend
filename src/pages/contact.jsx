@@ -69,7 +69,7 @@ const Contact = () => {
             </div>
             <div className="button">
               <button>Send Message</button>
-              <img src="/images/Four.png" alt="four" />
+              <img src="/images/Contact/Four.png" alt="four" />
             </div>
           </div>
         </div>
@@ -104,18 +104,19 @@ const Container = styled.div`
       p.head {
         font-size: 2rem;
         font-weight: 800;
-        color: var(--dark);
+        color: var(--white);
       }
 
       p.para {
         line-height: 30px;
+        color: var(--bright);
       }
     }
 
     .content {
       height: auto;
       display: flex;
-      margin: 10px 0 10px 0;
+      margin: 10px 0 50px 0;
       flex-direction: row;
 
       @media only screen and (min-width: 1200px) {
@@ -130,7 +131,7 @@ const Container = styled.div`
         width: 40%;
         height: 650px;
         border-radius: 10px;
-        background: var(--white);
+        background: var(--dark);
         padding: 30px;
 
         .top {
@@ -140,6 +141,10 @@ const Container = styled.div`
           flex-direction: column;
           align-content: flex-start;
 
+          p {
+            color: var(--white);
+          }
+
           .head {
             font-size: 2em;
           }
@@ -148,6 +153,10 @@ const Container = styled.div`
         .middle {
           width: 100%;
           height: auto;
+
+          p {
+            color: var(--white);
+          }
 
           .row {
             width: 100%;
@@ -160,11 +169,13 @@ const Container = styled.div`
             .icon {
               font-size: 1.3em;
               margin: 0 10px 0 0;
+              color: var(--white);
             }
 
             .big {
               font-size: 1.5em;
               margin: 0 10px 0 0;
+              color: var(--white);
             }
           }
         }
@@ -183,6 +194,10 @@ const Container = styled.div`
           flex-direction: row;
           justify-content: space-between;
 
+          label {
+            color: var(--white);
+          }
+
           .chunk {
             width: 48%;
             height: 60px;
@@ -196,7 +211,8 @@ const Container = styled.div`
               background: transparent;
               border: none;
               outline: none;
-              border-bottom: 1px solid var(--dark);
+              border-bottom: 1px solid var(--gray);
+              color: var(--white);
             }
           }
 
@@ -212,7 +228,8 @@ const Container = styled.div`
               background: transparent;
               border: none;
               outline: none;
-              border-bottom: 1px solid var(--dark);
+              border-bottom: 1px solid var(--gray);
+              color: var(--white);
             }
           }
         }
@@ -234,7 +251,7 @@ const Container = styled.div`
             height: 40px;
             border-radius: 50px;
             border: none;
-            background: var(--dark);
+            background: var(--bright);
             color: var(--white);
           }
         }
