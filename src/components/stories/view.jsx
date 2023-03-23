@@ -1,35 +1,31 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
-import data from "../../store/reducers/data";
 import styled, { css } from "styled-components";
 
 //icons
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
-const View = () => <SlideShow items={data} />;
-
-const SlideShow = (props) => {
-  const [{ items, activeIndex }, setState] = useState({
-    items: props.items,
-    activeIndex: 0,
-  });
+const Story = () => {
+  //local data
+  const [activeIndex, setActiveIndex] = useState(0);
+  const items = useSelector((state) => state.stories);
 
   const moveTo = (newIndex) => () => {
     if (newIndex === -1) {
-      setState((s) => ({ ...s, activeIndex: items.length - 1 }));
-      return;
-    }
-    if (newIndex === items.length) {
-      setState((s) => ({ ...s, activeIndex: 0 }));
+      setActiveIndex(items.length - 1);
       return;
     }
 
-    setState((s) => ({ ...s, activeIndex: newIndex }));
+    if (newIndex === items.length) {
+      setActiveIndex(0);
+      return;
+    }
+
+    setActiveIndex(newIndex);
   };
 
-  const navigate = useNavigate();
   const goTo = (path) => {
-    navigate(path);
+    console.log(path);
   };
 
   return (
@@ -37,8 +33,8 @@ const SlideShow = (props) => {
       <NavButton position="left">
         <AiOutlineLeft onClick={moveTo(activeIndex - 1)} />
       </NavButton>
-      <ImageBox>
-        <img alt={items[activeIndex].id} src={items[activeIndex].image} />
+      <ImageBox onClick={() => goTo(items[activeIndex]?.id)}>
+        <img alt={items[activeIndex]?.id} src={items[activeIndex].image} />
       </ImageBox>
       <NavButton position="right">
         <AiOutlineRight onClick={moveTo(activeIndex + 1)} />
@@ -50,14 +46,15 @@ const SlideShow = (props) => {
 const ImageBox = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
 
   img {
     position: relative;
     margin: auto;
     width: 100%;
     height: 100%;
-    border-radius: 5px;
     object-fit: cover;
   }
 `;
@@ -69,10 +66,9 @@ const NavButton = styled.button`
   padding: 5px;
   border-radius: 50%;
   border: none;
-  width: 25px;
-  height: 25px;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 3px 1px 15px 3px rgba(0, 0, 0, 0.1);
+  width: 40px;
+  height: 40px;
+  background: var(--grayish);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,18 +77,20 @@ const NavButton = styled.button`
   ${({ position }) =>
     position === "left" &&
     css`
-      left: -50px;
-      font-size: 2em;
+      left: -100px;
+      font-size: 1.5em;
       font-weight: bold;
+      color: var(--white);
     `}
 
   ${({ position }) =>
     position === "right" &&
     css`
-      right: -50px;
-      font-size: 2em;
+      right: -100px;
+      font-size: 1.5em;
       font-weight: bold;
+      color: var(--white);
     `}
 `;
 
-export default View;
+export default Story;

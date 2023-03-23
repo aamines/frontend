@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 //icons
@@ -7,17 +7,14 @@ import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 //components
 import Item from "./item";
+import { useSelector } from "react-redux";
 
-const Status = () => {
-  const [statuses, setStatuses] = useState(100);
+const StoriesContainer = () => {
+  const statuses = useSelector((state) => state.stories);
 
   const onNext = () => {};
 
   const onPrevious = () => {};
-
-  useEffect(() => {
-    setStatuses(100);
-  }, []);
 
   return (
     <Container>
@@ -32,8 +29,8 @@ const Status = () => {
           <BiChevronLeft className="icon" />
         </div>
         <ul>
-          {[...Array(statuses)].map((_, index) => (
-            <Item key={index} />
+          {statuses.map((status, index) => (
+            <Item key={index} data={status} />
           ))}
         </ul>
         <div className="scroll" onClick={onPrevious}>
@@ -119,4 +116,4 @@ const Container = styled.div`
   }
 `;
 
-export default Status;
+export default StoriesContainer;

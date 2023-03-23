@@ -1,27 +1,17 @@
 import styled from "styled-components";
-import data from "../store/reducers/data";
-import Item from "../components/status/item";
-import { Outlet, useNavigate } from "react-router";
+import { Outlet } from "react-router";
 
-//icons
-import { IoMdAdd } from "react-icons/io";
+//components
+import StoriesContainer from "../components/stories/container";
 
 const Story = () => {
-  const navigate = useNavigate();
-  const goTo = (path) => {
-    navigate(path);
-  };
   return (
     <Container>
-      <Outlet />
-      <YouStatus onClick={() => goTo("/stories/create-text")}>
-        <div className="one">
-          <IoMdAdd className="icon" />
-        </div>
-        <p>You</p>
-      </YouStatus>
+      <div className="view">
+        <Outlet />
+      </div>
       <ThumbnailList>
-        <Item data={data} />
+        <StoriesContainer />
       </ThumbnailList>
     </Container>
   );
@@ -29,12 +19,16 @@ const Story = () => {
 
 const Container = styled.div`
   position: relative;
-  background-color: #f2f2f2;
   width: 50%;
-  height: 60vh;
+  height: auto;
   margin: auto;
   top: 50px;
   border-radius: 5px;
+
+  .view {
+    width: 100%;
+    height: 85%;
+  }
 `;
 
 const ThumbnailList = styled.div`
@@ -43,11 +37,12 @@ const ThumbnailList = styled.div`
   float: right;
   overflow: scroll;
   position: relative;
-  top: -50px;
+  margin: 30px 0 0 0;
 
   ::-webkit-scrollbar {
     display: none;
   }
+
   .pic-cont {
     width: 70px;
     height: 100%;
@@ -55,9 +50,11 @@ const ThumbnailList = styled.div`
     flex-direction: column;
     align-items: center;
   }
+
   .seen {
     border: 3px solid #05111e;
   }
+
   .notseen {
     border: 3px solid #3be28f;
   }
@@ -85,6 +82,7 @@ const YouStatus = styled.div`
       font-size: 2em;
     }
   }
+
   p {
     margin-top: 7px;
   }

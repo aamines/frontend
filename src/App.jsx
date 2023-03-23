@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Main from "./pages/main";
 import Login from "./pages/login";
-import Nav from "./components/nav";
+import Stories from "./pages/stories";
 import Contact from "./pages/contact";
 import Verify from "./pages/signup/verify";
 import Signup from "./pages/signup/signup";
@@ -16,17 +16,17 @@ import ForgotPassword from "./pages/password/forgot";
 import CreateCommunity from "./pages/community/create";
 
 //components
-import One from "./components/community/one";
+import Nav from "./components/nav";
 import Two from "./components/community/two";
+import One from "./components/community/one";
+import Story from "./components/stories/view";
 import Three from "./components/community/three";
+import CreateText from "./components/stories/createtext";
+import CreateMedia from "./components/stories/createmedia";
 
 //globals
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Story from "./pages/story";
-import View from "./components/story/view";
-import CreateText from "./components/story/createtext";
-import CreateMedia from "./components/story/createmedia";
 
 function App() {
   return (
@@ -52,8 +52,8 @@ function App() {
         <Route path="/home" exact element={<Home />} />
         <Route path="/profile" exact element={<Profile />} />
         {/* Stories */}
-        <Route path="/stories" exact element={<Story />}>
-          <Route index exact element={<View />} />
+        <Route path="/stories" exact element={<Stories />}>
+          <Route index exact element={<Story />} />
           <Route path="create-text" exact element={<CreateText />} />
           <Route path="create-media" exact element={<CreateMedia />} />
         </Route>
