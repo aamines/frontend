@@ -31,7 +31,11 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background: var(--grayish);
+
+    p {
+      color: var(--white);
+    }
   }
 
   .skills {
@@ -50,7 +54,7 @@ const Container = styled.div`
       justify-content: flex-start !important;
 
       p {
-        color: var(--dark);
+        color: var(--white);
         font-size: 1.1em;
         text-align: start;
       }

@@ -38,13 +38,17 @@ const Container = styled.div`
   flex-direction: column;
   border-radius: 5px;
   margin: 25px 0;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background: var(--grayish);
 
   .header {
     width: 100%;
     height: 50px;
     display: flex;
     align-items: center;
+
+    p {
+      color: var(--white);
+    }
   }
 
   .body {
@@ -59,37 +63,46 @@ const Container = styled.div`
       display: flex;
 
       .one {
-        height: 30px;
+        height: 40px;
         display: flex;
         align-items: center;
-        background: var(--gray);
+        background: var(--dark);
         padding: 5px 20px;
-        margin: 0 10px 15px 0;
+        margin: 0 15px 15px 0;
         border-radius: 5px;
         cursor: pointer;
+
+        p {
+          color: var(--white);
+        }
 
         .icon {
           font-size: 1.4em;
           margin: 0 5px 0 0;
-          color: var(--dark);
+          color: var(--white);
         }
 
         .big {
           font-size: 1.6em;
           margin: 0 5px 0 0;
+          color: var(--white);
         }
       }
     }
 
     .right {
       width: 100px;
-      height: 30px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 5px;
       background: var(--bright);
       cursor: pointer;
+
+      p {
+        color: var(--white);
+      }
     }
   }
 `;

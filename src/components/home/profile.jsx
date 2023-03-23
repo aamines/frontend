@@ -60,7 +60,7 @@ const Container = styled.div`
     align-items: center;
     border-radius: 5px;
     overflow: hidden;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background: var(--grayish);
 
     .banner {
       width: 100%;
@@ -83,6 +83,16 @@ const Container = styled.div`
         flex-direction: column;
         align-items: center;
 
+        .name {
+          p.up {
+            color: var(--white);
+          }
+
+          p.down {
+            color: var(--gray);
+          }
+        }
+
         .picture {
           width: 120px;
           height: 120px;
@@ -99,6 +109,14 @@ const Container = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        p.up {
+          color: var(--white);
+        }
+
+        p.down {
+          color: var(--gray);
+        }
       }
     }
 
@@ -109,10 +127,11 @@ const Container = styled.div`
       padding: 20px 5px;
       align-items: center;
       justify-content: center;
-      border-bottom: 4px solid var(--gray);
+      border-bottom: 2px solid var(--gray);
 
       p {
         text-align: center;
+        color: var(--white);
       }
     }
 
@@ -130,9 +149,9 @@ const Container = styled.div`
         align-items: center;
         justify-content: center;
         border-radius: 5px;
-        background: var(--gray);
+        background: var(--dark);
         text-decoration: none;
-        color: var(--dark);
+        color: var(--white);
       }
     }
   }
@@ -152,7 +171,7 @@ const Container = styled.div`
       align-items: center;
 
       p {
-        color: var(--dark);
+        color: var(--white);
         font-size: 1.1em;
       }
     }
@@ -169,10 +188,11 @@ const Container = styled.div`
         button {
           cursor: pointer;
           width: 100px;
-          height: 30px;
+          height: 35px;
           border-radius: 50px;
           border: none;
-          background: var(--gray);
+          color: var(--white);
+          background: var(--grayish);
         }
       }
     }

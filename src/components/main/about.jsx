@@ -179,7 +179,7 @@ const Container = styled.div`
     position: -webkit-sticky;
     top: 0px;
     border-radius: 10px 10px 0 0;
-    background: var(--dark);
+    background: var(--grayish);
 
     a {
       text-decoration: none;
@@ -201,7 +201,7 @@ const Container = styled.div`
     padding: 0 0 100px 0;
     border-radius: 10px;
     border-radius: 0 0 10px 10px;
-    background: var(--dark);
+    background: var(--grayish);
 
     .row {
       width: 85%;

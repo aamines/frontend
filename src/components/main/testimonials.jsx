@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
 import Slider from "react-slick";
 import styled from "styled-components";
+import React, { useEffect } from "react";
 
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
 
@@ -40,6 +40,7 @@ const Testimonials = () => {
           prevArrow={<BsChevronDoubleLeft />}
           nextArrow={<BsChevronDoubleRight />}
           useCSS={true}
+          className="slider"
         >
           {testimonials.map((testimonial, index) => (
             <div className="testimonial" key={index}>

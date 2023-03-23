@@ -84,9 +84,9 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
-  border: 1.5px solid var(--gray);
   padding: 10px 15px;
   margin: 0 0 30px 0;
+  background: var(--grayish);
 
   .top {
     width: 100%;
@@ -136,8 +136,12 @@ const Container = styled.div`
         margin: 3px 0;
       }
 
+      p.name {
+        color: var(--white);
+      }
+
       .gray {
-        color: var(--grayish);
+        color: var(--gray);
       }
     }
   }
@@ -155,7 +159,7 @@ const Container = styled.div`
       margin: 20px 0;
 
       p {
-        color: var(--dark);
+        color: var(--white);
       }
     }
 
@@ -169,6 +173,7 @@ const Container = styled.div`
 
       img {
         width: 49%;
+        border-radius: 15px;
       }
     }
   }
@@ -195,6 +200,7 @@ const Container = styled.div`
 
       p {
         margin: 0 20px 0 10px;
+        color: var(--white);
       }
 
       ul {
@@ -208,7 +214,7 @@ const Container = styled.div`
           width: 25px;
           height: 25px;
           border-radius: 50%;
-          background: var(--dark);
+          background: var(--white);
           margin: 0 0 0 -10px;
         }
       }
@@ -223,9 +229,14 @@ const Container = styled.div`
       padding: 0 20px 0 20px;
       border-left: 2px solid var(--gray);
 
+      p {
+        color: var(--white);
+      }
+
       .icon {
         font-size: 1.4em;
         margin: 0 10px 0 0;
+        color: var(--white);
       }
     }
   }
@@ -248,11 +259,16 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      border-radius: 5px;
+      border-radius: 50px;
+
+      p {
+        color: var(--white);
+      }
 
       .icon {
         font-size: 1.6em;
         margin: 0 10px 0 0;
+        color: var(--white);
       }
 
       .up {

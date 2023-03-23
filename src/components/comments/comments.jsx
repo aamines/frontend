@@ -67,6 +67,7 @@ const Container = styled.div`
         outline: none;
         background: transparent;
         padding: 0 0 0 10px;
+        color: var(--white);
       }
 
       .icon {
@@ -75,6 +76,7 @@ const Container = styled.div`
         padding: 7px;
         border-radius: 50%;
         cursor: pointer;
+        color: var(--white);
 
         :hover {
           background: var(--gray);
@@ -91,6 +93,7 @@ const Container = styled.div`
   p.more {
     align-self: flex-start;
     cursor: pointer;
+    color: var(--white);
   }
 `;
 

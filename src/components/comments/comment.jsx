@@ -60,7 +60,8 @@ const Container = styled.div`
       display: 100%;
       border-radius: 5px;
       padding: 15px 20px;
-      background: var(--gray);
+      background: var(--dark);
+      color: var(--white);
     }
   }
 
@@ -102,13 +103,14 @@ const Container = styled.div`
             width: 25px;
             height: 25px;
             border-radius: 50%;
-            background: var(--dark);
+            background: var(--white);
             margin: 0 0 0 -10px;
           }
         }
 
         p {
           margin: 0 0 0 5px;
+          color: var(--white);
         }
       }
 
@@ -122,15 +124,21 @@ const Container = styled.div`
         margin: 0 0 0 5px;
         border-left: 1px solid var(--grayish);
 
+        p {
+          color: var(--white);
+        }
+
         .icon {
           font-size: 1.4em;
           margin: 0 5px 0 0;
+          color: var(--white);
         }
       }
     }
 
     p.replies {
       cursor: pointer;
+      color: var(--white);
     }
   }
 `;

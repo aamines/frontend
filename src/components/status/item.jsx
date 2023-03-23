@@ -25,7 +25,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: var(--gray);
+    background: var(--grayish);
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='%233BE28FFF' stroke-width='7' stroke-dasharray='100%25%2c 10%25' stroke-dashoffset='98' stroke-linecap='butt'/%3e%3c/svg%3e");
 
     .icon {
@@ -39,6 +39,7 @@ const Container = styled.div`
     text-overflow: ellipsis;
     overflow: hidden;
     text-align: center;
+    color: var(--white);
   }
 `;
 

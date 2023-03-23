@@ -36,7 +36,7 @@ const Some = () => {
 
 const Container = styled.div`
   height: 125%;
-  background: var(--dark);
+  background: var(--grayish);
   position: absolute;
   top: -200px;
   border-radius: 10px;

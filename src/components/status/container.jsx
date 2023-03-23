@@ -66,15 +66,17 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: var(--gray);
+      background: var(--grayish);
 
       .icon {
         font-size: 2em;
+        color: var(--white);
       }
     }
 
     p {
       margin: 5px 0 0 0;
+      color: var(--white);
     }
   }
 
@@ -95,7 +97,11 @@ const Container = styled.div`
       border-radius: 50%;
       cursor: pointer;
       margin: -15px 0 0 0;
-      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      background: var(--grayish);
+
+      .icon {
+        color: var(--white);
+      }
     }
 
     ul {
