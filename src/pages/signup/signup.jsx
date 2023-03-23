@@ -204,11 +204,11 @@ const Container = styled.div`
       p.head {
         font-size: 2rem;
         font-weight: 800;
-        color: var(--dark);
+        color: var(--white);
       }
 
       p {
-        color: var(--dark);
+        color: var(--bright);
         text-align: center;
       }
     }
@@ -259,7 +259,8 @@ const Container = styled.div`
         border: none;
         border-radius: 5px;
         outline: none;
-        background: var(--gray);
+        background: var(--grayish);
+        color: var(--white);
         margin: 0 0 15px 0;
       }
 
@@ -271,7 +272,8 @@ const Container = styled.div`
         border: none;
         border-radius: 5px;
         outline: none;
-        background: var(--gray);
+        background: var(--grayish);
+        color: var(--white);
       }
 
       button {
@@ -301,7 +303,11 @@ const Container = styled.div`
         justify-content: center;
         cursor: pointer;
         border-radius: 5px;
-        background: var(--gray);
+        border: 1px solid var(--white);
+
+        p {
+          color: var(--white);
+        }
 
         img {
           width: 25px;
@@ -318,7 +324,7 @@ const Container = styled.div`
       justify-content: center;
 
       p {
-        color: var(--dark);
+        color: var(--white);
 
         a {
           color: var(--bright);

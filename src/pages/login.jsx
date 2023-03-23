@@ -169,7 +169,7 @@ const Container = styled.div`
       }
 
       p {
-        color: var(--white);
+        color: var(--bright);
         text-align: center;
       }
     }
