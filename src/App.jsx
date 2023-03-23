@@ -23,6 +23,10 @@ import Three from "./components/community/three";
 //globals
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Story from "./pages/story";
+import View from "./components/story/view";
+import CreateText from "./components/story/createtext";
+import CreateMedia from "./components/story/createmedia";
 
 function App() {
   return (
@@ -47,6 +51,12 @@ function App() {
         {/* Posting */}
         <Route path="/home" exact element={<Home />} />
         <Route path="/profile" exact element={<Profile />} />
+        {/* Stories */}
+        <Route path="/stories" exact element={<Story />}>
+          <Route index exact element={<View />} />
+          <Route path="create-text" exact element={<CreateText />} />
+          <Route path="create-media" exact element={<CreateMedia />} />
+        </Route>
       </Routes>
     </Router>
   );
