@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 //features
@@ -8,8 +7,6 @@ import axios from "../../features/axios";
 
 const Verify = () => {
   //configs
-  // const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
 
   const [loading, setLoading] = React.useState(false);
 
@@ -27,23 +24,15 @@ const Verify = () => {
             Please enter the verification code we sent to your email.
           </p>
         </div>
-        <form action="#" onSubmit={handleSubmit(handleSubmision)}>
-          <input
-            type="text"
-            placeholder="Codes"
-            {...register("codes", {
-              minLength: 6,
-              maxLength: 6,
-              required: true,
-            })}
-          />
-          <button type="submit">
+        <div className="content">
+          <img src="/images/Hero/Verify.png" alt="verify" />
+          <button type="button" onClick={handleSubmision}>
             {loading ? <img src="/loader.svg" alt="loader" /> : "Let's go"}
           </button>
-        </form>
+        </div>
         <div className="login">
           <p>
-            Already have an account? <Link to="/login">Login</Link>
+            Feeling lost? <Link to="/login">Logout</Link>
           </p>
         </div>
       </div>
@@ -87,50 +76,43 @@ const Container = styled.div`
       p.head {
         font-size: 2rem;
         font-weight: 800;
-        color: var(--dark);
+        color: var(--white);
       }
 
       p {
-        color: var(--dark);
+        color: var(--bright);
         text-align: center;
       }
     }
 
-    form {
-      width: 70%;
+    .content {
+      width: 60%;
       height: auto;
-      margin: 0 0 80px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      input {
-        width: 70%;
-        height: 50px;
-        padding: 0 15px;
-        border: none;
-        border-radius: 5px;
-        outline: none;
-        background: var(--gray);
-        margin: 0 0 25px 0;
+      img {
+        width: 500px;
       }
+    }
 
-      button {
-        width: 70%;
-        height: 50px;
-        padding: 0 15px;
-        margin: 0 0 15px 0;
-        border: none;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        outline: none;
-        background: var(--bright);
+    button {
+      width: 70%;
+      height: 50px;
+      padding: 0 15px;
+      margin: 0 0 15px 0;
+      border: none;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      background: var(--bright);
+      color: var(--white);
 
-        img {
-          width: 12%;
-        }
+      img {
+        width: 12%;
       }
     }
 
@@ -142,7 +124,7 @@ const Container = styled.div`
       justify-content: center;
 
       p {
-        color: var(--dark);
+        color: var(--white);
 
         a {
           color: var(--bright);
