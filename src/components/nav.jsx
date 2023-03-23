@@ -365,12 +365,12 @@ const Container = styled.div`
 
             button {
               width: 95%;
-              height: 30px;
+              height: 40px;
               border: none;
               background: var(--bright);
               cursor: pointer;
               border-radius: 5px;
-              color: var(--white);
+              color: var(--dark);
             }
           }
         }

@@ -172,7 +172,7 @@ const Container = styled.div`
       background: var(--bright);
       border-radius: 40px;
       text-decoration: none;
-      color: var(--white);
+      color: var(--dark);
     }
   }
 `;

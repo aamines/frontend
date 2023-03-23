@@ -122,7 +122,7 @@ const Container = styled.div`
         justify-content: center;
         outline: none;
         background: var(--bright);
-        color: var(--white);
+        color: var(--dark);
 
         img {
           width: 12%;

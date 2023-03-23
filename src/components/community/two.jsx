@@ -62,7 +62,7 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      color: var(--white);
+      color: var(--dark);
       border-radius: 5px;
       background: var(--bright);
       align-self: flex-end;

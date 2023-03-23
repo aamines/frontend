@@ -101,7 +101,7 @@ const Container = styled.div`
       cursor: pointer;
 
       p {
-        color: var(--white);
+        color: var(--dark);
       }
     }
   }

@@ -102,7 +102,7 @@ const Login = () => {
               <label htmlFor="remember">Remember Me</label>
             </div>
             <div className="right_">
-              <Link to="#">Forgot password?</Link>
+              <Link to="/password/forgot">Forgot password?</Link>
             </div>
           </div>
           <button type="submit">
@@ -268,7 +268,7 @@ const Container = styled.div`
         border-radius: 5px;
         outline: none;
         background: var(--bright);
-        color: var(--white);
+        color: var(--dark);
       }
 
       .google {
