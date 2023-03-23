@@ -11,6 +11,7 @@ import Contact from "./pages/contact";
 import Verify from "./pages/signup/verify";
 import Signup from "./pages/signup/signup";
 import Profile from "./pages/profile/profile";
+import ResetPassword from "./pages/password/reset";
 import ForgotPassword from "./pages/password/forgot";
 import CreateCommunity from "./pages/community/create";
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/contact" exact element={<Contact />} />
         {/* Password */}
         <Route path="/password/forgot" exact element={<ForgotPassword />} />
+        <Route path="/password/reset" exact element={<ResetPassword />} />
         {/* Community */}
         <Route path="/community/new/" exact element={<CreateCommunity />}>
           <Route index exact element={<One />} />

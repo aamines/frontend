@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
@@ -18,21 +18,28 @@ const ForgotPassword = () => {
     <Container>
       <div className="content">
         <div className="header">
-          <p className="head">Forgot password!</p>
+          <p className="head">Reset password!</p>
           <p className="para">
-            Please enter the email address associated with your account
+            Enter the codes we have sent on your email to get signed in
           </p>
         </div>
         <form action="#" onSubmit={handleSubmit(handleSubmision)}>
           <input
-            type="text"
-            placeholder="Email"
-            {...register("email", {
+            type="password"
+            placeholder="New password"
+            {...register("new", {
+              required: true,
+            })}
+          />
+          <input
+            type="password"
+            placeholder="Confirm password"
+            {...register("confirm", {
               required: true,
             })}
           />
           <button type="submit">
-            {loading ? <img src="/loader.svg" alt="loader" /> : "Continue"}
+            {loading ? <img src="/loader.svg" alt="loader" /> : "Let's go"}
           </button>
         </form>
         <div className="login">
@@ -149,4 +156,4 @@ const Container = styled.div`
   }
 `;
 
-export default ForgotPassword;
+export default ResetPassword;
