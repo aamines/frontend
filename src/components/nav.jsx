@@ -56,8 +56,8 @@ const Nav = () => {
     <Container>
       {authenticated ? (
         <div className="content">
-          <div className="logo" onClick={goHome}>
-            <img src="/min_logo.svg" alt="logo" />
+          <div className="logo">
+            <img src="/min_logo.svg" onClick={goHome} alt="logo" />
             <input type="text" placeholder="Search here..." />
           </div>
           <div className="nav">

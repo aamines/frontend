@@ -19,9 +19,9 @@ const Verify = () => {
     <Container>
       <div className="content">
         <div className="header">
-          <p className="head">Verify your email!</p>
+          <p className="head">Your email was verified!</p>
           <p className="para">
-            Please enter the verification code we sent to your email.
+            You are now a verified user on projectia! Welcome aboard
           </p>
         </div>
         <div className="content">
