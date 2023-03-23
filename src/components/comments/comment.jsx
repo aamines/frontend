@@ -60,7 +60,7 @@ const Container = styled.div`
       display: 100%;
       border-radius: 5px;
       padding: 15px 20px;
-      background: var(--dark);
+      background: var(--grayish);
       color: var(--white);
     }
   }

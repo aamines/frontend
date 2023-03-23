@@ -86,7 +86,7 @@ const Container = styled.div`
   border-radius: 5px;
   padding: 10px 15px;
   margin: 0 0 30px 0;
-  background: var(--grayish);
+  background: var(--dark);
 
   .top {
     width: 100%;

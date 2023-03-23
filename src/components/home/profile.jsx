@@ -60,12 +60,12 @@ const Container = styled.div`
     align-items: center;
     border-radius: 5px;
     overflow: hidden;
-    background: var(--grayish);
+    background: var(--dark);
 
     .banner {
       width: 100%;
       height: 130px;
-      background: var(--gray);
+      background: var(--grayish);
     }
 
     .about {
@@ -97,7 +97,7 @@ const Container = styled.div`
           width: 120px;
           height: 120px;
           border-radius: 50%;
-          background: var(--dark);
+          background: var(--gray);
           margin: -60px 0 15px 0;
         }
       }

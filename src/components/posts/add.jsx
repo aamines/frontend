@@ -38,7 +38,7 @@ const Container = styled.div`
   flex-direction: column;
   border-radius: 5px;
   margin: 25px 0;
-  background: var(--grayish);
+  background: var(--dark);
 
   .header {
     width: 100%;
@@ -66,7 +66,7 @@ const Container = styled.div`
         height: 40px;
         display: flex;
         align-items: center;
-        background: var(--dark);
+        background: var(--grayish);
         padding: 5px 20px;
         margin: 0 15px 15px 0;
         border-radius: 5px;
