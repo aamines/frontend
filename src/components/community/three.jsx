@@ -27,6 +27,7 @@ const Container = styled.div`
   p {
     text-align: center;
     font-size: 1.3em;
+    color: var(--white);
   }
 
   .button {
@@ -45,7 +46,7 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
       border-radius: 5px;
       background: var(--bright);
     }
