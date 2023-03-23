@@ -133,7 +133,13 @@ const Container = styled.div`
   .left {
     width: 50%;
     height: 100%;
-    background: var(--gray);
+    background: linear-gradient(
+        0deg,
+        rgba(5, 17, 30, 0.5),
+        rgba(5, 17, 30, 0.1)
+      ),
+      url("/images/Hero/Login.png");
+    background-size: cover;
   }
 
   .right {
@@ -144,7 +150,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     padding: 20px 0;
-    background: var(--light);
+    background: var(--background);
 
     .header {
       width: 100%;
@@ -159,11 +165,11 @@ const Container = styled.div`
       p.head {
         font-size: 2rem;
         font-weight: 800;
-        color: var(--dark);
+        color: var(--white);
       }
 
       p {
-        color: var(--dark);
+        color: var(--white);
         text-align: center;
       }
     }
@@ -216,7 +222,8 @@ const Container = styled.div`
         border: none;
         border-radius: 5px;
         outline: none;
-        background: var(--gray);
+        background: var(--grayish);
+        color: var(--white);
       }
 
       .row {
@@ -230,7 +237,7 @@ const Container = styled.div`
         padding: 0 5px;
 
         a {
-          color: var(--dark);
+          color: var(--white);
           text-decoration: none;
         }
 
@@ -241,6 +248,10 @@ const Container = styled.div`
           flex-direction: row;
           align-items: center;
           justify-content: flex-start;
+
+          label {
+            color: var(--white);
+          }
 
           input[type="checkbox"] {
             margin: 0 5px 0 0;
@@ -257,6 +268,7 @@ const Container = styled.div`
         border-radius: 5px;
         outline: none;
         background: var(--bright);
+        color: var(--white);
       }
 
       .google {
@@ -267,9 +279,13 @@ const Container = styled.div`
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        border: 1px solid var(--dark);
+        border: 1px solid var(--white);
         border-radius: 5px;
         cursor: pointer;
+
+        p {
+          color: var(--white);
+        }
 
         img {
           margin: 0 10px;
@@ -278,7 +294,7 @@ const Container = styled.div`
     }
 
     > p {
-      color: var(--dark);
+      color: var(--white);
 
       a {
         color: var(--bright);
