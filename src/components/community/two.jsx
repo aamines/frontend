@@ -34,7 +34,7 @@ const Container = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     border-radius: 5px;
-    background: var(--gray);
+    background: var(--grayish);
     padding: 10px 20px;
 
     .header {
@@ -62,7 +62,7 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
       border-radius: 5px;
       background: var(--bright);
       align-self: flex-end;
