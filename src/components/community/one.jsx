@@ -46,10 +46,12 @@ const Container = styled.div`
     select {
       width: 48%;
       height: 100%;
-      background: var(--gray);
+      background: var(--grayish);
       border: none;
       border-radius: 5px;
+      color: var(--white);
       padding: 0 10px 0 10px;
+      outline: none;
     }
   }
 
@@ -60,10 +62,12 @@ const Container = styled.div`
     textarea {
       width: 100%;
       height: 100%;
-      background: var(--gray);
+      background: var(--grayish);
       border: none;
       border-radius: 5px;
       padding: 10px;
+      color: var(--white);
+      outline: none;
     }
   }
 
@@ -83,7 +87,7 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      color: var(--dark);
+      color: var(--white);
       border-radius: 5px;
       background: var(--bright);
       align-self: flex-end;

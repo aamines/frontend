@@ -90,8 +90,9 @@ const Container = styled.div`
       justify-content: flex-start;
 
       p {
-        font-size: 1.2em;
+        font-size: 1.4em;
         font-weight: 600;
+        color: var(--white);
       }
     }
 
@@ -112,7 +113,7 @@ const Container = styled.div`
         justify-content: center;
         border-radius: 10px;
         padding: 20px 20px 20px 60px;
-        background: #f1f1f1;
+        background: var(--grayish);
 
         .row {
           width: 100%;
@@ -125,16 +126,16 @@ const Container = styled.div`
 
           :hover {
             .icon {
-              border: 1px solid var(--dark);
+              border: 1px solid var(--white);
 
               .one {
-                color: var(--dark);
+                color: var(--white);
               }
             }
 
             .para {
               p {
-                color: var(--dark);
+                color: var(--white);
               }
             }
           }
@@ -146,12 +147,12 @@ const Container = styled.div`
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            border: 1px solid var(--grayish);
+            border: 1px solid var(--gray);
             margin: 0 10px 0 0;
 
             .one {
               font-size: 1.7em;
-              color: var(--grayish);
+              color: var(--gray);
             }
           }
 
@@ -165,7 +166,7 @@ const Container = styled.div`
 
             p {
               line-height: 25px;
-              color: var(--grayish);
+              color: var(--gray);
             }
           }
         }
@@ -174,7 +175,7 @@ const Container = styled.div`
           width: 77%;
           height: 60px;
           margin: 10px 0;
-          border-left: 2px solid var(--grayish);
+          border-left: 2px solid var(--gray);
         }
       }
 
