@@ -1,33 +1,54 @@
-import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 //features
 import axios from "../../features/axios";
 
 const Verify = () => {
   //configs
+  const navigate = useNavigate();
 
-  const [loading, setLoading] = React.useState(false);
+  //local data
+  const [loading, setLoading] = React.useState(true);
+  const params = new URLSearchParams(window.location.search);
 
-  const handleSubmision = (data) => {
-    setLoading(true);
-    axios.post("/auth/verify-email", {}).then((res) => {});
+  const go = () => {
+    navigate("/home");
   };
+
+  useEffect(() => {
+    axios
+      .put("/auth/verify-email", {
+        email: params.get("email"),
+        code: params.get("token"),
+      })
+      .then((res) => {
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <Container>
       <div className="content">
         <div className="header">
-          <p className="head">Your email was verified!</p>
+          <p className="head">
+            {loading ? "Verifying..." : "Your email was verified!!"}
+          </p>
           <p className="para">
-            You are now a verified user on projectia! Welcome aboard
+            {loading
+              ? "Please wait while we verify your email address"
+              : "You are now a verified user on projectia! Welcome aboard"}
           </p>
         </div>
         <div className="content">
-          <img src="/images/Hero/Verify.png" alt="verify" />
-          <button type="button" onClick={handleSubmision}>
-            {loading ? <img src="/loader.svg" alt="loader" /> : "Let's go"}
+          {loading ? (
+            <img src="/loader.svg" alt="loader" />
+          ) : (
+            <img src="/images/Hero/Verify.png" alt="verify" />
+          )}
+          <button type="button" onClick={go}>
+            {loading ? "Wait" : "Let's go!"}
           </button>
         </div>
         <div className="login">

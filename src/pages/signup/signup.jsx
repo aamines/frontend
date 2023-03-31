@@ -45,6 +45,7 @@ const Signup = () => {
       })
       .then((res) => {
         setLoading(false);
+        localStorage.setItem("projectia_auth_token", res.data.token);
         navigate("/profile");
       })
       .catch((error) => {

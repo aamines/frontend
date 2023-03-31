@@ -34,6 +34,12 @@ const Nav = () => {
     navigate("/");
   };
 
+  const Logout = () => {
+    localStorage.removeItem("projectia_auth_token");
+    setAuthenticated(false);
+    navigate("/login");
+  };
+
   const goTo = (path) => {
     navigate(path);
   };
@@ -98,7 +104,7 @@ const Nav = () => {
                   <FaUserAlt className="icon" />
                   <p>Profile</p>
                 </div>
-                <div className="row">
+                <div className="row" onClick={Logout}>
                   <BiLogOutCircle className="icon" />
                   <p>Logout</p>
                 </div>
