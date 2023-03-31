@@ -262,6 +262,9 @@ const Container = styled.div`
       button {
         width: 100%;
         height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: 8px 0;
         padding: 0 15px;
         border: none;
@@ -269,6 +272,10 @@ const Container = styled.div`
         outline: none;
         background: var(--bright);
         color: var(--dark);
+
+        img {
+          width: 40px;
+        }
       }
 
       .google {
