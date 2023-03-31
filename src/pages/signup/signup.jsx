@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 //features
 import axios from "../../features/axios";
 import app from "../../features/firebase";
-import countriesApi from "../../features/countries";
+import { useSelector } from "react-redux";
 
 const Signup = () => {
   //configs
@@ -21,7 +21,7 @@ const Signup = () => {
   //local data
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [countries, setCountries] = useState([]);
+  const countries = useSelector((state) => state.countries);
 
   //handle google signup
   const handleGoogle = () => {
@@ -45,24 +45,19 @@ const Signup = () => {
       })
       .then((res) => {
         setLoading(false);
-        navigate("/verify");
+        navigate("/profile");
       })
       .catch((error) => {
         setLoading(false);
-        setError(error.response.data.message);
+        if (error.response.data.message.length < 100) {
+          setError(error.response.data.message);
+          return;
+        } else {
+          setError("Something went wrong");
+          return;
+        }
       });
   };
-
-  useEffect(() => {
-    countriesApi
-      .get("/")
-      .then((res) => {
-        setCountries(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   return (
     <Container>
@@ -127,8 +122,8 @@ const Signup = () => {
               })}
             >
               {countries.map((country, index) => (
-                <option key={index} value={country?.country_name}>
-                  {country?.country_name}
+                <option key={index} value={country}>
+                  {country}
                 </option>
               ))}
             </select>

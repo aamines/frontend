@@ -47,7 +47,6 @@ const Nav = () => {
     if (token) {
       setAuthenticated(true);
     } else {
-      navigate("/login");
       setAuthenticated(false);
     }
   }, [navigate]);
