@@ -31,7 +31,11 @@ const Nav = () => {
 
   //Functions
   const goHome = () => {
-    navigate("/");
+    if (authenticated) {
+      navigate("/home");
+    } else {
+      navigate("/");
+    }
   };
 
   const Logout = () => {

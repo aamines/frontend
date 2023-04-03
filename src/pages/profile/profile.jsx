@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 
@@ -6,9 +6,9 @@ import { useSelector } from "react-redux";
 import { MdEdit } from "react-icons/md";
 
 //components
+import Groups from "../../components/profile/groups";
 import Milestones from "../../components/profile/milestones";
 import Achievements from "../../components/profile/achievements";
-import Groups from "../../components/profile/groups";
 
 const Profile = () => {
   const groups = useSelector((state) => state.groups);

@@ -43,7 +43,11 @@ const Login = () => {
       .then((res) => {
         setLoading(false);
         localStorage.setItem("projectia_auth_token", res.data.token);
-        navigate("/home");
+        if (res.data.hasAccount) {
+          navigate("/home");
+        } else {
+          navigate("/profile");
+        }
       })
       .catch((error) => {
         setLoading(false);
