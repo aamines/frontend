@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import jwtDecode from "jwt-decode";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 
 //icons
 import { MdEdit } from "react-icons/md";
+
+//features
+import axios from "../../features/axios";
 
 //components
 import Groups from "../../components/profile/groups";
@@ -11,9 +15,43 @@ import Milestones from "../../components/profile/milestones";
 import Achievements from "../../components/profile/achievements";
 
 const Profile = () => {
+  //local data
+  const [user, setUser] = useState({});
+  const [account, setAccount] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  //redux data
+  const token = useSelector((state) => state.persist.token);
+  const hasAccount = useSelector((state) => state.persist.hasAccount);
+
+  //state data
   const groups = useSelector((state) => state.groups);
   const milestones = useSelector((state) => state.milestones);
   const achievements = useSelector((state) => state.achievements);
+
+  useEffect(() => {
+    setLoading(true);
+    if (!hasAccount) {
+      const decoded = jwtDecode(token);
+      axios
+        .get(`/user/${decoded.id}`, {
+          headers: {
+            authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          setUser(res.data.data);
+        })
+        .catch((error) => {
+          console.log(error.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      console.log("has account");
+    }
+  }, []);
 
   return (
     <Container>
@@ -39,24 +77,50 @@ const Profile = () => {
               </div>
               <div className="about">
                 <div className="names">
-                  <p className="name">Byiringiro saad</p>
-                  <p className="handle">@_byiringiro_</p>
+                  <p className="name">{loading ? "Loading..." : user?.names}</p>
+                  <p className="handle">
+                    {loading ? "Loading..." : user?.handler}
+                  </p>
                 </div>
                 <div className="para">
-                  <p>Hello, I’m a software engineer. Crazy about VR and AR</p>
+                  <p>
+                    {loading
+                      ? "Loading..."
+                      : hasAccount
+                      ? account?.bio
+                      : "No Description"}
+                  </p>
                 </div>
                 <div className="stats">
                   <div className="stat">
                     <img src="/icons/list.svg" alt="list" />
-                    <p>0 Skills</p>
+                    <p>
+                      {loading
+                        ? "Loading..."
+                        : hasAccount
+                        ? account?.skills?.length + " Skills"
+                        : "No Skills"}
+                    </p>
                   </div>
                   <div className="stat">
                     <img src="/icons/list.svg" alt="list" />
-                    <p>0 Posts</p>
+                    <p>
+                      {loading
+                        ? "Loading..."
+                        : hasAccount
+                        ? account?.posts?.length + " Posts"
+                        : "No Posts"}
+                    </p>
                   </div>
                   <div className="stat">
                     <img src="/icons/list.svg" alt="list" />
-                    <p>0 Groups</p>
+                    <p>
+                      {loading
+                        ? "Loading..."
+                        : hasAccount
+                        ? account?.posts?.length + " Groups"
+                        : "No Groups"}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -129,6 +193,7 @@ const Container = styled.div`
         border: none;
         background: var(--grayish);
         border-radius: 5px;
+        cursor: pointer;
 
         p {
           color: var(--white);

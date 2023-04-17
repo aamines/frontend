@@ -1,5 +1,7 @@
+import jwtDecode from "jwt-decode";
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 //icons
@@ -8,21 +10,33 @@ import { RiHome6Fill } from "react-icons/ri";
 import { HiUserGroup } from "react-icons/hi";
 import { BiLogOutCircle } from "react-icons/bi";
 import {
-  BsFillChatFill,
   BsBellFill,
-  BsFillCaretDownFill,
+  BsFillChatFill,
   BsFillCaretUpFill,
+  BsFillCaretDownFill,
 } from "react-icons/bs";
+
+//features
+import axios from "../features/axios";
+
+//actions
+import { removeToken } from "../store/reducers/persist";
 
 const Nav = () => {
   //configs
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //local data
-  const [active, setActive] = useState("");
+  const [user, setUser] = useState({});
   const [down, setDown] = useState(false);
+  const [active, setActive] = useState("");
   const [authenticated, setAuthenticated] = useState(true);
+
+  // redux data
+  const token = useSelector((state) => state.persist.token);
+  const hasAccount = useSelector((state) => state.persist.hasAccount);
 
   useEffect(() => {
     setDown(false);
@@ -32,14 +46,18 @@ const Nav = () => {
   //Functions
   const goHome = () => {
     if (authenticated) {
-      navigate("/home");
+      if (hasAccount) {
+        navigate("/home");
+      } else {
+        navigate("/profile");
+      }
     } else {
       navigate("/");
     }
   };
 
   const Logout = () => {
-    localStorage.removeItem("projectia_auth_token");
+    dispatch(removeToken());
     setAuthenticated(false);
     navigate("/login");
   };
@@ -53,13 +71,30 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("projectia_auth_token");
     if (token) {
       setAuthenticated(true);
     } else {
       setAuthenticated(false);
     }
-  }, [navigate]);
+  }, [navigate, token]);
+
+  useEffect(() => {
+    const decoded = jwtDecode(token);
+    if (authenticated) {
+      axios
+        .get(`/user/${decoded.id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setUser(res.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  });
 
   return (
     <Container>
@@ -69,23 +104,25 @@ const Nav = () => {
             <img src="/min_logo.svg" onClick={goHome} alt="logo" />
             <input type="text" placeholder="Search here..." />
           </div>
-          <div className="nav">
-            <Link to="/home" className={active === "/home" ? "active" : ""}>
-              <RiHome6Fill className="one icon" />
-            </Link>
-            <Link
-              to="/messages"
-              className={active === "/messages" ? "active" : ""}
-            >
-              <BsFillChatFill className="two icon" />
-            </Link>
-            <Link
-              to="/members"
-              className={active === "/members" ? "active" : ""}
-            >
-              <HiUserGroup className="three icon" />
-            </Link>
-          </div>
+          {hasAccount && (
+            <div className="nav">
+              <Link to="/home" className={active === "/home" ? "active" : ""}>
+                <RiHome6Fill className="one icon" />
+              </Link>
+              <Link
+                to="/messages"
+                className={active === "/messages" ? "active" : ""}
+              >
+                <BsFillChatFill className="two icon" />
+              </Link>
+              <Link
+                to="/members"
+                className={active === "/members" ? "active" : ""}
+              >
+                <HiUserGroup className="three icon" />
+              </Link>
+            </div>
+          )}
           <div className="buttons">
             <div
               className="notification"
@@ -95,7 +132,7 @@ const Nav = () => {
             </div>
             <div className="profile" onClick={handleDown}>
               <div className="image"></div>
-              <p className="name">Byiringiro</p>
+              <p className="name">{user?.names?.split(" ")[0]}</p>
               {down ? (
                 <BsFillCaretUpFill className="icon" />
               ) : (

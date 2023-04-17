@@ -3,12 +3,13 @@ import React from "react";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
+import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 //files
 import "./index.css";
 import App from "./App";
-import store from "./store/index";
+import { store, persistor } from "./store/index";
 
 //react-query
 const queryClient = new QueryClient({
@@ -25,7 +26,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </QueryClientProvider>
   </React.StrictMode>

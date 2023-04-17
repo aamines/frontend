@@ -36,12 +36,12 @@ function App() {
         {/* indexes */}
         <Route path="/" exact element={<Main />} />
         <Route path="/login" exact element={<Login />} />
-        <Route path="/signup" exact element={<Signup />} />
         <Route path="/verify" exact element={<Verify />} />
+        <Route path="/signup" exact element={<Signup />} />
         <Route path="/contact" exact element={<Contact />} />
         {/* Password */}
-        <Route path="/password/forgot" exact element={<ForgotPassword />} />
         <Route path="/password/reset" exact element={<ResetPassword />} />
+        <Route path="/password/forgot" exact element={<ForgotPassword />} />
         {/* Community */}
         <Route path="/community/new/" exact element={<CreateCommunity />}>
           <Route index exact element={<One />} />
@@ -51,6 +51,7 @@ function App() {
         {/* Posting */}
         <Route path="/home" exact element={<Home />} />
         <Route path="/profile" exact element={<Profile />} />
+        <Route path="/profile/:id" exact element={<Profile />} />
         {/* Stories */}
         <Route path="/stories" exact element={<Stories />}>
           <Route index exact element={<Story />} />

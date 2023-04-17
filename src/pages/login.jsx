@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
@@ -8,9 +9,13 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "../features/firebase";
 import axios from "../features/axios";
 
+//actions
+import { addToken, addHasAccount } from "../store/reducers/persist";
+
 const Login = () => {
   //configs
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -42,10 +47,12 @@ const Login = () => {
       })
       .then((res) => {
         setLoading(false);
-        localStorage.setItem("projectia_auth_token", res.data.token);
+        dispatch(addToken(res.data.token));
         if (res.data.hasAccount) {
+          dispatch(addHasAccount(true));
           navigate("/home");
         } else {
+          dispatch(addHasAccount(false));
           navigate("/profile");
         }
       })
