@@ -1,26 +1,50 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 
 const One = () => {
+  //configs
+  const navigate = useNavigate();
+  const { register, handleSubmit, errors } = useForm();
+
   return (
     <Container>
-      <div className="row">
-        <input type="text" placeholder="Name" />
-        <select>
-          <option value="school">School</option>
-          <option value="campus">Campus</option>
-          <option value="company">Company</option>
-          <option value="community">Community</option>
-          <option value="organization">Organization</option>
-        </select>
-      </div>
-      <div className="big">
-        <textarea cols="30" rows="10" placeholder="Set vision" />
-      </div>
-      <div className="button">
-        <Link to="/community/new/two">Next</Link>
-      </div>
+      <form>
+        <div className="row">
+          <input
+            type="text"
+            placeholder="Name"
+            {...register("name", {
+              required: true,
+              minLength: 5,
+              maxLength: 25,
+            })}
+          />
+          <select
+            {...register("type", {
+              required: true,
+            })}
+          >
+            <option value="school">School</option>
+            <option value="campus">Campus</option>
+            <option value="company">Company</option>
+            <option value="community">Community</option>
+            <option value="organization">Organization</option>
+          </select>
+        </div>
+        <div
+          className="big"
+          {...register("vision", {
+            required: true,
+            minLength: 40,
+            maxLength: 200,
+          })}
+        >
+          <textarea cols="30" rows="10" placeholder="Set vision" />
+        </div>
+        <button className="button">Next</button>
+      </form>
     </Container>
   );
 };
@@ -32,6 +56,14 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+
+  form {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
 
   .row {
     width: 100%;
@@ -72,26 +104,16 @@ const Container = styled.div`
   }
 
   .button {
-    width: 100%;
+    width: 160px;
     height: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 20px 0;
-
-    a {
-      width: 150px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: var(--dark);
-      border-radius: 5px;
-      background: var(--bright);
-      align-self: flex-end;
-    }
+    background: var(--bright);
+    border: none;
+    border-radius: 4px;
   }
 `;
 
