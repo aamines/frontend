@@ -51,7 +51,7 @@ const Profile = () => {
     } else {
       console.log("has account");
     }
-  }, []);
+  }, [hasAccount, token]);
 
   return (
     <Container>

@@ -8,11 +8,11 @@ const One = () => {
       <div className="row">
         <input type="text" placeholder="Name" />
         <select>
-          <option value="community">community</option>
-          <option value="school">school</option>
-          <option value="company">company</option>
-          <option value="organization">organization</option>
-          <option value="campus">campus</option>
+          <option value="school">School</option>
+          <option value="campus">Campus</option>
+          <option value="company">Company</option>
+          <option value="community">Community</option>
+          <option value="organization">Organization</option>
         </select>
       </div>
       <div className="big">

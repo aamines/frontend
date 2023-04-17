@@ -6,8 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 //features
-import app from "../features/firebase";
 import axios from "../features/axios";
+import app from "../features/firebase";
 
 //actions
 import { addToken, addHasAccount } from "../store/reducers/persist";
@@ -47,7 +47,7 @@ const Login = () => {
       })
       .then((res) => {
         setLoading(false);
-        dispatch(addToken(res.data.token));
+        dispatch(addToken(res?.data?.token));
         if (res.data.hasAccount) {
           dispatch(addHasAccount(true));
           navigate("/home");

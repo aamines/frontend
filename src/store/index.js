@@ -32,11 +32,17 @@ const persistConfig = {
 //persist reducers
 const persistedReducer = persistReducer(persistConfig, reducers);
 
+//customized middleware
+const customizedMiddleware = (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: false,
+  });
+
 //store
 export const store = configureStore({
   reducer: persistedReducer,
   devTools: process.env.NODE_ENV !== "production",
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  middleware: customizedMiddleware,
 });
 
 export const persistor = persistStore(store);

@@ -9,8 +9,22 @@ const CreateCommunity = () => {
   //config
   const navigate = useNavigate();
 
-  const goTo = (path) => {
-    navigate(path);
+  //local data
+  const [active, setActive] = React.useState(0);
+
+  const goToOne = () => {
+    setActive(0);
+    navigate("/community/new");
+  };
+
+  const goToTwo = () => {
+    setActive(1);
+    navigate("/community/new/two");
+  };
+
+  const goToThree = () => {
+    setActive(2);
+    navigate("/community/new/three");
   };
 
   return (
@@ -21,7 +35,10 @@ const CreateCommunity = () => {
         </div>
         <div className="content">
           <div className="sidebar">
-            <div className="row" onClick={() => goTo("/community/new")}>
+            <div
+              className={active === 0 ? "active row" : "row"}
+              onClick={goToOne}
+            >
               <div className="icon">
                 <TbListDetails className="one" />
               </div>
@@ -31,7 +48,10 @@ const CreateCommunity = () => {
               </div>
             </div>
             <div className="line"></div>
-            <div className="row" onClick={() => goTo("/community/new/two")}>
+            <div
+              className={active === 1 ? "active row" : "row"}
+              onClick={goToTwo}
+            >
               <div className="icon">
                 <TbListDetails className="one" />
               </div>
@@ -41,7 +61,10 @@ const CreateCommunity = () => {
               </div>
             </div>
             <div className="line"></div>
-            <div className="row" onClick={() => goTo("/community/new/three")}>
+            <div
+              className={active === 2 ? "active row" : "row"}
+              onClick={goToThree}
+            >
               <div className="icon">
                 <TbListDetails className="one" />
               </div>
@@ -114,6 +137,22 @@ const Container = styled.div`
         border-radius: 10px;
         padding: 20px 20px 20px 60px;
         background: var(--grayish);
+
+        .active {
+          .icon {
+            border: 1px solid var(--white) !important;
+
+            .one {
+              color: var(--white) !important;
+            }
+          }
+
+          .para {
+            p {
+              color: var(--white) !important;
+            }
+          }
+        }
 
         .row {
           width: 100%;

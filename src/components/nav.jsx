@@ -71,7 +71,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    if (token) {
+    if (token?.length > 0) {
       setAuthenticated(true);
     } else {
       setAuthenticated(false);
@@ -79,8 +79,8 @@ const Nav = () => {
   }, [navigate, token]);
 
   useEffect(() => {
-    const decoded = jwtDecode(token);
-    if (authenticated) {
+    if (token?.length > 0) {
+      const decoded = jwtDecode(token);
       axios
         .get(`/user/${decoded.id}`, {
           headers: {
@@ -94,7 +94,7 @@ const Nav = () => {
           console.log(error);
         });
     }
-  });
+  }, [authenticated, token]);
 
   return (
     <Container>
