@@ -48,12 +48,15 @@ function App() {
           <Route path="two" exact element={<Two />} />
           <Route path="three" exact element={<Three />} />
         </Route>
-        {/* Posting */}
-        <Route path="/home" exact element={<Home />} />
         <Route path="/profile" exact element={<Profile />} />
-        <Route path="/profile/:id" exact element={<Profile />} />
+
+        {/* Client */}
+
+        {/* Posting */}
+        <Route path="/client/:id/home" exact element={<Home />} />
+        <Route path="/client/:id/profile" exact element={<Profile />} />
         {/* Stories */}
-        <Route path="/stories" exact element={<Stories />}>
+        <Route path="/stories/client/:id" exact element={<Stories />}>
           <Route index exact element={<Story />} />
           <Route path="create-text" exact element={<CreateText />} />
           <Route path="create-media" exact element={<CreateMedia />} />

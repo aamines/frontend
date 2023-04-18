@@ -20,7 +20,7 @@ import {
 import axios from "../features/axios";
 
 //actions
-import { removeToken } from "../store/reducers/persist";
+import { removeToken, addHasAccount } from "../store/reducers/persist";
 
 const Nav = () => {
   //configs
@@ -38,6 +38,27 @@ const Nav = () => {
   const token = useSelector((state) => state.persist.token);
   const hasAccount = useSelector((state) => state.persist.hasAccount);
 
+  const goTo = (path) => {
+    const { id } = jwtDecode(token);
+    navigate(`/client/${id}/${path}`);
+  };
+
+  const goToNotifications = () => {
+    if (hasAccount) {
+      goTo("notifications");
+    } else {
+      navigate("/notifications");
+    }
+  };
+
+  const goToProfile = () => {
+    if (hasAccount) {
+      goTo("profile");
+    } else {
+      navigate("/profile");
+    }
+  };
+
   useEffect(() => {
     setDown(false);
     setActive(location.pathname);
@@ -47,7 +68,7 @@ const Nav = () => {
   const goHome = () => {
     if (authenticated) {
       if (hasAccount) {
-        navigate("/home");
+        goTo("home");
       } else {
         navigate("/profile");
       }
@@ -58,12 +79,9 @@ const Nav = () => {
 
   const Logout = () => {
     dispatch(removeToken());
+    dispatch(addHasAccount(false));
     setAuthenticated(false);
     navigate("/login");
-  };
-
-  const goTo = (path) => {
-    navigate(path);
   };
 
   const handleDown = () => {
@@ -125,28 +143,28 @@ const Nav = () => {
           </div>
           {hasAccount && (
             <div className="nav">
-              <Link to="/home" className={active === "/home" ? "active" : ""}>
+              <div
+                onClick={() => goTo("home")}
+                className={active === "/home" ? "active" : ""}
+              >
                 <RiHome6Fill className="one icon" />
-              </Link>
-              <Link
-                to="/messages"
+              </div>
+              <div
+                onClick={() => goTo("messages")}
                 className={active === "/messages" ? "active" : ""}
               >
                 <BsFillChatFill className="two icon" />
-              </Link>
-              <Link
-                to="/members"
+              </div>
+              <div
+                onClick={() => goTo("members")}
                 className={active === "/members" ? "active" : ""}
               >
                 <HiUserGroup className="three icon" />
-              </Link>
+              </div>
             </div>
           )}
           <div className="buttons">
-            <div
-              className="notification"
-              onClick={() => goTo("/notifications")}
-            >
+            <div className="notification" onClick={goToNotifications}>
               <BsBellFill className="icon" />
             </div>
             <div className="profile" onClick={handleDown}>
@@ -160,7 +178,7 @@ const Nav = () => {
             </div>
             {down && (
               <div className="down">
-                <div className="row" onClick={() => goTo("/profile")}>
+                <div className="row" onClick={goToProfile}>
                   <FaUserAlt className="icon" />
                   <p>Profile</p>
                 </div>
@@ -285,10 +303,11 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
 
-    a {
+    div {
       margin: 0 30px;
       text-decoration: none;
       color: var(--white);
+      cursor: pointer;
 
       .icon {
         color: var(--white);

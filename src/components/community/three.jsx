@@ -1,14 +1,18 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 //features
 import axios from "../../features/axios";
 
+//actions
+import { addHasAccount } from "../../store/reducers/persist";
+
 const Three = () => {
   //configs
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //local data
   const [loading, setLoading] = useState(false);
@@ -38,10 +42,11 @@ const Three = () => {
           },
         }
       )
-      .then(() => {
+      .then((res) => {
         setDisabled(false);
         setLoading(false);
-        navigate("/home");
+        dispatch(addHasAccount(true));
+        navigate(`/client/${res.data.data.id}/home`);
       })
       .catch((error) => {
         setDisabled(false);
