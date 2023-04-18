@@ -12,7 +12,7 @@ const Two = () => {
         <div className="terms"></div>
       </div>
       <div className="button">
-        <Link to="/community/new/three">Next</Link>
+        <Link to="/community/new/three">Agree</Link>
       </div>
     </Container>
   );

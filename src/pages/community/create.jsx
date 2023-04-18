@@ -57,7 +57,7 @@ const CreateCommunity = () => {
               </div>
               <div className="para">
                 <p>Step 2</p>
-                <p>terms and conditions</p>
+                <p>Terms and conditions</p>
               </div>
             </div>
             <div className="line"></div>

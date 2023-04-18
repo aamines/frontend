@@ -1,5 +1,6 @@
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import persistStore from "redux-persist/es/persistStore";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 //reducers
@@ -9,24 +10,37 @@ import persist from "./reducers/persist";
 import countries from "./reducers/countries";
 import milestones from "./reducers/milestones";
 import achievements from "./reducers/achievements";
-import persistStore from "redux-persist/es/persistStore";
+import CreateCommunity from "./reducers/community/create";
 
 //reducers
+
+const communityReducers = combineReducers({
+  create: CreateCommunity,
+});
+
 const reducers = combineReducers({
-  milestones: milestones,
-  achievements: achievements,
   groups: groups,
-  countries: countries,
   stories: stories,
   persist: persist,
+  countries: countries,
+  milestones: milestones,
+  achievements: achievements,
+  community: communityReducers,
 });
 
 //persist configs
 const persistConfig = {
   storage,
   key: "root",
+  blacklist: [
+    "groups",
+    "stories",
+    "community",
+    "countries",
+    "milestones",
+    "achievements",
+  ],
   whitelist: ["persist"],
-  blacklist: ["groups", "stories", "countries", "milestones", "achievements"],
 };
 
 //persist reducers

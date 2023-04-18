@@ -1,29 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
-const One = () => {
-  //local data
-  const [next, setnext] = useState(true);
+//Actions
+import { setData } from "../../store/reducers/community/create";
 
+const One = () => {
   //configs
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    formState: { isValid },
+    formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {};
-
-  useEffect(() => {
-    if (isValid) {
-      setnext(false);
-    } else {
-      setnext(true);
-    }
-  }, [isValid]);
+  const onSubmit = (data) => {
+    dispatch(setData({ ...data }));
+    navigate("/community/new/two");
+  };
 
   return (
     <Container>
@@ -32,6 +29,7 @@ const One = () => {
           <input
             type="text"
             placeholder="Name"
+            className={errors.name ? "error" : ""}
             {...register("name", {
               required: true,
               minLength: 5,
@@ -39,6 +37,7 @@ const One = () => {
             })}
           />
           <select
+            className={errors.type ? "error" : ""}
             {...register("type", {
               required: true,
             })}
@@ -50,17 +49,19 @@ const One = () => {
             <option value="organization">Organization</option>
           </select>
         </div>
-        <div
-          className="big"
-          {...register("vision", {
-            required: true,
-            minLength: 40,
-            maxLength: 200,
-          })}
-        >
-          <textarea cols="30" rows="10" placeholder="Set vision" />
+        <div className={errors.vision ? "big error" : "big"}>
+          <textarea
+            cols="30"
+            rows="10"
+            placeholder="Set vision"
+            {...register("vision", {
+              required: true,
+              minLength: 40,
+              maxLength: 200,
+            })}
+          />
         </div>
-        <button type="submit" className="button" disabled={next}>
+        <button type="submit" className="button">
           Next
         </button>
       </form>
@@ -82,6 +83,10 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
+    .error {
+      border: 1px solid var(--red);
+    }
   }
 
   .row {

@@ -113,7 +113,7 @@ const Nav = () => {
           navigate("/login");
         });
     }
-  }, [navigate, setAuthenticated, token]);
+  }, []);
 
   return (
     <Container>
