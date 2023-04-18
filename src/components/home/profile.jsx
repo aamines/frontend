@@ -1,34 +1,64 @@
-import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+//features
+import axios from "../../features/axios";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
+  //config
+  const navigate = useNavigate();
+
+  //local data
+  const [user, setUser] = useState({});
+  const [account, setAccount] = useState({});
+
+  //redux data
+  const accountId = useSelector((state) => state.persist.account);
+
+  const goToProfile = () => {
+    navigate(`/client/${accountId}/profile`);
+  };
+
+  useEffect(() => {
+    axios
+      .get(`/account/${accountId}`)
+      .then((res) => {
+        setAccount(res.data.data);
+        setUser(res.data.data.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [accountId]);
+
   return (
     <Container>
       <div className="box">
         <div className="banner"></div>
         <div className="about">
           <div className="div">
-            <p className="up">12</p>
+            <p className="up">{account?.skills || 0}</p>
             <p className="down">Skills</p>
           </div>
           <div className="person">
             <div className="picture"></div>
             <div className="name">
-              <p className="up">Byiringiro saad</p>
-              <p className="down">@_byiringiro_</p>
+              <p className="up">{user?.names}</p>
+              <p className="down"></p>
             </div>
           </div>
           <div className="div">
-            <p className="up">34</p>
+            <p className="up">{account?.posts || 0}</p>
             <p className="down">Posts</p>
           </div>
         </div>
         <div className="para">
-          <p>Hello, i’m a software engineer. Crazy about VR and AR.</p>
+          <p>{account?.about || "No description"}</p>
         </div>
         <div className="button">
-          <Link to="/profile">My Profile</Link>
+          <p onClick={goToProfile}>My Profile</p>
         </div>
       </div>
       <div className="skills">
@@ -142,16 +172,17 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
 
-      a {
+      p {
         width: 80%;
         height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 5px;
-        background: var(--dark);
+        background: var(--bright);
         text-decoration: none;
-        color: var(--white);
+        color: var(--dark);
+        cursor: pointer;
       }
     }
   }

@@ -64,7 +64,7 @@ const Profile = () => {
           setLoading(false);
         });
     }
-  }, [hasAccount, token]);
+  }, [accountId, hasAccount, token]);
 
   return (
     <Container>
@@ -111,7 +111,7 @@ const Profile = () => {
                       {loading
                         ? "Loading..."
                         : hasAccount
-                        ? account?.skills?.length + " Skills"
+                        ? account?.skills?.length || 0 + " Skills"
                         : "No Skills"}
                     </p>
                   </div>
@@ -121,7 +121,7 @@ const Profile = () => {
                       {loading
                         ? "Loading..."
                         : hasAccount
-                        ? account?.posts?.length + " Posts"
+                        ? account?.posts?.length || 0 + " Posts"
                         : "No Posts"}
                     </p>
                   </div>
@@ -131,7 +131,7 @@ const Profile = () => {
                       {loading
                         ? "Loading..."
                         : hasAccount
-                        ? account?.posts?.length + " Groups"
+                        ? account?.posts?.length || 0 + " Groups"
                         : "No Groups"}
                     </p>
                   </div>

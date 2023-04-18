@@ -14,7 +14,7 @@ const CreateMedia = () => {
 
   //drag and drop image
   const [image, setImage] = useState([]);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     accept: "image/*",
     onDrop: (acceptfiles) => {
       setImage(
