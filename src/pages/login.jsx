@@ -10,7 +10,11 @@ import axios from "../features/axios";
 import app from "../features/firebase";
 
 //actions
-import { addToken, addHasAccount } from "../store/reducers/persist";
+import {
+  addToken,
+  setHasAccount,
+  setAuthenticated,
+} from "../store/reducers/persist";
 
 const Login = () => {
   //configs
@@ -47,12 +51,13 @@ const Login = () => {
       })
       .then((res) => {
         setLoading(false);
+        dispatch(setAuthenticated(true));
         dispatch(addToken(res?.data?.token));
-        if (res.data.hasAccount) {
-          dispatch(addHasAccount(true));
-          navigate("/home");
+        if (res.data.account) {
+          dispatch(setHasAccount(true));
+          navigate(`/client/${res.data.account.id}/home`);
         } else {
-          dispatch(addHasAccount(false));
+          dispatch(setHasAccount(false));
           navigate("/profile");
         }
       })

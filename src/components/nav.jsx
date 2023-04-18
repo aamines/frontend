@@ -20,7 +20,7 @@ import {
 import axios from "../features/axios";
 
 //actions
-import { removeToken, addHasAccount } from "../store/reducers/persist";
+import { removeToken, setHasAccount } from "../store/reducers/persist";
 
 const Nav = () => {
   //configs
@@ -35,12 +35,18 @@ const Nav = () => {
   const [authenticated, setAuthenticated] = useState(true);
 
   // redux data
+  const account = useSelector((state) => state.persist.account);
   const token = useSelector((state) => state.persist.token);
   const hasAccount = useSelector((state) => state.persist.hasAccount);
 
+  useEffect(() => {
+    setDown(false);
+    setActive(location.pathname);
+  }, [location.pathname]);
+
+  //Functions
   const goTo = (path) => {
-    const { id } = jwtDecode(token);
-    navigate(`/client/${id}/${path}`);
+    navigate(`/client/${account}/${path}`);
   };
 
   const goToNotifications = () => {
@@ -59,12 +65,10 @@ const Nav = () => {
     }
   };
 
-  useEffect(() => {
-    setDown(false);
-    setActive(location.pathname);
-  }, [location.pathname]);
+  const goToCreate = () => {
+    navigate("/community/new");
+  };
 
-  //Functions
   const goHome = () => {
     if (authenticated) {
       if (hasAccount) {
@@ -79,8 +83,8 @@ const Nav = () => {
 
   const Logout = () => {
     dispatch(removeToken());
-    dispatch(addHasAccount(false));
     setAuthenticated(false);
+    dispatch(setHasAccount(false));
     navigate("/login");
   };
 
@@ -192,10 +196,7 @@ const Nav = () => {
                     <li>
                       <p className="no">No Communities</p>
                     </li>
-                    <li
-                      className="community"
-                      onClick={() => goTo("/community/new")}
-                    >
+                    <li className="community" onClick={goToCreate}>
                       <button>Create Community</button>
                     </li>
                   </ul>
@@ -303,7 +304,8 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
 
-    div {
+    div,
+    a {
       margin: 0 30px;
       text-decoration: none;
       color: var(--white);

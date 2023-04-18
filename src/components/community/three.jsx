@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "../../features/axios";
 
 //actions
-import { addHasAccount } from "../../store/reducers/persist";
+import { setHasAccount, setAccount } from "../../store/reducers/persist";
 
 const Three = () => {
   //configs
@@ -45,7 +45,8 @@ const Three = () => {
       .then((res) => {
         setDisabled(false);
         setLoading(false);
-        dispatch(addHasAccount(true));
+        dispatch(setHasAccount(true));
+        dispatch(setAccount(res.data.data.id));
         navigate(`/client/${res.data.data.id}/home`);
       })
       .catch((error) => {
