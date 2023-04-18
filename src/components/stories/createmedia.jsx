@@ -38,7 +38,7 @@ const CreateMedia = () => {
       <div className="drop-file-input">
         <div className="drop-file-input__label" {...getRootProps()}>
           <input {...getInputProps()} />
-          {image.length == 0 ? (
+          {image.length === 0 ? (
             <img className="upload-icon" src={uploadImg} alt="upload" />
           ) : (
             ""

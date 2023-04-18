@@ -96,6 +96,25 @@ const Nav = () => {
     }
   }, [authenticated, token]);
 
+  useEffect(() => {
+    if (token?.length < 1) {
+      setAuthenticated(false);
+      navigate("/login");
+    } else {
+      axios
+        .post("/auth/verify-token", {
+          token: `${token}`,
+        })
+        .then(() => {
+          setAuthenticated(true);
+        })
+        .catch(() => {
+          setAuthenticated(false);
+          navigate("/login");
+        });
+    }
+  }, [navigate, setAuthenticated, token]);
+
   return (
     <Container>
       {authenticated ? (

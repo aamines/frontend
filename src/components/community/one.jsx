@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
 const One = () => {
+  //local data
+  const [next, setnext] = useState(true);
+
   //configs
   const navigate = useNavigate();
-  const { register, handleSubmit, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm();
+
+  const onSubmit = (data) => {};
+
+  useEffect(() => {
+    if (isValid) {
+      setnext(false);
+    } else {
+      setnext(true);
+    }
+  }, [isValid]);
 
   return (
     <Container>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
           <input
             type="text"
@@ -43,7 +60,9 @@ const One = () => {
         >
           <textarea cols="30" rows="10" placeholder="Set vision" />
         </div>
-        <button className="button">Next</button>
+        <button type="submit" className="button" disabled={next}>
+          Next
+        </button>
       </form>
     </Container>
   );
