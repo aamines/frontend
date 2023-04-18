@@ -1,15 +1,53 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+//features
+import axios from "../../features/axios";
 
 const Three = () => {
+  //configs
+  const navigate = useNavigate();
+
   //local data
   const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const data = useSelector((state) => state.community.create);
 
+  //redux data
+  const token = useSelector((state) => state.persist.token);
+
   const handleSubmit = () => {
+    if (disabled) return;
+
     setLoading(true);
+    setDisabled(true);
+
+    axios
+      .post(
+        "/community/create",
+        {
+          name: data.name,
+          type: data.type,
+          vision: data.vision,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        setDisabled(false);
+        setLoading(false);
+        navigate("/home");
+      })
+      .catch((error) => {
+        setDisabled(false);
+        setLoading(false);
+        console.log(error);
+      });
   };
 
   return (
@@ -18,12 +56,8 @@ const Three = () => {
         The soul should always stand ajar, ready to <br /> welcome the ecstatic
         experience.
       </p>
-      <div className="button">
-        {loading ? (
-          <img src="/loader.svg" alt="loader" />
-        ) : (
-          <Link to="/home">Enjoy</Link>
-        )}
+      <div className="button" onClick={handleSubmit}>
+        {loading ? <img src="/loader.svg" alt="loader" /> : <p>Enjoy</p>}
       </div>
     </Container>
   );
@@ -53,8 +87,9 @@ const Container = styled.div`
     margin: 20px 0;
     border-radius: 5px;
     background: var(--bright);
+    cursor: pointer;
 
-    a {
+    p {
       height: 100%;
       display: flex;
       align-items: center;

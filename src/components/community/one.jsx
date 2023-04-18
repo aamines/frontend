@@ -138,6 +138,7 @@ const Container = styled.div`
     background: var(--bright);
     border: none;
     border-radius: 4px;
+    cursor: pointer;
   }
 `;
 
