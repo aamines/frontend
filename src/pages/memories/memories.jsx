@@ -22,7 +22,7 @@ const Memories = () => {
   const onPrevious = () => {};
 
   const goToCreate = () => {
-    navigate(`/client/${account}/create-text`);
+    navigate(`/client/${account}/create/text`);
   };
 
   return (

@@ -99,8 +99,8 @@ function App() {
         <Route path="/client/:id/profile" exact element={<Profile />} />
         {/* Memories */}
         <Route path="/client/:id/create" exact element={<CreateMemory />}>
-          <Route path="create-text" exact element={<CreateText />} />
-          <Route path="create-media" exact element={<CreateMedia />} />
+          <Route path="text" exact element={<CreateText />} />
+          <Route path="media" exact element={<CreateMedia />} />
         </Route>
         <Route path="/client/:id/memories" exact element={<Memories />} />
       </Routes>
