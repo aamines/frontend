@@ -7,12 +7,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Main from "./pages/main";
 import Login from "./pages/login";
-import Stories from "./pages/memories";
 import Contact from "./pages/contact";
 import Verify from "./pages/signup/verify";
 import Signup from "./pages/signup/signup";
 import Profile from "./pages/profile/profile";
+import Memories from "./pages/memories/memories";
 import ResetPassword from "./pages/password/reset";
+import CreateMemory from "./pages/memories/create";
 import ForgotPassword from "./pages/password/forgot";
 import CreateCommunity from "./pages/community/create";
 
@@ -20,7 +21,6 @@ import CreateCommunity from "./pages/community/create";
 import Nav from "./components/nav";
 import Two from "./components/community/two";
 import One from "./components/community/one";
-import Story from "./components/memories/view";
 import Three from "./components/community/three";
 import CreateText from "./components/memories/createtext";
 import CreateMedia from "./components/memories/createmedia";
@@ -97,12 +97,12 @@ function App() {
         {/* Posting */}
         <Route path="/client/:id/home" exact element={<Home />} />
         <Route path="/client/:id/profile" exact element={<Profile />} />
-        {/* Stories */}
-        <Route path="/stories/client/:id" exact element={<Stories />}>
-          <Route index exact element={<Story />} />
+        {/* Memories */}
+        <Route path="/client/:id/create" exact element={<CreateMemory />}>
           <Route path="create-text" exact element={<CreateText />} />
           <Route path="create-media" exact element={<CreateMedia />} />
         </Route>
+        <Route path="/client/:id/memories" exact element={<Memories />} />
       </Routes>
     </Router>
   );

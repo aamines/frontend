@@ -7,6 +7,7 @@ const CreateText = () => {
   const goTo = (path) => {
     navigate(path);
   };
+
   const changeColor = (color) => {
     document
       .getElementsByClassName("black-border")[0]
@@ -21,7 +22,7 @@ const CreateText = () => {
 
   return (
     <Container>
-      <div className="textmedia">
+      <div className="header">
         <p className="active" onClick={() => goTo("/stories/create-text")}>
           Text
         </p>
@@ -52,11 +53,30 @@ const CreateText = () => {
 };
 
 const Container = styled.div`
-  position: relative;
   width: 100%;
-  height: 100%;
-  margin: auto;
-  border-radius: 5px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    p {
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      color: var(--white);
+      border-bottom: 2px solid #ccc;
+    }
+    .active {
+      border-bottom: 2px solid #3be28f;
+    }
+  }
 
   .textarea {
     margin: auto;
@@ -112,25 +132,6 @@ const Container = styled.div`
       .black-border {
         border: 2px solid #000;
       }
-    }
-  }
-  .textmedia {
-    display: flex;
-    position: relative;
-    top: 40px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    p {
-      width: 200px;
-      text-align: center;
-      cursor: pointer;
-      position: relative;
-      border-bottom: 2px solid #ccc;
-    }
-    .active {
-      border-bottom: 2px solid #3be28f;
     }
   }
 

@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
 //icons
@@ -20,15 +21,21 @@ import { addMemories } from "../../store/reducers/memory";
 const Memories = () => {
   //config
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //redux data
   const token = useSelector((state) => state.persist.token);
+  const account = useSelector((state) => state.persist.account);
   const memories = useSelector((state) => state.memory.memories);
   const community = useSelector((state) => state.persist.community);
 
   const onNext = () => {};
 
   const onPrevious = () => {};
+
+  const goToCreate = () => {
+    navigate(`/client/${account}/create-text`);
+  };
 
   useEffect(() => {
     axios
@@ -47,7 +54,7 @@ const Memories = () => {
 
   return (
     <Container>
-      <div className="status">
+      <div className="status" onClick={goToCreate}>
         <div className="one">
           <IoMdAdd className="icon" />
         </div>
@@ -88,6 +95,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 0 10px 0 0;
+    cursor: pointer;
 
     .one {
       width: 70px;
