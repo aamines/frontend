@@ -13,6 +13,7 @@ import app from "../features/firebase";
 import {
   addToken,
   setAccount,
+  setCommunity,
   setHasAccount,
   setAuthenticated,
   setTokenVerified,
@@ -57,6 +58,7 @@ const Login = () => {
         dispatch(setAuthenticated(true));
         dispatch(addToken(res?.data?.token));
         dispatch(setAccount(res.data.account.id));
+        dispatch(setCommunity(res.data.account.communityId));
         if (res.data.account) {
           dispatch(setHasAccount(true));
           navigate(`/client/${res.data.account.id}/home`);

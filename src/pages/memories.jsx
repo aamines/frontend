@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { Outlet } from "react-router";
 
 //components
-import StoriesContainer from "../components/stories/container";
+import MemoriesContainer from "../components/memories/container";
 
-const Story = () => {
+const Memories = () => {
   return (
     <Container>
       <div className="view">
         <Outlet />
       </div>
       <ThumbnailList>
-        <StoriesContainer />
+        <MemoriesContainer />
       </ThumbnailList>
     </Container>
   );
@@ -87,4 +87,4 @@ const YouStatus = styled.div`
     margin-top: 7px;
   }
 `;
-export default Story;
+export default Memories;

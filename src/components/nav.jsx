@@ -26,6 +26,7 @@ import {
   removeToken,
   setHasAccount,
   removeAccount,
+  removeCommunity,
   setAuthenticated,
   setTokenVerified,
 } from "../store/reducers/persist";
@@ -93,6 +94,7 @@ const Nav = () => {
   const Logout = () => {
     dispatch(removeToken());
     dispatch(removeAccount());
+    dispatch(removeCommunity());
     dispatch(setHasAccount(false));
     dispatch(setAuthenticated(false));
     dispatch(setTokenVerified(false));
@@ -121,6 +123,7 @@ const Nav = () => {
     } else {
       dispatch(removeToken());
       dispatch(removeAccount());
+      dispatch(removeCommunity());
       dispatch(setHasAccount(false));
       dispatch(setAuthenticated(false));
       dispatch(setTokenVerified(false));

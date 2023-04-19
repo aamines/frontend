@@ -1,5 +1,8 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import styled from "styled-components";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 //icons
 import { IoMdAdd } from "react-icons/io";
@@ -7,14 +10,40 @@ import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 //components
 import Item from "./item";
-import { useSelector } from "react-redux";
 
-const StoriesContainer = () => {
-  const statuses = useSelector((state) => state.stories);
+//features
+import axios from "../../features/axios";
+
+//actions
+import { addMemories } from "../../store/reducers/memory";
+
+const Memories = () => {
+  //config
+  const dispatch = useDispatch();
+
+  //redux data
+  const token = useSelector((state) => state.persist.token);
+  const memories = useSelector((state) => state.memory.memories);
+  const community = useSelector((state) => state.persist.community);
 
   const onNext = () => {};
 
   const onPrevious = () => {};
+
+  useEffect(() => {
+    axios
+      .get(`/memory/${community}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch(addMemories(res.data.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <Container>
@@ -25,17 +54,21 @@ const StoriesContainer = () => {
         <p>You</p>
       </div>
       <div className="statuses">
-        <div className="scroll" onClick={onNext}>
-          <BiChevronLeft className="icon" />
-        </div>
-        <ul>
-          {statuses.map((status, index) => (
-            <Item key={index} data={status} />
-          ))}
-        </ul>
-        <div className="scroll" onClick={onPrevious}>
-          <BiChevronRight className="icon" />
-        </div>
+        {memories?.length > 0 && (
+          <>
+            <div className="scroll" onClick={onNext}>
+              <BiChevronLeft className="icon" />
+            </div>
+            <ul>
+              {memories.map((status, index) => (
+                <Item key={index} data={status} />
+              ))}
+            </ul>
+            <div className="scroll" onClick={onPrevious}>
+              <BiChevronRight className="icon" />
+            </div>
+          </>
+        )}
       </div>
     </Container>
   );
@@ -116,4 +149,4 @@ const Container = styled.div`
   }
 `;
 
-export default StoriesContainer;
+export default Memories;

@@ -6,7 +6,7 @@ import Add from "../components/posts/add";
 import Stats from "../components/home/stats";
 import Profile from "../components/home/profile";
 import Posts from "../components/posts/container";
-import Status from "../components/stories/container";
+import Status from "../components/memories/container";
 
 const Home = () => {
   return (

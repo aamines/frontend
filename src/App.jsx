@@ -1,18 +1,13 @@
 //packages
 import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //pages
 import Home from "./pages/home";
 import Main from "./pages/main";
 import Login from "./pages/login";
-import Stories from "./pages/stories";
+import Stories from "./pages/memories";
 import Contact from "./pages/contact";
 import Verify from "./pages/signup/verify";
 import Signup from "./pages/signup/signup";
@@ -25,10 +20,10 @@ import CreateCommunity from "./pages/community/create";
 import Nav from "./components/nav";
 import Two from "./components/community/two";
 import One from "./components/community/one";
-import Story from "./components/stories/view";
+import Story from "./components/memories/view";
 import Three from "./components/community/three";
-import CreateText from "./components/stories/createtext";
-import CreateMedia from "./components/stories/createmedia";
+import CreateText from "./components/memories/createtext";
+import CreateMedia from "./components/memories/createmedia";
 
 //globals
 import "slick-carousel/slick/slick.css";
@@ -39,11 +34,12 @@ import axios from "./features/axios";
 
 //actions
 import {
-  setTokenVerified,
-  setAuthenticated,
-  setHasAccount,
-  removeAccount,
   removeToken,
+  removeAccount,
+  setHasAccount,
+  removeCommunity,
+  setAuthenticated,
+  setTokenVerified,
 } from "./store/reducers/persist";
 
 function App() {
@@ -67,6 +63,9 @@ function App() {
         .catch(() => {
           dispatch(removeToken());
           dispatch(removeAccount());
+          dispatch(removeCommunity());
+          dispatch(setHasAccount(false));
+          dispatch(setAuthenticated(false));
           dispatch(setTokenVerified(false));
         });
     }

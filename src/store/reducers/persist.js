@@ -5,6 +5,7 @@ const persistSlice = createSlice({
   initialState: {
     token: "",
     account: null,
+    community: null,
     hasAccount: false,
     authenticated: false,
     tokenVerified: false,
@@ -19,11 +20,17 @@ const persistSlice = createSlice({
     setAccount: (state, action) => {
       state.account = action.payload;
     },
+    setCommunity: (state, action) => {
+      state.community = action.payload;
+    },
     setTokenVerified: (state, action) => {
       state.tokenVerified = action.payload;
     },
     removeAccount: (state) => {
       state.account = null;
+    },
+    removeCommunity: (state) => {
+      state.community = null;
     },
     setHasAccount: (state, action) => {
       state.hasAccount = action.payload;
@@ -38,8 +45,10 @@ export const {
   addToken,
   setAccount,
   removeToken,
+  setCommunity,
   removeAccount,
   setHasAccount,
+  removeCommunity,
   setTokenVerified,
   setAuthenticated,
 } = persistSlice.actions;
