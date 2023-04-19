@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import jwtDecode from "jwt-decode";
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
@@ -20,7 +22,13 @@ import {
 import axios from "../features/axios";
 
 //actions
-import { removeToken, setHasAccount } from "../store/reducers/persist";
+import {
+  removeToken,
+  setHasAccount,
+  removeAccount,
+  setAuthenticated,
+  setTokenVerified,
+} from "../store/reducers/persist";
 
 const Nav = () => {
   //configs
@@ -32,12 +40,13 @@ const Nav = () => {
   const [user, setUser] = useState({});
   const [down, setDown] = useState(false);
   const [active, setActive] = useState("");
-  const [authenticated, setAuthenticated] = useState(true);
 
   // redux data
-  const account = useSelector((state) => state.persist.account);
   const token = useSelector((state) => state.persist.token);
+  const account = useSelector((state) => state.persist.account);
   const hasAccount = useSelector((state) => state.persist.hasAccount);
+  const tokenVerified = useSelector((state) => state.persist.tokenVerified);
+  const authenticated = useSelector((state) => state.persist.authenticated);
 
   useEffect(() => {
     setDown(false);
@@ -83,8 +92,10 @@ const Nav = () => {
 
   const Logout = () => {
     dispatch(removeToken());
-    setAuthenticated(false);
+    dispatch(removeAccount());
     dispatch(setHasAccount(false));
+    dispatch(setAuthenticated(false));
+    dispatch(setTokenVerified(false));
     navigate("/login");
   };
 
@@ -93,15 +104,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    if (token?.length > 0) {
-      setAuthenticated(true);
-    } else {
-      setAuthenticated(false);
-    }
-  }, [navigate, token]);
-
-  useEffect(() => {
-    if (token?.length > 0) {
+    if (token?.length > 0 && tokenVerified) {
       const decoded = jwtDecode(token);
       axios
         .get(`/user/${decoded.id}`, {
@@ -115,25 +118,13 @@ const Nav = () => {
         .catch((error) => {
           console.log(error);
         });
-    }
-  }, [authenticated, token]);
-
-  useEffect(() => {
-    if (token?.length < 1) {
-      setAuthenticated(false);
-      navigate("/login");
     } else {
-      axios
-        .post("/auth/verify-token", {
-          token: `${token}`,
-        })
-        .then(() => {
-          setAuthenticated(true);
-        })
-        .catch(() => {
-          setAuthenticated(false);
-          navigate("/login");
-        });
+      dispatch(removeToken());
+      dispatch(removeAccount());
+      dispatch(setHasAccount(false));
+      dispatch(setAuthenticated(false));
+      dispatch(setTokenVerified(false));
+      navigate("/login");
     }
   }, []);
 
@@ -473,6 +464,7 @@ const Container = styled.div`
       padding: 6px 30px;
       background: var(--bright);
       border-radius: 20px;
+      color: var(--dark);
     }
   }
 `;

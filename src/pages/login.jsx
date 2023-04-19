@@ -12,8 +12,10 @@ import app from "../features/firebase";
 //actions
 import {
   addToken,
+  setAccount,
   setHasAccount,
   setAuthenticated,
+  setTokenVerified,
 } from "../store/reducers/persist";
 
 const Login = () => {
@@ -51,8 +53,10 @@ const Login = () => {
       })
       .then((res) => {
         setLoading(false);
+        dispatch(setTokenVerified(true));
         dispatch(setAuthenticated(true));
         dispatch(addToken(res?.data?.token));
+        dispatch(setAccount(res.data.account.id));
         if (res.data.account) {
           dispatch(setHasAccount(true));
           navigate(`/client/${res.data.account.id}/home`);

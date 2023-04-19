@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 //sections
 import Footer from "../components/footer";
@@ -11,6 +13,19 @@ import Clients from "../components/main/clients";
 import Testimonials from "../components/main/testimonials";
 
 const Main = () => {
+  //config
+  const navigate = useNavigate();
+
+  //redux data
+  const accountId = useSelector((state) => state.persist.account);
+  const tokenVerified = useSelector((state) => state.persist.tokenVerified);
+
+  useEffect(() => {
+    if (tokenVerified) {
+      navigate(`/client/${accountId}/home`);
+    }
+  }, [navigate, accountId, tokenVerified]);
+
   return (
     <Container>
       <div className="hero">

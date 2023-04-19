@@ -7,6 +7,7 @@ const persistSlice = createSlice({
     account: null,
     hasAccount: false,
     authenticated: false,
+    tokenVerified: false,
   },
   reducers: {
     addToken: (state, action) => {
@@ -17,6 +18,9 @@ const persistSlice = createSlice({
     },
     setAccount: (state, action) => {
       state.account = action.payload;
+    },
+    setTokenVerified: (state, action) => {
+      state.tokenVerified = action.payload;
     },
     removeAccount: (state) => {
       state.account = null;
@@ -32,11 +36,12 @@ const persistSlice = createSlice({
 
 export const {
   addToken,
-  setHasAccount,
-  removeToken,
-  setAuthenticated,
   setAccount,
+  removeToken,
   removeAccount,
+  setHasAccount,
+  setTokenVerified,
+  setAuthenticated,
 } = persistSlice.actions;
 
 export default persistSlice.reducer;

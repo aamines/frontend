@@ -1,6 +1,12 @@
 //packages
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 //pages
 import Home from "./pages/home";
@@ -28,7 +34,44 @@ import CreateMedia from "./components/stories/createmedia";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+//features
+import axios from "./features/axios";
+
+//actions
+import {
+  setTokenVerified,
+  setAuthenticated,
+  setHasAccount,
+  removeAccount,
+  removeToken,
+} from "./store/reducers/persist";
+
 function App() {
+  //config
+  const dispatch = useDispatch();
+
+  //redux data
+  const token = useSelector((state) => state.persist.token);
+
+  useEffect(() => {
+    if (token?.length > 0) {
+      axios
+        .post("/auth/verify-token", {
+          token: `${token}`,
+        })
+        .then(() => {
+          dispatch(setHasAccount(true));
+          dispatch(setTokenVerified(true));
+          dispatch(setAuthenticated(true));
+        })
+        .catch(() => {
+          dispatch(removeToken());
+          dispatch(removeAccount());
+          dispatch(setTokenVerified(false));
+        });
+    }
+  }, [token, dispatch]);
+
   return (
     <Router>
       <Nav />
