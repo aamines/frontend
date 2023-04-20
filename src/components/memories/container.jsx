@@ -16,7 +16,7 @@ import Item from "./item";
 import axios from "../../features/axios";
 
 //actions
-import { addMemories } from "../../store/reducers/memory";
+import { addMemories } from "../../store/reducers/memories";
 
 const Memories = () => {
   //config
@@ -26,7 +26,7 @@ const Memories = () => {
   //redux data
   const token = useSelector((state) => state.persist.token);
   const account = useSelector((state) => state.persist.account);
-  const memories = useSelector((state) => state.memory.memories);
+  const memories = useSelector((state) => state.memories.memories);
   const community = useSelector((state) => state.persist.community);
 
   const onNext = () => {};

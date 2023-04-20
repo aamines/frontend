@@ -5,8 +5,8 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 //reducers
 import groups from "./reducers/groups";
-import memory from "./reducers/memory";
 import persist from "./reducers/persist";
+import memories from "./reducers/memories";
 import countries from "./reducers/countries";
 import milestones from "./reducers/milestones";
 import achievements from "./reducers/achievements";
@@ -20,7 +20,7 @@ const communityReducers = combineReducers({
 
 const reducers = combineReducers({
   groups: groups,
-  memory: memory,
+  memories: memories,
   persist: persist,
   countries: countries,
   milestones: milestones,
@@ -34,7 +34,7 @@ const persistConfig = {
   key: "root",
   blacklist: [
     "groups",
-    "memory",
+    "memories",
     "community",
     "countries",
     "milestones",

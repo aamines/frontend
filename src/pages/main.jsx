@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -24,7 +26,7 @@ const Main = () => {
     if (tokenVerified) {
       navigate(`/client/${accountId}/home`);
     }
-  }, [navigate, accountId, tokenVerified]);
+  }, []);
 
   return (
     <Container>

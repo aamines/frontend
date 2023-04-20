@@ -15,7 +15,7 @@ const Memories = () => {
 
   //redux data
   const account = useSelector((state) => state.persist.account);
-  const memories = useSelector((state) => state.memory.memories);
+  const memories = useSelector((state) => state.memories.memories);
 
   const onNext = () => {};
 
@@ -67,7 +67,7 @@ const Container = styled.div`
   align-items: center;
 
   .view {
-    height: 550px;
+    height: calc(100vh - 300px);
     display: flex;
     flex-direction: row;
     align-items: center;

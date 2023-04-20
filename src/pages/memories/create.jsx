@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { Outlet, useLocation, useNavigate } from "react-router";
 
 //icons
 import { IoMdAdd } from "react-icons/io";
@@ -13,10 +13,22 @@ import Item from "../../components/memories/item";
 const CreateMemory = () => {
   //config
   const navigate = useNavigate();
+  const location = useLocation();
+
+  //local data
+  const [active, setActive] = React.useState("text");
 
   //redux data
   const account = useSelector((state) => state.persist.account);
-  const memories = useSelector((state) => state.memory.memories);
+  const memories = useSelector((state) => state.memories.memories);
+
+  useEffect(() => {
+    if (location.pathname.includes("media")) {
+      setActive("media");
+    } else {
+      setActive("text");
+    }
+  }, [location.pathname]);
 
   return (
     <Container>
@@ -24,6 +36,10 @@ const CreateMemory = () => {
         <div className="header">
           <Link to={`/client/${account}/create/text`}>Text</Link>
           <Link to={`/client/${account}/create/media`}>Media</Link>
+          <Line active={active} />
+        </div>
+        <div className="content">
+          <Outlet />
         </div>
       </div>
       <div className="memories">
@@ -49,6 +65,16 @@ const CreateMemory = () => {
   );
 };
 
+const Line = styled.div`
+  width: 50%;
+  height: 2px;
+  background: var(--bright);
+  position: absolute;
+  bottom: -1.5px;
+  transition: all 0.3s ease-in-out;
+  left: ${(props) => (props.active === "text" ? "0" : "50%")};
+`;
+
 const Container = styled.div`
   width: 100%;
   height: auto;
@@ -57,10 +83,11 @@ const Container = styled.div`
   align-items: center;
 
   .create {
-    height: 550px;
+    height: calc(100vh - 300px);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     border-radius: 10px;
     margin: 50px 0 0 0;
     background: var(--dark);
@@ -82,6 +109,7 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      position: relative;
       border-bottom: 1px solid var(--grayish);
 
       a {
@@ -91,6 +119,11 @@ const Container = styled.div`
         text-decoration: none;
         color: var(--white);
       }
+    }
+
+    .content {
+      width: 100%;
+      height: 85%;
     }
   }
 

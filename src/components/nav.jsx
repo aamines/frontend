@@ -127,9 +127,8 @@ const Nav = () => {
       dispatch(setHasAccount(false));
       dispatch(setAuthenticated(false));
       dispatch(setTokenVerified(false));
-      navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <Container>

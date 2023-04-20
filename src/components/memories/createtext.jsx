@@ -1,152 +1,140 @@
+/* eslint-disable no-unused-vars */
+
 import styled from "styled-components";
-import { useNavigate } from "react-router";
+import React, { useState } from "react";
 
 const CreateText = () => {
-  const navigate = useNavigate();
+  //local data
+  const [value, setValue] = useState("");
+  const [active, setActive] = useState("3BE28F");
+  const [colors, _] = useState([
+    "3BE28F",
+    "FF347D",
+    "CE18D1",
+    "4F1DDE",
+    "27B0B9",
+  ]);
 
-  const goTo = (path) => {
-    navigate(path);
+  const handleColor = (color) => {
+    setActive(color);
   };
 
-  const changeColor = (color) => {
-    document
-      .getElementsByClassName("black-border")[0]
-      .classList.remove("black-border");
-
-    document.addEventListener("click", (event) => {
-      let clickedElement = event.target;
-      clickedElement.classList.add("black-border");
-    });
-    document.getElementById("textarea").style.backgroundColor = color;
+  const handleValue = (e) => {
+    setValue(e.target.value);
   };
 
   return (
     <Container>
-      <div className="header">
-        <p className="active" onClick={() => goTo("/stories/create-text")}>
-          Text
-        </p>
-        <p onClick={() => goTo("/stories/create-media")}>Media</p>
-      </div>
-      <div className="textarea" id="textarea">
-        <div
-          className="contenteditable"
-          contenteditable="true"
-          placeholder="Type Something..."
-        >
-          Type Something...
-        </div>
-        <div className="colors">
-          <div
-            className="first black-border"
-            onClick={() => changeColor("#3be28f")}
-          ></div>
-          <div className="second" onClick={() => changeColor("#ff347d")}></div>
-          <div className="third" onClick={() => changeColor("#ce18d1")}></div>
-          <div className="fourth" onClick={() => changeColor("#4f1dde")}></div>
-          <div className="fifth" onClick={() => changeColor("#26c7d1")}></div>
+      <div className="container">
+        <Textarea background={active}>
+          <textarea
+            value={value}
+            onChange={handleValue}
+            placeholder="Type something..."
+          />
+        </Textarea>
+        <div className="button">
+          <p>Send</p>
         </div>
       </div>
-      <button>Send</button>
+      <div className="colors">
+        {colors.map((color, index) => (
+          <Color
+            main={color}
+            key={index}
+            active={active === color}
+            onClick={() => handleColor(color)}
+          ></Color>
+        ))}
+      </div>
     </Container>
   );
 };
 
+const Color = styled.div`
+  width: ${(props) => (props.active ? "30px" : "25px")};
+  height: ${(props) => (props.active ? "30px" : "25px")};
+  margin: 10px 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #${(props) => props.main};
+  border: ${(props) => (props.active ? "3px solid var(--white)" : "none")};
+  transition: all 0.3s ease-in-out;
+`;
+
+const Textarea = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #${(props) => props.background};
+
+  textarea {
+    width: 100%;
+    max-height: 100%;
+    min-height: 200px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--white);
+    padding: 40px 30px;
+    font-size: 1.1em;
+    resize: none;
+    overflow: visible;
+    text-align: center;
+    box-sizing: border-box;
+
+    ::placeholder {
+      color: var(--white);
+    }
+  }
+`;
+
 const Container = styled.div`
   width: 100%;
-  height: 550px;
+  height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  position: relative;
 
-  .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-
-    p {
-      width: 200px;
-      text-align: center;
-      cursor: pointer;
-      position: relative;
-      color: var(--white);
-      border-bottom: 2px solid #ccc;
-    }
-    .active {
-      border-bottom: 2px solid #3be28f;
-    }
-  }
-
-  .textarea {
-    margin: auto;
-    display: flex;
-    border-radius: 5px;
-    background: #3be28f;
-    flex-direction: column;
-    display: table;
+  .container {
     width: 60%;
-    height: 30vh;
-    text-align: center;
-    outline: 0px solid transparent !important;
-    top: 80px;
-    position: relative;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 
-    .contenteditable {
-      display: table-cell;
-      vertical-align: middle;
-      width: 100%;
-      outline: none;
-    }
-    .colors {
-      margin-left: -250px;
+    .button {
+      width: 140px;
+      height: 50px;
       display: flex;
-      flex-direction: column;
+      border-radius: 5px;
       align-items: center;
-      position: relative;
-      left: 250px;
-      width: 50px;
-      top: 30px;
-      div {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        margin: 5px;
-        cursor: pointer;
-      }
-      .first {
-        background: #3be28f;
-      }
-      .second {
-        background: #ff347d;
-      }
-      .third {
-        background: #ce18d1;
-      }
-      .fourth {
-        background: #4f1dde;
-      }
-      .fifth {
-        background: #26c7d1;
-      }
-      .black-border {
-        border: 2px solid #000;
+      justify-content: center;
+      margin: 15px 0 0 0;
+      cursor: pointer;
+      background: var(--grayish);
+
+      p {
+        color: var(--white);
       }
     }
   }
 
-  button {
-    width: 130px;
-    border-radius: 3px;
-    outline: none;
-    border: none;
-    background: #d9d9d9;
-    padding: 5px;
-    position: relative;
-    top: 120px;
-    float: right;
-    right: 20px;
-    cursor: pointer;
+  .colors {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    right: 10%;
+    top: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 

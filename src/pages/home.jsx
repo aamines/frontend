@@ -1,5 +1,8 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 //components
 import Add from "../components/posts/add";
@@ -7,8 +10,21 @@ import Stats from "../components/home/stats";
 import Profile from "../components/home/profile";
 import Posts from "../components/posts/container";
 import Status from "../components/memories/container";
+import { useNavigate } from "react-router";
 
 const Home = () => {
+  //config
+  const navigate = useNavigate();
+
+  //redux data
+  const tokenVerified = useSelector((state) => state.persist.tokenVerified);
+
+  useEffect(() => {
+    if (!tokenVerified) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <Container>
       <div className="container">
