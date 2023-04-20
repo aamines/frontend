@@ -306,6 +306,11 @@ const Container = styled.div`
 
       .icon {
         color: var(--white);
+        transition: all 0.1s ease-in-out;
+
+        :hover {
+          filter: brightness(85%);
+        }
       }
 
       .one {
@@ -340,10 +345,15 @@ const Container = styled.div`
       justify-content: center;
       background: var(--grayish);
       cursor: pointer;
+      transition: all 0.1s ease-in-out;
 
       .icon {
         font-size: 1.4em;
         color: var(--white);
+      }
+
+      :hover {
+        filter: brightness(85%);
       }
     }
 

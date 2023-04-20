@@ -105,10 +105,15 @@ const Container = styled.div`
       justify-content: center;
       border-radius: 50%;
       background: var(--grayish);
+      transition: all 0.1s ease;
 
       .icon {
         font-size: 2em;
         color: var(--white);
+      }
+
+      :hover {
+        filter: brightness(85%);
       }
     }
 

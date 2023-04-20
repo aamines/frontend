@@ -119,9 +119,19 @@ const Container = styled.div`
       margin: 15px 0 0 0;
       cursor: pointer;
       background: var(--grayish);
+      transition: all 0.3s ease;
 
       p {
         color: var(--white);
+        transition: all 0.3s ease;
+      }
+
+      :hover {
+        background: var(--bright);
+
+        p {
+          color: var(--dark);
+        }
       }
     }
   }
