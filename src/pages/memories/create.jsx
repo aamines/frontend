@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Outlet, useLocation, useNavigate } from "react-router";
+import { Outlet, useLocation } from "react-router";
 
 //icons
 import { IoMdAdd } from "react-icons/io";
@@ -12,7 +12,6 @@ import Item from "../../components/memories/item";
 
 const CreateMemory = () => {
   //config
-  const navigate = useNavigate();
   const location = useLocation();
 
   //local data
@@ -21,6 +20,11 @@ const CreateMemory = () => {
   //redux data
   const account = useSelector((state) => state.persist.account);
   const memories = useSelector((state) => state.memories.memories);
+
+  //local data
+  const ownMemories = memories?.filter(
+    (memory) => memory?.accountId === account
+  );
 
   useEffect(() => {
     if (location.pathname.includes("media")) {
@@ -44,18 +48,26 @@ const CreateMemory = () => {
       </div>
       <div className="memories">
         <div className="status">
-          <div className="one">
-            <IoMdAdd className="icon" />
-          </div>
-          <p>You</p>
+          {ownMemories?.length > 0 ? (
+            <Item data={ownMemories[0]} />
+          ) : (
+            <>
+              <div className="one">
+                <IoMdAdd className="icon" />
+              </div>
+              <p>You</p>
+            </>
+          )}
         </div>
         <div className="statuses">
           {memories?.length > 0 && (
             <>
               <ul>
-                {memories.map((status, index) => (
-                  <Item key={index} data={status} />
-                ))}
+                {memories
+                  .filter((memory) => memory?.accountId !== account)
+                  .map((status, index) => (
+                    <Item key={index} data={status} />
+                  ))}
               </ul>
             </>
           )}

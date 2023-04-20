@@ -21,8 +21,8 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
 
   //redux data
-  const accountId = useSelector((state) => state.persist.account);
   const token = useSelector((state) => state.persist.token);
+  const accountId = useSelector((state) => state.persist.account);
   const hasAccount = useSelector((state) => state.persist.hasAccount);
 
   //state data
@@ -44,7 +44,7 @@ const Profile = () => {
           setUser(res.data.data);
         })
         .catch((error) => {
-          console.log(error.data);
+          console.log(error);
         })
         .finally(() => {
           setLoading(false);
@@ -53,7 +53,6 @@ const Profile = () => {
       axios
         .get(`/account/${accountId}`)
         .then((res) => {
-          console.log(res.data.data);
           setAccount(res.data.data);
           setUser(res.data.data.user);
         })

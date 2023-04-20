@@ -29,12 +29,21 @@ const Memories = () => {
   const memories = useSelector((state) => state.memories.memories);
   const community = useSelector((state) => state.persist.community);
 
+  //local data
+  const ownMemories = memories?.filter(
+    (memory) => memory?.accountId === account
+  );
+
   const onNext = () => {};
 
   const onPrevious = () => {};
 
   const goToCreate = () => {
-    navigate(`/client/${account}/create/text`);
+    if (ownMemories?.length > 0) {
+      navigate(`/client/${account}/memories/${ownMemories[0].id}`);
+    } else {
+      navigate(`/client/${account}/create/text`);
+    }
   };
 
   useEffect(() => {
@@ -55,10 +64,16 @@ const Memories = () => {
   return (
     <Container>
       <div className="status" onClick={goToCreate}>
-        <div className="one">
-          <IoMdAdd className="icon" />
-        </div>
-        <p>You</p>
+        {ownMemories?.length > 0 ? (
+          <Item data={ownMemories[0]} />
+        ) : (
+          <>
+            <div className="one">
+              <IoMdAdd className="icon" />
+            </div>
+            <p>You</p>
+          </>
+        )}
       </div>
       <div className="statuses">
         {memories?.length > 0 && (
@@ -67,9 +82,11 @@ const Memories = () => {
               <BiChevronLeft className="icon" />
             </div>
             <ul>
-              {memories.map((status, index) => (
-                <Item key={index} data={status} />
-              ))}
+              {memories
+                .filter((memory) => memory?.accountId !== account)
+                .map((status, index) => (
+                  <Item key={index} data={status} />
+                ))}
             </ul>
             <div className="scroll" onClick={onPrevious}>
               <BiChevronRight className="icon" />

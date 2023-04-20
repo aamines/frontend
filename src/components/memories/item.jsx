@@ -1,20 +1,37 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const Item = ({ data }) => {
+  //config
+  const navigate = useNavigate();
+
+  //redux data
+  const account = useSelector((state) => state.persist.account);
+
+  //local data
+  const viewed = data?.viewers?.includes(account);
+
+  const goToMemory = () => {
+    navigate(`/client/${account}/memories/${data?.id}`);
+  };
+
   return (
-    <Container>
-      <div className="cont">
+    <Container viewed={viewed}>
+      <div className="cont" onClick={goToMemory}>
         <div className="one"></div>
-        <p>{data?.name}</p>
+        {data?.accountId === account ? <p>You</p> : <p>{data?.name}</p>}
       </div>
     </Container>
   );
 };
 
 const Container = styled.div`
+  width: auto;
+  height: auto;
   display: flex;
-  width: 100%;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 
   .cont {
     width: 100%;
@@ -30,6 +47,8 @@ const Container = styled.div`
     justify-content: center;
     border-radius: 50%;
     background: var(--grayish);
+    border: ${(props) =>
+      props.viewed ? "3px solid var(--grayish)" : "3px solid var(--bright)"};
 
     .icon {
       font-size: 2em;

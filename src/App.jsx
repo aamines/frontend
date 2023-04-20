@@ -95,14 +95,18 @@ function App() {
         {/* Client */}
 
         {/* Posting */}
-        <Route path="/client/:id/home" exact element={<Home />} />
-        <Route path="/client/:id/profile" exact element={<Profile />} />
+        <Route path="/client/:account/home" exact element={<Home />} />
+        <Route path="/client/:account/profile" exact element={<Profile />} />
         {/* Memories */}
-        <Route path="/client/:id/create" exact element={<CreateMemory />}>
+        <Route path="/client/:account/create" exact element={<CreateMemory />}>
           <Route path="text" exact element={<CreateText />} />
           <Route path="media" exact element={<CreateMedia />} />
         </Route>
-        <Route path="/client/:id/memories" exact element={<Memories />} />
+        <Route
+          path="/client/:account/memories/:memory"
+          exact
+          element={<Memories />}
+        />
       </Routes>
     </Router>
   );
