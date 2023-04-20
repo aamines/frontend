@@ -2,10 +2,24 @@
 
 import styled from "styled-components";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+
+//features
+import axios from "../../features/axios";
 
 const CreateText = () => {
+  //config
+  const navigate = useNavigate();
+
+  //redux data
+  const token = useSelector((state) => state.persist.token);
+  const account = useSelector((state) => state.persist.account);
+  const community = useSelector((state) => state.persist.community);
+
   //local data
   const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(false);
   const [active, setActive] = useState("3BE28F");
   const [colors, _] = useState([
     "3BE28F",
@@ -23,6 +37,39 @@ const CreateText = () => {
     setValue(e.target.value);
   };
 
+  const handleSend = () => {
+    if (value.length < 1) return;
+
+    if (!loading) {
+      setLoading(true);
+      axios
+        .post(
+          "/memory/create",
+          {
+            type: "text",
+            color: active,
+            content: value,
+            accountId: account,
+            communityId: community,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res) => {
+          navigate(`/client/${account}/home`);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
   return (
     <Container>
       <div className="container">
@@ -33,8 +80,8 @@ const CreateText = () => {
             placeholder="Type something..."
           />
         </Textarea>
-        <div className="button">
-          <p>Send</p>
+        <div className="button" onClick={handleSend}>
+          {loading ? <img src="/loader.svg" alt="loader" /> : <p>Send</p>}
         </div>
       </div>
       <div className="colors">
@@ -120,6 +167,10 @@ const Container = styled.div`
       cursor: pointer;
       background: var(--grayish);
       transition: all 0.3s ease;
+
+      img {
+        width: 30%;
+      }
 
       p {
         color: var(--white);

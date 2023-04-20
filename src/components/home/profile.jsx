@@ -25,6 +25,7 @@ const Profile = () => {
     axios
       .get(`/account/${accountId}`)
       .then((res) => {
+        console.log(res.data);
         setAccount(res.data.data);
         setUser(res.data.data.user);
       })

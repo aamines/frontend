@@ -20,20 +20,29 @@ const Memories = () => {
   const memories = useSelector((state) => state.memories.memories);
 
   //local data
-  const [active, setActive] = useState(0);
-  const ownMemories = memories?.filter(
-    (memory) => memory?.accountId === account
-  );
+  const [activeAccount, setActiveAccount] = useState(0);
+  const [activeMemory, setactiveMemory] = useState(0);
+  const ownMemories = memories?.filter((acc) => acc?.id === account);
 
   const onNext = () => {
-    if (active < memories?.length - 1) {
-      setActive(active + 1);
+    if (activeMemory < memories[activeAccount]?.Memory?.length - 1) {
+      setactiveMemory(activeMemory + 1);
+    } else {
+      if (activeAccount < memories.length - 1) {
+        setActiveAccount(activeAccount + 1);
+        setactiveMemory(0);
+      }
     }
   };
 
   const onPrevious = () => {
-    if (active > 0) {
-      setActive(active - 1);
+    if (activeMemory > 0) {
+      setactiveMemory(activeMemory - 1);
+    } else {
+      if (activeAccount > 0) {
+        setActiveAccount(activeAccount - 1);
+        setactiveMemory(memories[activeAccount - 1]?.Memory?.length - 1 || 0);
+      }
     }
   };
 
@@ -44,20 +53,26 @@ const Memories = () => {
   return (
     <Container>
       <div className="view">
-        <div className="scroll" onClick={onNext}>
+        <div className="scroll" onClick={onPrevious}>
           <BiChevronLeft className="icon" />
         </div>
         <div className="image">
-          <Memory memory={memories[active]} />
+          <Memory
+            memory={memories[activeAccount]?.Memory}
+            active={activeMemory}
+            next={onNext}
+          />
         </div>
-        <div className="scroll" onClick={onPrevious}>
+        <div className="scroll" onClick={onNext}>
           <BiChevronRight className="icon" />
         </div>
       </div>
       <div className="memories">
         <div className="status" onClick={goToCreate}>
-          {ownMemories?.length > 0 ? (
-            <Item data={ownMemories[0]} />
+          {ownMemories ? (
+            <Item
+              data={memories?.filter((memory) => memory?.id === account)[0]}
+            />
           ) : (
             <>
               <div className="one">
@@ -72,7 +87,7 @@ const Memories = () => {
             <>
               <ul>
                 {memories
-                  .filter((memory) => memory?.accountId !== account)
+                  .filter((memory) => memory?.id !== account)
                   .map((status, index) => (
                     <Item key={index} data={status} />
                   ))}

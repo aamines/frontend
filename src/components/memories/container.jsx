@@ -30,17 +30,17 @@ const Memories = () => {
   const community = useSelector((state) => state.persist.community);
 
   //local data
-  const ownMemories = memories?.filter(
-    (memory) => memory?.accountId === account
-  );
+  const ownMemories = memories.find((acc) => {
+    return acc.id === account;
+  });
 
   const onNext = () => {};
 
   const onPrevious = () => {};
 
   const goToCreate = () => {
-    if (ownMemories?.length > 0) {
-      navigate(`/client/${account}/memories/${ownMemories[0].id}`);
+    if (ownMemories) {
+      navigate(`/client/${account}/memories/${account}`);
     } else {
       navigate(`/client/${account}/create/text`);
     }
@@ -54,6 +54,7 @@ const Memories = () => {
         },
       })
       .then((res) => {
+        console.log(res.data.data);
         dispatch(addMemories(res.data.data));
       })
       .catch((err) => {
@@ -64,8 +65,8 @@ const Memories = () => {
   return (
     <Container>
       <div className="status" onClick={goToCreate}>
-        {ownMemories?.length > 0 ? (
-          <Item data={ownMemories[0]} />
+        {ownMemories ? (
+          <Item data={memories?.filter((acc) => acc.id === account)[0]} />
         ) : (
           <>
             <div className="one">
@@ -83,9 +84,9 @@ const Memories = () => {
             </div>
             <ul>
               {memories
-                .filter((memory) => memory?.accountId !== account)
-                .map((status, index) => (
-                  <Item key={index} data={status} />
+                .filter((memory) => memory?.id !== account)
+                .map((acc, index) => (
+                  <Item key={index} data={acc} />
                 ))}
             </ul>
             <div className="scroll" onClick={onPrevious}>

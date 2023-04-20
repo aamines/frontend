@@ -14,17 +14,13 @@ const CreateMemory = () => {
   //config
   const location = useLocation();
 
-  //local data
-  const [active, setActive] = React.useState("text");
-
   //redux data
   const account = useSelector((state) => state.persist.account);
   const memories = useSelector((state) => state.memories.memories);
 
   //local data
-  const ownMemories = memories?.filter(
-    (memory) => memory?.accountId === account
-  );
+  const [active, setActive] = React.useState("text");
+  const ownMemories = memories?.filter((acc) => acc?.id === account);
 
   useEffect(() => {
     if (location.pathname.includes("media")) {
@@ -48,8 +44,10 @@ const CreateMemory = () => {
       </div>
       <div className="memories">
         <div className="status">
-          {ownMemories?.length > 0 ? (
-            <Item data={ownMemories[0]} />
+          {ownMemories ? (
+            <Item
+              data={memories?.filter((memory) => memory?.id === account)[0]}
+            />
           ) : (
             <>
               <div className="one">
@@ -64,7 +62,7 @@ const CreateMemory = () => {
             <>
               <ul>
                 {memories
-                  .filter((memory) => memory?.accountId !== account)
+                  .filter((memory) => memory?.id !== account)
                   .map((status, index) => (
                     <Item key={index} data={status} />
                   ))}

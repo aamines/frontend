@@ -10,7 +10,9 @@ const Item = ({ data }) => {
   const account = useSelector((state) => state.persist.account);
 
   //local data
-  const viewed = data?.viewers?.includes(account);
+  const viewed = data?.Memory?.reduce((result, memory) => {
+    return result || memory?.viewers?.includes(account);
+  }, false);
 
   const goToMemory = () => {
     navigate(`/client/${account}/memories/${data?.id}`);
@@ -20,7 +22,11 @@ const Item = ({ data }) => {
     <Container viewed={viewed}>
       <div className="cont" onClick={goToMemory}>
         <div className="one"></div>
-        {data?.accountId === account ? <p>You</p> : <p>{data?.name}</p>}
+        {data?.id === account ? (
+          <p>You</p>
+        ) : (
+          <p>{data?.user?.names?.split(" ")[0]}</p>
+        )}
       </div>
     </Container>
   );
