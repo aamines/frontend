@@ -54,7 +54,6 @@ const Memories = () => {
         },
       })
       .then((res) => {
-        console.log(res.data.data);
         dispatch(addMemories(res.data.data));
       })
       .catch((err) => {

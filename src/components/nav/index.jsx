@@ -7,10 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 //icons
-import { FaUserAlt } from "react-icons/fa";
 import { RiHome6Fill } from "react-icons/ri";
 import { HiUserGroup } from "react-icons/hi";
-import { BiLogOutCircle } from "react-icons/bi";
 import {
   BsBellFill,
   BsFillChatFill,
@@ -19,7 +17,7 @@ import {
 } from "react-icons/bs";
 
 //features
-import axios from "../features/axios";
+import axios from "../../features/axios";
 
 //actions
 import {
@@ -29,7 +27,8 @@ import {
   removeCommunity,
   setAuthenticated,
   setTokenVerified,
-} from "../store/reducers/persist";
+} from "../../store/reducers/persist";
+import Down from "./down";
 
 const Nav = () => {
   //configs
@@ -174,27 +173,11 @@ const Nav = () => {
               )}
             </div>
             {down && (
-              <div className="down">
-                <div className="row" onClick={goToProfile}>
-                  <FaUserAlt className="icon" />
-                  <p>Profile</p>
-                </div>
-                <div className="row" onClick={Logout}>
-                  <BiLogOutCircle className="icon" />
-                  <p>Logout</p>
-                </div>
-                <div className="big">
-                  <p className="header">Communities</p>
-                  <ul className="communities">
-                    <li>
-                      <p className="no">No Communities</p>
-                    </li>
-                    <li className="community" onClick={goToCreate}>
-                      <button>Create Community</button>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <Down
+                goToProfile={goToProfile}
+                Logout={Logout}
+                goToCreate={goToCreate}
+              />
             )}
           </div>
         </div>
@@ -384,85 +367,6 @@ const Container = styled.div`
       .icon {
         margin: 0 0 0 15px;
         color: var(--white);
-      }
-    }
-
-    .down {
-      width: 210px;
-      height: 250px;
-      background: var(--grayish);
-      z-index: 1000;
-      position: absolute;
-      bottom: -265px;
-      border-radius: 5px;
-      display: flex;
-      flex-direction: column;
-      right: -5px;
-      padding: 10px;
-      box-shadow: rgba(0, 0, 0, 0.432) 0px 1px 4px;
-
-      .row {
-        width: 100%;
-        height: 40px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 0 10px;
-        cursor: pointer;
-        border-radius: 5px;
-
-        p {
-          color: var(--white);
-        }
-
-        .icon {
-          font-size: 1.1em;
-          margin: 0 10px 0 0;
-          color: var(--white);
-        }
-
-        :hover {
-          background: var(--dark);
-        }
-      }
-
-      .big {
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        padding: 0 10px;
-
-        p.header {
-          line-height: 50px;
-          color: var(--white);
-        }
-
-        ul {
-          width: 100%;
-
-          li {
-            height: 40px;
-            width: 100%;
-            list-style: none;
-            margin: 0 0 0 10px;
-
-            .no {
-              width: 100%;
-              color: var(--gray);
-            }
-
-            button {
-              width: 95%;
-              height: 40px;
-              border: none;
-              background: var(--bright);
-              cursor: pointer;
-              border-radius: 5px;
-              color: var(--dark);
-            }
-          }
-        }
       }
     }
 
