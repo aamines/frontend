@@ -21,7 +21,9 @@ const Item = ({ data }) => {
   return (
     <Container viewed={viewed}>
       <div className="cont" onClick={goToMemory}>
-        <div className="one"></div>
+        <div className="one">
+          <img src={data?.media_profile?.media_url} alt="profile" />
+        </div>
         {data?.id === account ? (
           <p>You</p>
         ) : (
@@ -48,13 +50,21 @@ const Container = styled.div`
     cursor: pointer;
     width: 70px;
     height: 70px;
+    padding: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     background: var(--grayish);
+    overflow: hidden;
     border: ${(props) =>
       props.viewed ? "3px solid var(--grayish)" : "3px solid var(--bright)"};
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .icon {
       font-size: 2em;

@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useEffect } from "react";
 import styled from "styled-components";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 //components
 import Add from "../components/posts/add";
 import Stats from "../components/home/stats";
 import Profile from "../components/home/profile";
 import Posts from "../components/posts/container";
-import Status from "../components/memories/container";
-import { useNavigate } from "react-router";
+import Memories from "../components/memories/container";
 
 const Home = () => {
   //config
@@ -32,7 +32,7 @@ const Home = () => {
           <Profile />
         </div>
         <div className="content">
-          <Status />
+          <Memories />
           <Add />
           <Posts />
         </div>

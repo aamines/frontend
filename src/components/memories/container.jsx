@@ -137,6 +137,7 @@ const Container = styled.div`
 
     p {
       margin: 5px 0 0 0;
+      text-align: center;
       color: var(--white);
     }
   }

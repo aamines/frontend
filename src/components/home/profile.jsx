@@ -34,7 +34,10 @@ const Profile = () => {
   }, [accountId]);
 
   return (
-    <Container>
+    <Container
+      banner={account?.media_banner?.media_url}
+      profile={account?.media_profile?.media_url}
+    >
       <div className="box">
         <div className="banner"></div>
         <div className="about">
@@ -95,7 +98,10 @@ const Container = styled.div`
     .banner {
       width: 100%;
       height: 130px;
-      background: var(--grayish);
+      background: url(${(props) => props.banner});
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .about {
@@ -127,8 +133,11 @@ const Container = styled.div`
           width: 120px;
           height: 120px;
           border-radius: 50%;
-          background: var(--gray);
           margin: -60px 0 15px 0;
+          background: url(${(props) => props.profile});
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
         }
       }
 

@@ -40,6 +40,7 @@ const Nav = () => {
   const [user, setUser] = useState({});
   const [down, setDown] = useState(false);
   const [active, setActive] = useState("");
+  const [activeAccount, setActiveAccount] = useState({});
 
   // redux data
   const token = useSelector((state) => state.persist.token);
@@ -115,6 +116,12 @@ const Nav = () => {
         })
         .then((res) => {
           setUser(res.data.data);
+
+          //find active account
+          const active = res.data.data.accounts.find(
+            (acc) => acc.id === account
+          );
+          setActiveAccount(active);
         })
         .catch((error) => {
           console.log(error);
@@ -164,7 +171,12 @@ const Nav = () => {
               <BsBellFill className="icon" />
             </div>
             <div className="profile" onClick={handleDown}>
-              <div className="image"></div>
+              <div className="image">
+                <img
+                  src={activeAccount?.media_profile?.media_url}
+                  alt="profile"
+                />
+              </div>
               <p className="name">{user?.names?.split(" ")[0]}</p>
               {down ? (
                 <BsFillCaretUpFill className="icon" />
@@ -359,9 +371,16 @@ const Container = styled.div`
       .image {
         width: 30px;
         height: 30px;
+        overflow: hidden;
         margin: 0 7px 0 0;
         border-radius: 50%;
         background: var(--dark);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
 
       .icon {

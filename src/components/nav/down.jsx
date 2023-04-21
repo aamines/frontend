@@ -79,12 +79,18 @@ const Down = ({ goToProfile, Logout, goToCreate }) => {
 
 const Community = styled.li`
   cursor: pointer;
+  width: 100%;
+  transition: all 0.2s ease-in-out;
+
+  :hover {
+    filter: brightness(85%);
+  }
 
   .image {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
+    width: 30px;
+    height: 30px;
     overflow: hidden;
+    border-radius: 50%;
     background: var(--gray);
 
     img {
@@ -143,8 +149,8 @@ const Container = styled.div`
     width: 100%;
     height: auto;
     display: flex;
+    padding: 0 5px;
     flex-direction: column;
-    padding: 0 10px;
 
     p.header {
       line-height: 50px;
@@ -172,13 +178,14 @@ const Container = styled.div`
       }
 
       li {
-        height: 40px;
         width: 100%;
+        height: 40px;
         display: flex;
         flex-direction: row;
         align-items: center;
         list-style: none;
-        margin: 0 0 0 10px;
+        border-radius: 5px;
+        padding: 5px 0 5px 10px;
 
         .no {
           width: 100%;
