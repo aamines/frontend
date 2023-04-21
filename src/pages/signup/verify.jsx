@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import styled from "styled-components";
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";

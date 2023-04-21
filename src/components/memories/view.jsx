@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -39,8 +42,8 @@ const Memory = ({ memory, active, next }) => {
         {[...Array(count)].map((one, index) => (
           <progress
             key={index}
-            value={index === active ? percent : 0}
             max={100}
+            value={index === active ? percent : 0}
           />
         ))}
       </div>
@@ -92,6 +95,14 @@ const Container = styled.div`
       margin: 0 5px;
       transition: all 0.5s ease-in-out;
       width: ${(props) => props.width}px;
+
+      ::-webkit-progress-bar {
+        background: var(--gray);
+      }
+
+      ::-webkit-progress-value {
+        background: var(--white);
+      }
     }
   }
 

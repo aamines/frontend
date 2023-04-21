@@ -77,23 +77,24 @@ const Memories = () => {
         )}
       </div>
       <div className="statuses">
-        {memories?.length > 0 && (
-          <>
-            <div className="scroll" onClick={onNext}>
-              <BiChevronLeft className="icon" />
-            </div>
-            <ul>
-              {memories
-                .filter((memory) => memory?.id !== account)
-                .map((acc, index) => (
-                  <Item key={index} data={acc} />
-                ))}
-            </ul>
-            <div className="scroll" onClick={onPrevious}>
-              <BiChevronRight className="icon" />
-            </div>
-          </>
-        )}
+        {memories?.length > 0 ||
+          (memories.length === 1 && memories[0].id !== account && (
+            <>
+              <div className="scroll" onClick={onNext}>
+                <BiChevronLeft className="icon" />
+              </div>
+              <ul>
+                {memories
+                  .filter((memory) => memory?.id !== account)
+                  .map((acc, index) => (
+                    <Item key={index} data={acc} />
+                  ))}
+              </ul>
+              <div className="scroll" onClick={onPrevious}>
+                <BiChevronRight className="icon" />
+              </div>
+            </>
+          ))}
       </div>
     </Container>
   );
