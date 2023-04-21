@@ -1,6 +1,7 @@
 import jwtDecode from "jwt-decode";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import React, { useEffect, useState } from "react";
 
 //icons
@@ -16,6 +17,9 @@ import Milestones from "../../components/profile/milestones";
 import Achievements from "../../components/profile/achievements";
 
 const Profile = () => {
+  //config
+  const navigate = useNavigate();
+
   //local data
   const [user, setUser] = useState({});
   const [account, setAccount] = useState({});
@@ -30,6 +34,10 @@ const Profile = () => {
   const groups = useSelector((state) => state.groups);
   const milestones = useSelector((state) => state.milestones);
   const achievements = useSelector((state) => state.achievements);
+
+  const goToSettings = () => {
+    navigate(`/client/${accountId}/settings`);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -73,7 +81,7 @@ const Profile = () => {
     >
       <div className="container">
         <div className="top">
-          <button>
+          <button type="button" onClick={goToSettings}>
             <IoMdSettings className="icon" />
             <p>Settings</p>
           </button>

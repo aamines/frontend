@@ -11,6 +11,7 @@ import Contact from "./pages/contact";
 import Verify from "./pages/signup/verify";
 import Signup from "./pages/signup/signup";
 import Profile from "./pages/profile/profile";
+import Settings from "./pages/profile/settings";
 import Memories from "./pages/memories/memories";
 import ResetPassword from "./pages/password/reset";
 import CreateMemory from "./pages/memories/create";
@@ -93,6 +94,7 @@ function App() {
         <Route path="/profile" exact element={<Profile />} />
 
         {/* Client */}
+        <Route path="/client/:account/settings" exact element={<Settings />} />
 
         {/* Posting */}
         <Route path="/client/:account/home" exact element={<Home />} />
