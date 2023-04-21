@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 
 //icons
 import { MdEdit } from "react-icons/md";
+import { IoMdSettings } from "react-icons/io";
 
 //features
 import axios from "../../features/axios";
@@ -66,12 +67,15 @@ const Profile = () => {
   }, [accountId, hasAccount, token]);
 
   return (
-    <Container>
+    <Container
+      banner={account?.media_banner?.media_url}
+      profile={account?.media_profile?.media_url}
+    >
       <div className="container">
         <div className="top">
           <button>
-            <MdEdit className="icon" />
-            <p>Edit Profile</p>
+            <IoMdSettings className="icon" />
+            <p>Settings</p>
           </button>
         </div>
         <div className="content">
@@ -99,7 +103,9 @@ const Profile = () => {
                     {loading
                       ? "Loading..."
                       : hasAccount
-                      ? account?.bio
+                      ? account?.bio?.length > 0
+                        ? account?.bio
+                        : "No Description"
                       : "No Description"}
                   </p>
                 </div>
@@ -213,7 +219,8 @@ const Container = styled.div`
 
         .icon {
           display: flex;
-          margin: -2px 5px 0 5px;
+          font-size: 1.2em;
+          margin: -2px 10px 0 0;
           align-items: center;
           justify-content: center;
           color: var(--white);
@@ -233,7 +240,10 @@ const Container = styled.div`
         height: 250px;
         border-radius: 5px;
         position: relative;
-        background: var(--grayish);
+        background: url(${(props) => props.banner});
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
 
         .edit {
           width: 35px;
@@ -274,7 +284,11 @@ const Container = styled.div`
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: var(--dark);
+            background: url(${(props) => props.profile});
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
 
             .edit {
               width: 35px;
@@ -283,11 +297,14 @@ const Container = styled.div`
               display: flex;
               align-items: center;
               justify-content: center;
-              background: var(--white);
+              background: var(--grayish);
               cursor: pointer;
+              position: absolute;
+              bottom: -1px;
+              right: 20px;
 
               .icon {
-                color: var(--dark);
+                color: var(--white);
               }
             }
           }

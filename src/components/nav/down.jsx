@@ -70,7 +70,9 @@ const Down = ({ goToProfile, Logout, goToCreate }) => {
               <p>No communities</p>
             </li>
           )}
-          <button>Create Community</button>
+          <button type="button" onClick={goToCreate}>
+            Create Community
+          </button>
         </ul>
       </div>
     </Container>
