@@ -249,6 +249,7 @@ const Container = styled.div`
         margin: 0 0 50px 0;
         border-radius: 5px;
         background: var(--dark);
+        transition: all 0.3s ease-in-out;
       }
     }
   }
