@@ -25,6 +25,10 @@ import One from "./components/community/one";
 import Three from "./components/community/three";
 import CreateText from "./components/memories/createtext";
 import CreateMedia from "./components/memories/createmedia";
+import ProfileSettings from "./components/settings/profile";
+import SecuritySettings from "./components/settings/security";
+import CommunitySettings from "./components/settings/community";
+import NotificationSettings from "./components/settings/notification";
 
 //globals
 import "slick-carousel/slick/slick.css";
@@ -82,9 +86,11 @@ function App() {
         <Route path="/verify" exact element={<Verify />} />
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/contact" exact element={<Contact />} />
+
         {/* Password */}
         <Route path="/password/reset" exact element={<ResetPassword />} />
         <Route path="/password/forgot" exact element={<ForgotPassword />} />
+
         {/* Community */}
         <Route path="/community/new/" exact element={<CreateCommunity />}>
           <Route index exact element={<One />} />
@@ -94,11 +100,15 @@ function App() {
         <Route path="/profile" exact element={<Profile />} />
 
         {/* Client */}
-        <Route path="/client/:account/settings" exact element={<Settings />} />
-
-        {/* Posting */}
         <Route path="/client/:account/home" exact element={<Home />} />
         <Route path="/client/:account/profile" exact element={<Profile />} />
+        <Route path="/client/:account/settings" exact element={<Settings />}>
+          <Route path="profile" exact element={<ProfileSettings />} />
+          <Route path="security" exact element={<SecuritySettings />} />
+          <Route path="community" exact element={<CommunitySettings />} />
+          <Route path="notification" exact element={<NotificationSettings />} />
+        </Route>
+
         {/* Memories */}
         <Route path="/client/:account/create" exact element={<CreateMemory />}>
           <Route path="text" exact element={<CreateText />} />
