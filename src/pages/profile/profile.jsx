@@ -36,7 +36,7 @@ const Profile = () => {
   const achievements = useSelector((state) => state.achievements);
 
   const goToSettings = () => {
-    navigate(`/client/${accountId}/settings`);
+    navigate(`/client/${accountId}/settings/profile`);
   };
 
   useEffect(() => {

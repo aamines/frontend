@@ -13,9 +13,9 @@ const NotificationSettings = () => {
           <p>Tasks</p>
           <div className="input">
             <p className="gray">Notifications about tasks and deadlines</p>
-            <label class="switch">
+            <label className="switch">
               <input type="checkbox" />
-              <span class="slider"></span>
+              <span className="slider"></span>
             </label>
           </div>
         </div>
@@ -25,9 +25,9 @@ const NotificationSettings = () => {
             <p className="gray">
               Notifications about your inbox messages and group chats
             </p>
-            <label class="switch">
+            <label className="switch">
               <input type="checkbox" />
-              <span class="slider"></span>
+              <span className="slider"></span>
             </label>
           </div>
         </div>
@@ -37,9 +37,9 @@ const NotificationSettings = () => {
             <p className="gray">
               Notifications about posts, likes, comments, reactions and more
             </p>
-            <label class="switch">
+            <label className="switch">
               <input type="checkbox" />
-              <span class="slider"></span>
+              <span className="slider"></span>
             </label>
           </div>
         </div>
