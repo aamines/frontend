@@ -1,21 +1,35 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
 //icons
 import { BiEditAlt } from "react-icons/bi";
 
 const CommunitySettings = () => {
+  const account = useSelector((state) => state.persist.account);
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      name: account?.community?.name,
+      type: account?.community?.type,
+      vision: account?.community?.vision,
+    },
+  });
+
+  const onSubmit = (data) => {};
+
   return (
     <Container>
       <div className="description">
         <p className="title">Community</p>
         <p className="desc">About this community</p>
       </div>
-      <div className="form">
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
           <p>Name</p>
           <div className="input">
-            <input type="text" value="Primes" />
+            <input type="text" {...register("name")} />
             <div className="border">
               <BiEditAlt className="icon" />
             </div>
@@ -24,8 +38,12 @@ const CommunitySettings = () => {
         <div className="row">
           <p>Entity type</p>
           <div className="input">
-            <select>
-              <option>Company</option>
+            <select {...register("type")}>
+              <option value="school">School</option>
+              <option value="campus">Campus</option>
+              <option value="company">Company</option>
+              <option value="community">Community</option>
+              <option value="organization">Organization</option>
             </select>
             <div className="border">
               <BiEditAlt className="icon" />
@@ -35,13 +53,13 @@ const CommunitySettings = () => {
         <div className="row">
           <p>Vision</p>
           <div className="textarea">
-            <textarea value="Hello, I’m a software engineer. Crazy about VR and AR" />
+            <textarea {...register("vision")} />
             <div className="border">
               <BiEditAlt className="icon" />
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </Container>
   );
 };

@@ -1,21 +1,36 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
 //icons
 import { BiEditAlt } from "react-icons/bi";
 
 const ProfileSettings = () => {
+  const account = useSelector((state) => state.persist.account);
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      names: account?.names,
+      email: account?.user?.email,
+      location: account?.user?.country,
+      description: account?.description,
+    },
+  });
+
+  const onSubmit = (data) => {};
+
   return (
     <Container>
       <div className="description">
         <p className="title">My Profile</p>
         <p className="desc">Personal information</p>
       </div>
-      <div className="form">
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="row">
           <p>Names</p>
           <div className="input">
-            <input type="text" value="Byiringiro saad" />
+            <input type="text" {...register("names")} />
             <div className="border">
               <BiEditAlt className="icon" />
             </div>
@@ -24,7 +39,7 @@ const ProfileSettings = () => {
         <div className="row">
           <p>Email</p>
           <div className="input">
-            <input type="text" value="byiringirosaad@gmail.com" />
+            <input type="text" {...register("email")} />
             <div className="border">
               <BiEditAlt className="icon" />
             </div>
@@ -33,7 +48,7 @@ const ProfileSettings = () => {
         <div className="row">
           <p>Location</p>
           <div className="input">
-            <input type="text" value="Rwanda" />
+            <input type="text" {...register("location")} />
             <div className="border">
               <BiEditAlt className="icon" />
             </div>
@@ -42,13 +57,13 @@ const ProfileSettings = () => {
         <div className="row">
           <p>About</p>
           <div className="textarea">
-            <textarea value="Byiringiro saad" />
+            <textarea {...register("description")} />
             <div className="border">
               <BiEditAlt className="icon" />
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </Container>
   );
 };

@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import moment from "moment";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 //icons
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -9,15 +12,25 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 //features
 import axios from "../../features/axios";
 
+//actions
+import { setAccount } from "../../store/reducers/persist";
+
 const Settings = () => {
   //config
   const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //redux data
   const account = useSelector((state) => state.persist.account);
 
   //local data
-  const [active, setActive] = React.useState("profile");
+  const [loading, setLoading] = useState(true);
+  const [active, setActive] = useState("profile");
+
+  const goBack = () => {
+    navigate(`/client/${account?.id}/profile`);
+  };
 
   useEffect(() => {
     if (location.pathname.includes("profile")) {
@@ -32,13 +45,24 @@ const Settings = () => {
   }, [location]);
 
   useEffect(() => {
-    axios.get(``);
+    setLoading(true);
+    axios
+      .get(`/account/${account?.id}`)
+      .then((res) => {
+        dispatch(setAccount(res.data.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
     <Container>
       <div className="center">
-        <div className="top">
+        <div className="top" onClick={goBack}>
           <IoMdArrowRoundBack className="icon" />
           <p>Back</p>
         </div>
@@ -46,16 +70,16 @@ const Settings = () => {
           <div className="image"></div>
           <div className="about">
             <div className="name">
-              <p>Primes</p>
+              <p>{account?.community?.name}</p>
             </div>
             <div className="more">
               <div className="row">
                 <p className="first">Members</p>
-                <p>36</p>
+                <p>{account?.community?.accounts?.length}</p>
               </div>
               <div className="row">
                 <p className="first">Date joined</p>
-                <p>Feb 27th 2023</p>
+                <p>{moment(account?.createdAt).format("Do MMM YYYY")}</p>
               </div>
             </div>
           </div>
@@ -63,34 +87,32 @@ const Settings = () => {
         <div className="container">
           <div className="sidebar">
             <Link
-              className={active === "profile" && "active"}
-              to={`/client/${account}/settings/profile`}
+              className={active === "profile" ? "active" : ""}
+              to={`/client/${account?.id}/settings/profile`}
             >
               My profile
             </Link>
             <Link
-              className={active === "community" && "active"}
-              to={`/client/${account}/settings/community`}
+              className={active === "community" ? "active" : ""}
+              to={`/client/${account?.id}/settings/community`}
             >
               Community
             </Link>
             <Link
-              className={active === "notification" && "active"}
-              to={`/client/${account}/settings/notification`}
+              className={active === "notification" ? "active" : ""}
+              to={`/client/${account?.id}/settings/notification`}
             >
               Notifications
             </Link>
             <Link
-              className={active === "security" && "active"}
-              to={`/client/${account}/settings/security`}
+              className={active === "security" ? "active" : ""}
+              to={`/client/${account?.id}/settings/security`}
             >
               Password and security
             </Link>
             <Line active={active} />
           </div>
-          <div className="content">
-            <Outlet />
-          </div>
+          <div className="content">{!loading && <Outlet />}</div>
         </div>
       </div>
     </Container>
@@ -146,6 +168,7 @@ const Container = styled.div`
       align-items: center;
       justify-content: space-evenly;
       background: var(--dark);
+      cursor: pointer;
 
       .icon {
         font-size: 1.5em;
