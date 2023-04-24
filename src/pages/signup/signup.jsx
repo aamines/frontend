@@ -1,17 +1,21 @@
 import styled from "styled-components";
-import { useForm } from "react-hook-form";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 //features
 import axios from "../../features/axios";
 import app from "../../features/firebase";
-import { useSelector } from "react-redux";
+
+//actions
+import { addToken, setHasAccount } from "../../store/reducers/persist";
 
 const Signup = () => {
   //configs
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -38,15 +42,17 @@ const Signup = () => {
     setLoading(true);
     axios
       .post("/auth/register", {
-        names: data.names,
         email: data.email,
+        names: data.names,
+        gender: data.gender,
         country: data.country,
         password: data.password,
       })
       .then((res) => {
         setLoading(false);
-        localStorage.setItem("projectia_auth_token", res.data.token);
-        navigate("/profile");
+        dispatch(setHasAccount(false));
+        dispatch(addToken(res?.data?.data?.token));
+        navigate("/welcome");
       })
       .catch((error) => {
         setLoading(false);
@@ -73,18 +79,18 @@ const Signup = () => {
         <form action="#" onSubmit={handleSubmit(handleSubmision)}>
           <div className="box">
             <p className="error">
-              {errors.names?.type === "required" && "Names are required"}
-              {errors.names?.type === "minLength" && "Names are too short"}
-              {errors.names?.type === "maxLength" && "Names are too long"}
+              {errors.names?.type === "required" && "Names is required"}
+              {errors.names?.type === "minLength" && "Names is too short"}
+              {errors.names?.type === "maxLength" && "Names is too long"}
             </p>
             <input
               type="text"
               placeholder="Names"
               className={errors.names ? "has_error" : ""}
               {...register("names", {
-                minLength: 5,
-                maxLength: 50,
                 required: true,
+                minLength: 6,
+                maxLength: 60,
               })}
             />
           </div>
@@ -107,30 +113,6 @@ const Signup = () => {
           </div>
           <div className="box">
             <p className="error">
-              {errors.country?.type === "required" && "Country is required"}
-              {errors.country?.type === "minLength" && "Country is too short"}
-              {errors.country?.type === "maxLength" && "Country is too long"}
-            </p>
-            <select
-              name="country"
-              id="country"
-              className={errors.country ? "has_error" : ""}
-              placeholder="Country"
-              {...register("country", {
-                required: true,
-                minLength: 2,
-                maxLength: 40,
-              })}
-            >
-              {countries.map((country, index) => (
-                <option key={index} value={country}>
-                  {country}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="box">
-            <p className="error">
               {errors.password?.type === "required" && "Password is required"}
               {errors.password?.type === "minLength" && "Password is too short"}
               {errors.password?.type === "maxLength" && "Password is too long"}
@@ -146,6 +128,45 @@ const Signup = () => {
               })}
             />
           </div>
+          <div className="box">
+            <p className="error">
+              {errors.country?.type === "required" && "Gender is required"}
+            </p>
+            <select
+              name="gender"
+              id="gender"
+              className={errors.gender ? "has_error" : ""}
+              placeholder="Gender"
+              {...register("gender", {
+                required: true,
+              })}
+            >
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className="box">
+            <p className="error">
+              {errors.country?.type === "required" && "Country is required"}
+            </p>
+            <select
+              name="country"
+              id="country"
+              className={errors.country ? "has_error" : ""}
+              placeholder="Country"
+              {...register("country", {
+                required: true,
+              })}
+            >
+              {countries.map((country, index) => (
+                <option key={index} value={country}>
+                  {country}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div></div>
           <div className="row" onClick={handleGoogle}>
             <img src="/icons/google.png" alt="Google" />
             <p>Sign in with Google</p>

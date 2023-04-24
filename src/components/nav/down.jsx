@@ -57,7 +57,7 @@ const Down = ({ goToProfile, Logout, goToCreate }) => {
                     {community?.media?.media_url ? (
                       <img src={community?.media?.media_url} alt="profile" />
                     ) : (
-                      <></>
+                      <p>{community?.name?.charAt(0)}</p>
                     )}
                   </div>
                   <p className="name">{community.name}</p>
@@ -91,14 +91,22 @@ const Community = styled.li`
   .image {
     width: 30px;
     height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     border-radius: 50%;
-    background: var(--gray);
+    background: var(--bright);
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    p {
+      font-weight: 700;
+      color: var(--dark);
     }
   }
 

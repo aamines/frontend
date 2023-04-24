@@ -27,11 +27,10 @@ const Memories = () => {
   const token = useSelector((state) => state.persist.token);
   const account = useSelector((state) => state.persist.account);
   const memories = useSelector((state) => state.memories.memories);
-  const community = useSelector((state) => state.persist.community);
 
   //local data
   const ownMemories = memories.find((acc) => {
-    return acc.id === account;
+    return acc.id === account.id;
   });
 
   const onNext = () => {};
@@ -40,15 +39,15 @@ const Memories = () => {
 
   const goToCreate = () => {
     if (ownMemories) {
-      navigate(`/client/${account}/memories/${account}`);
+      navigate(`/client/${account.id}/memories/${account.id}`);
     } else {
-      navigate(`/client/${account}/create/text`);
+      navigate(`/client/${account.id}/create/text`);
     }
   };
 
   useEffect(() => {
     axios
-      .get(`/memory/${community}`, {
+      .get(`/memory/${account?.communityId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -65,7 +64,7 @@ const Memories = () => {
     <Container>
       <div className="status" onClick={goToCreate}>
         {ownMemories ? (
-          <Item data={memories?.filter((acc) => acc.id === account)[0]} />
+          <Item data={memories?.filter((acc) => acc.id === account.id)[0]} />
         ) : (
           <>
             <div className="one">
@@ -77,14 +76,14 @@ const Memories = () => {
       </div>
       <div className="statuses">
         {memories?.length > 0 ||
-          (memories.length === 1 && memories[0].id !== account && (
+          (memories.length === 1 && memories[0].id !== account.id && (
             <>
               <div className="scroll" onClick={onNext}>
                 <BiChevronLeft className="icon" />
               </div>
               <ul>
                 {memories
-                  .filter((memory) => memory?.id !== account)
+                  .filter((memory) => memory?.id !== account.id)
                   .map((acc, index) => (
                     <Item key={index} data={acc} />
                   ))}

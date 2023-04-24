@@ -6,6 +6,9 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 //icons
 import { IoMdArrowRoundBack } from "react-icons/io";
 
+//features
+import axios from "../../features/axios";
+
 const Settings = () => {
   //config
   const location = useLocation();
@@ -27,6 +30,10 @@ const Settings = () => {
       setActive("security");
     }
   }, [location]);
+
+  useEffect(() => {
+    axios.get(``);
+  }, []);
 
   return (
     <Container>

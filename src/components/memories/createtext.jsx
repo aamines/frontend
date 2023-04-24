@@ -15,7 +15,6 @@ const CreateText = () => {
   //redux data
   const token = useSelector((state) => state.persist.token);
   const account = useSelector((state) => state.persist.account);
-  const community = useSelector((state) => state.persist.community);
 
   //local data
   const [value, setValue] = useState("");
@@ -49,8 +48,8 @@ const CreateText = () => {
             type: "text",
             color: active,
             content: value,
-            accountId: account,
-            communityId: community,
+            accountId: account?.id,
+            communityId: account?.communityId,
           },
           {
             headers: {

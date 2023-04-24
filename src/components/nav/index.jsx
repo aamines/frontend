@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import jwtDecode from "jwt-decode";
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,9 +14,6 @@ import {
   BsFillCaretUpFill,
   BsFillCaretDownFill,
 } from "react-icons/bs";
-
-//features
-import axios from "../../features/axios";
 
 //actions
 import {
@@ -37,16 +33,13 @@ const Nav = () => {
   const dispatch = useDispatch();
 
   //local data
-  const [user, setUser] = useState({});
   const [down, setDown] = useState(false);
   const [active, setActive] = useState("");
-  const [activeAccount, setActiveAccount] = useState({});
+  const [render, setRender] = useState(false);
 
   // redux data
-  const token = useSelector((state) => state.persist.token);
   const account = useSelector((state) => state.persist.account);
   const hasAccount = useSelector((state) => state.persist.hasAccount);
-  const tokenVerified = useSelector((state) => state.persist.tokenVerified);
   const authenticated = useSelector((state) => state.persist.authenticated);
 
   useEffect(() => {
@@ -56,7 +49,7 @@ const Nav = () => {
 
   //Functions
   const goTo = (path) => {
-    navigate(`/client/${account}/${path}`);
+    navigate(`/client/${account.id}/${path}`);
   };
 
   const goToNotifications = () => {
@@ -106,34 +99,7 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    if (token?.length > 0 && tokenVerified) {
-      const decoded = jwtDecode(token);
-      axios
-        .get(`/user/${decoded.id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          setUser(res.data.data);
-
-          //find active account
-          const active = res.data.data.accounts.find(
-            (acc) => acc.id === account
-          );
-          setActiveAccount(active);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      dispatch(removeToken());
-      dispatch(removeAccount());
-      dispatch(removeCommunity());
-      dispatch(setHasAccount(false));
-      dispatch(setAuthenticated(false));
-      dispatch(setTokenVerified(false));
-    }
+    setRender(!render);
   }, [navigate]);
 
   return (
@@ -142,7 +108,7 @@ const Nav = () => {
         <div className="content">
           <div className="logo">
             <img src="/min_logo.svg" onClick={goHome} alt="logo" />
-            <input type="text" placeholder="Search here..." />
+            {hasAccount && <input type="text" placeholder="Search here..." />}
           </div>
           {hasAccount && (
             <div className="nav">
@@ -170,20 +136,26 @@ const Nav = () => {
             <div className="notification" onClick={goToNotifications}>
               <BsBellFill className="icon" />
             </div>
-            <div className="profile" onClick={handleDown}>
-              <div className="image">
-                <img
-                  src={activeAccount?.media_profile?.media_url}
-                  alt="profile"
-                />
+            {hasAccount && (
+              <div className="profile" onClick={handleDown}>
+                <div className="image">
+                  {account?.media_profile?.media_url ? (
+                    <img
+                      src={account?.media_profile?.media_url}
+                      alt="profile"
+                    />
+                  ) : (
+                    <p>{account?.names?.charAt(0)}</p>
+                  )}
+                </div>
+                <p className="name">{account?.names?.split(" ")[0]}</p>
+                {down ? (
+                  <BsFillCaretUpFill className="icon" />
+                ) : (
+                  <BsFillCaretDownFill className="icon" />
+                )}
               </div>
-              <p className="name">{user?.names?.split(" ")[0]}</p>
-              {down ? (
-                <BsFillCaretUpFill className="icon" />
-              ) : (
-                <BsFillCaretDownFill className="icon" />
-              )}
-            </div>
+            )}
             {down && (
               <Down
                 goToProfile={goToProfile}
@@ -371,15 +343,23 @@ const Container = styled.div`
       .image {
         width: 30px;
         height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         overflow: hidden;
         margin: 0 7px 0 0;
         border-radius: 50%;
-        background: var(--dark);
+        background: var(--bright);
 
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
+        }
+
+        p {
+          font-weight: 700;
+          color: var(--dark);
         }
       }
 

@@ -46,6 +46,7 @@ import {
   setAuthenticated,
   setTokenVerified,
 } from "./store/reducers/persist";
+import Welcome from "./pages/welcome";
 
 function App() {
   //config
@@ -61,7 +62,6 @@ function App() {
           token: `${token}`,
         })
         .then(() => {
-          dispatch(setHasAccount(true));
           dispatch(setTokenVerified(true));
           dispatch(setAuthenticated(true));
         })
@@ -86,6 +86,7 @@ function App() {
         <Route path="/verify" exact element={<Verify />} />
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/contact" exact element={<Contact />} />
+        <Route path="/welcome" exact element={<Welcome />} />
 
         {/* Password */}
         <Route path="/password/reset" exact element={<ResetPassword />} />

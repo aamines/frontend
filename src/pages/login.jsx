@@ -57,14 +57,14 @@ const Login = () => {
         dispatch(setTokenVerified(true));
         dispatch(setAuthenticated(true));
         dispatch(addToken(res?.data?.token));
-        dispatch(setAccount(res.data.account.id));
-        dispatch(setCommunity(res.data.account.communityId));
         if (res.data.account) {
           dispatch(setHasAccount(true));
+          dispatch(setAccount(res.data.account.id));
+          dispatch(setCommunity(res.data.account.communityId));
           navigate(`/client/${res.data.account.id}/home`);
         } else {
           dispatch(setHasAccount(false));
-          navigate("/profile");
+          navigate("/welcome");
         }
       })
       .catch((error) => {

@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 //icons
 import { IoMdAdd } from "react-icons/io";
@@ -10,17 +12,25 @@ import { IoMdAdd } from "react-icons/io";
 //components
 import Item from "../../components/memories/item";
 
+//features
+import axios from "../../features/axios";
+
+//actions
+import { addMemories } from "../../store/reducers/memories";
+
 const CreateMemory = () => {
   //config
   const location = useLocation();
+  const dispatch = useDispatch();
 
   //redux data
+  const token = useSelector((state) => state.persist.token);
   const account = useSelector((state) => state.persist.account);
   const memories = useSelector((state) => state.memories.memories);
 
   //local data
-  const [active, setActive] = React.useState("text");
-  const ownMemories = memories?.filter((acc) => acc?.id === account);
+  const [active, setActive] = useState("text");
+  const ownMemories = memories?.filter((acc) => acc?.id === account.id);
 
   useEffect(() => {
     if (location.pathname.includes("media")) {
@@ -30,12 +40,27 @@ const CreateMemory = () => {
     }
   }, [location.pathname]);
 
+  useEffect(() => {
+    axios
+      .get(`/memory/${account?.communityId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch(addMemories(res.data.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <Container>
       <div className="create">
         <div className="header">
-          <Link to={`/client/${account}/create/text`}>Text</Link>
-          <Link to={`/client/${account}/create/media`}>Media</Link>
+          <Link to={`/client/${account.id}/create/text`}>Text</Link>
+          <Link to={`/client/${account.id}/create/media`}>Media</Link>
           <Line active={active} />
         </div>
         <div className="content">
@@ -46,7 +71,7 @@ const CreateMemory = () => {
         <div className="status">
           {ownMemories ? (
             <Item
-              data={memories?.filter((memory) => memory?.id === account)[0]}
+              data={memories?.filter((memory) => memory?.id === account.id)[0]}
             />
           ) : (
             <>
@@ -62,7 +87,7 @@ const CreateMemory = () => {
             <>
               <ul>
                 {memories
-                  .filter((memory) => memory?.id !== account)
+                  .filter((memory) => memory?.id !== account.id)
                   .map((status, index) => (
                     <Item key={index} data={status} />
                   ))}

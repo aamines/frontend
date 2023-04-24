@@ -11,20 +11,24 @@ const Item = ({ data }) => {
 
   //local data
   const viewed = data?.Memory?.reduce((result, memory) => {
-    return result || memory?.viewers?.includes(account);
+    return result || memory?.viewers?.includes(account.id);
   }, false);
 
   const goToMemory = () => {
-    navigate(`/client/${account}/memories/${data?.id}`);
+    navigate(`/client/${account.id}/memories/${data?.id}`);
   };
 
   return (
     <Container viewed={viewed}>
       <div className="cont" onClick={goToMemory}>
         <div className="one">
-          <img src={data?.media_profile?.media_url} alt="profile" />
+          {data?.media_profile?.media_url ? (
+            <img src={data?.media_profile?.media_url} alt="profile" />
+          ) : (
+            <p>{data?.names?.charAt(0)}</p>
+          )}
         </div>
-        {data?.id === account ? (
+        {data?.id === account?.id ? (
           <p>You</p>
         ) : (
           <p>{data?.user?.names?.split(" ")[0]}</p>
@@ -64,6 +68,10 @@ const Container = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    p {
+      font-size: 1.3em;
     }
 
     .icon {

@@ -43,10 +43,10 @@ const Three = () => {
         }
       )
       .then((res) => {
-        setDisabled(false);
         setLoading(false);
+        setDisabled(false);
         dispatch(setHasAccount(true));
-        dispatch(setAccount(res.data.data.id));
+        dispatch(setAccount(res.data.data));
         navigate(`/client/${res.data.data.id}/home`);
       })
       .catch((error) => {

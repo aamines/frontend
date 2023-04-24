@@ -1,37 +1,20 @@
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
 
 //features
-import axios from "../../features/axios";
 import { useSelector } from "react-redux";
 
 const Profile = () => {
   //config
   const navigate = useNavigate();
 
-  //local data
-  const [user, setUser] = useState({});
-  const [account, setAccount] = useState({});
-
   //redux data
-  const accountId = useSelector((state) => state.persist.account);
+  const account = useSelector((state) => state.persist.account);
 
   const goToProfile = () => {
-    navigate(`/client/${accountId}/profile`);
+    navigate(`/client/${account?.id}/profile`);
   };
-
-  useEffect(() => {
-    axios
-      .get(`/account/${accountId}`)
-      .then((res) => {
-        setAccount(res.data.data);
-        setUser(res.data.data.user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [accountId]);
 
   return (
     <Container
@@ -46,9 +29,13 @@ const Profile = () => {
             <p className="down">Skills</p>
           </div>
           <div className="person">
-            <div className="picture"></div>
+            <div className="picture">
+              {!account?.media_profile?.media_url && (
+                <p>{account?.names?.charAt(0)}</p>
+              )}
+            </div>
             <div className="name">
-              <p className="up">{user?.names}</p>
+              <p className="up">{account?.names}</p>
               <p className="down"></p>
             </div>
           </div>
@@ -132,12 +119,20 @@ const Container = styled.div`
         .picture {
           width: 120px;
           height: 120px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           border-radius: 50%;
           margin: -60px 0 15px 0;
-          background: url(${(props) => props.profile});
+          background: ${(props) =>
+            props.profile ? `url(${props.profile})` : "var(--bright)"};
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
+
+          p {
+            font-size: 3.5em;
+          }
         }
       }
 

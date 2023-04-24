@@ -1,8 +1,9 @@
-import jwtDecode from "jwt-decode";
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 //icons
 import { MdEdit } from "react-icons/md";
@@ -16,18 +17,19 @@ import Groups from "../../components/profile/groups";
 import Milestones from "../../components/profile/milestones";
 import Achievements from "../../components/profile/achievements";
 
+//actions
+import { setAccount } from "../../store/reducers/persist";
+
 const Profile = () => {
   //config
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //local data
-  const [user, setUser] = useState({});
-  const [account, setAccount] = useState({});
   const [loading, setLoading] = useState(false);
 
   //redux data
-  const token = useSelector((state) => state.persist.token);
-  const accountId = useSelector((state) => state.persist.account);
+  const account = useSelector((state) => state.persist.account);
   const hasAccount = useSelector((state) => state.persist.hasAccount);
 
   //state data
@@ -36,43 +38,23 @@ const Profile = () => {
   const achievements = useSelector((state) => state.achievements);
 
   const goToSettings = () => {
-    navigate(`/client/${accountId}/settings/profile`);
+    navigate(`/client/${account?.id}/settings/profile`);
   };
 
   useEffect(() => {
     setLoading(true);
-    if (!hasAccount) {
-      const decoded = jwtDecode(token);
-      axios
-        .get(`/user/${decoded.id}`, {
-          headers: {
-            authorization: "Bearer " + token,
-          },
-        })
-        .then((res) => {
-          setUser(res.data.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    } else {
-      axios
-        .get(`/account/${accountId}`)
-        .then((res) => {
-          setAccount(res.data.data);
-          setUser(res.data.data.user);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    }
-  }, [accountId, hasAccount, token]);
+    axios
+      .get(`/account/${account?.id}`)
+      .then((res) => {
+        dispatch(setAccount(res.data.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <Container
@@ -95,15 +77,20 @@ const Profile = () => {
           <div className="info">
             <div className="one">
               <div className="profile">
+                {!account?.media_profile?.media_url && (
+                  <p>{account?.names?.charAt(0)}</p>
+                )}
                 <div className="edit">
                   <MdEdit className="icon" />
                 </div>
               </div>
               <div className="about">
                 <div className="names">
-                  <p className="name">{loading ? "Loading..." : user?.names}</p>
+                  <p className="name">
+                    {loading ? "Loading..." : account?.names}
+                  </p>
                   <p className="handle">
-                    {loading ? "Loading..." : user?.handler}
+                    {loading ? "Loading..." : account?.handler}
                   </p>
                 </div>
                 <div className="para">
@@ -292,11 +279,16 @@ const Container = styled.div`
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: url(${(props) => props.profile});
+            background: ${(props) =>
+              props.profile ? `url(${props.profile})` : "var(--bright)"};
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
+
+            p {
+              font-size: 5.5em;
+            }
 
             .edit {
               width: 35px;

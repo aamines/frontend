@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import styled from "styled-components";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 //components
 import Item from "../../components/memories/item";
@@ -11,18 +13,27 @@ import Memory from "../../components/memories/view";
 import { IoMdAdd } from "react-icons/io";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
+//features
+import axios from "../../features/axios";
+
+//actions
+import { addMemories } from "../../store/reducers/memories";
+
 const Memories = () => {
   //config
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //redux data
+  const token = useSelector((state) => state.persist.token);
   const account = useSelector((state) => state.persist.account);
   const memories = useSelector((state) => state.memories.memories);
 
   //local data
-  const [activeAccount, setActiveAccount] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [activeMemory, setactiveMemory] = useState(0);
-  const ownMemories = memories?.filter((acc) => acc?.id === account);
+  const [activeAccount, setActiveAccount] = useState(0);
+  const ownMemories = memories?.filter((acc) => acc?.id === account.id);
 
   const onNext = () => {
     if (activeMemory < memories[activeAccount]?.Memory?.length - 1) {
@@ -47,8 +58,27 @@ const Memories = () => {
   };
 
   const goToCreate = () => {
-    navigate(`/client/${account}/create/text`);
+    navigate(`/client/${account.id}/create/text`);
   };
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`/memory/${account?.communityId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch(addMemories(res.data.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <Container>
@@ -57,11 +87,13 @@ const Memories = () => {
           <BiChevronLeft className="icon" />
         </div>
         <div className="image">
-          <Memory
-            memory={memories[activeAccount]?.Memory}
-            active={activeMemory}
-            next={onNext}
-          />
+          {!loading && (
+            <Memory
+              memory={memories[activeAccount]?.Memory}
+              active={activeMemory}
+              next={onNext}
+            />
+          )}
         </div>
         <div className="scroll" onClick={onNext}>
           <BiChevronRight className="icon" />
@@ -71,7 +103,7 @@ const Memories = () => {
         <div className="status" onClick={goToCreate}>
           {ownMemories ? (
             <Item
-              data={memories?.filter((memory) => memory?.id === account)[0]}
+              data={memories?.filter((memory) => memory?.id === account.id)[0]}
             />
           ) : (
             <>
@@ -87,7 +119,7 @@ const Memories = () => {
             <>
               <ul>
                 {memories
-                  .filter((memory) => memory?.id !== account)
+                  .filter((memory) => memory?.id !== account.id)
                   .map((status, index) => (
                     <Item key={index} data={status} />
                   ))}

@@ -9,7 +9,6 @@ const CreateMedia = () => {
   //drag and drop image
   const [image, setImage] = useState([]);
   const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/*",
     onDrop: (acceptfiles) => {
       setImage(
         acceptfiles.map((uploadedfile) =>
@@ -25,7 +24,10 @@ const CreateMedia = () => {
     <Container>
       <div className="container">
         <div className="upload" {...getRootProps()}>
-          <input {...getInputProps()} accept="image/*" />
+          <input
+            {...getInputProps()}
+            accept="image/png, image/gif, image/jpeg"
+          />
           {image.length === 0 ? <FiUpload className="icon" /> : ""}
           {image.map((upfile) => (
             <img src={upfile.preview} alt="preview" />
