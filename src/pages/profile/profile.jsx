@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import styled from "styled-components";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -22,6 +22,7 @@ import { setAccount } from "../../store/reducers/persist";
 
 const Profile = () => {
   //config
+  const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -44,7 +45,7 @@ const Profile = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`/account/${account?.id}`)
+      .get(`/account/${params?.account}`)
       .then((res) => {
         dispatch(setAccount(res.data.data));
       })

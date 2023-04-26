@@ -18,9 +18,10 @@ const Home = () => {
 
   //redux data
   const tokenVerified = useSelector((state) => state.persist.tokenVerified);
+  const authenticated = useSelector((state) => state.persist.authenticated);
 
   useEffect(() => {
-    if (!tokenVerified) {
+    if (!tokenVerified || !authenticated) {
       navigate("/login");
     }
   }, []);

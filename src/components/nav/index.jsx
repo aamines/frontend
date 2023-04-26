@@ -125,7 +125,7 @@ const Nav = () => {
                 <BsFillChatFill className="two icon" />
               </div>
               <div
-                onClick={() => goTo("members")}
+                onClick={() => goTo("all/members")}
                 className={active === "/members" ? "active" : ""}
               >
                 <HiUserGroup className="three icon" />

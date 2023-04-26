@@ -10,12 +10,14 @@ import memories from "./reducers/memories";
 import countries from "./reducers/countries";
 import milestones from "./reducers/milestones";
 import achievements from "./reducers/achievements";
-import CreateCommunity from "./reducers/community/create";
+import createCommunity from "./reducers/community/create";
+import community from "./reducers/community/data";
 
 //reducers
 
 const communityReducers = combineReducers({
-  create: CreateCommunity,
+  create: createCommunity,
+  data: community,
 });
 
 const reducers = combineReducers({

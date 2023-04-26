@@ -7,7 +7,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Main from "./pages/main";
 import Login from "./pages/login";
+import Members from "./pages/members";
 import Contact from "./pages/contact";
+import Welcome from "./pages/welcome";
 import Verify from "./pages/signup/verify";
 import Signup from "./pages/signup/signup";
 import Profile from "./pages/profile/profile";
@@ -20,9 +22,11 @@ import CreateCommunity from "./pages/community/create";
 
 //components
 import Nav from "./components/nav";
-import Two from "./components/community/two";
 import One from "./components/community/one";
+import Two from "./components/community/two";
 import Three from "./components/community/three";
+import Groups from "./components/members/groups";
+import People from "./components/members/people";
 import CreateText from "./components/memories/createtext";
 import CreateMedia from "./components/memories/createmedia";
 import ProfileSettings from "./components/settings/profile";
@@ -46,7 +50,6 @@ import {
   setAuthenticated,
   setTokenVerified,
 } from "./store/reducers/persist";
-import Welcome from "./pages/welcome";
 
 function App() {
   //config
@@ -108,6 +111,10 @@ function App() {
           <Route path="security" exact element={<SecuritySettings />} />
           <Route path="community" exact element={<CommunitySettings />} />
           <Route path="notification" exact element={<NotificationSettings />} />
+        </Route>
+        <Route path="/client/:account/all" exact element={<Members />}>
+          <Route path="groups" exact element={<Groups />} />
+          <Route path="members" exact element={<People />} />
         </Route>
 
         {/* Memories */}

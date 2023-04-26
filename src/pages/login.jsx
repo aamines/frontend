@@ -59,8 +59,7 @@ const Login = () => {
         dispatch(addToken(res?.data?.token));
         if (res.data.account) {
           dispatch(setHasAccount(true));
-          dispatch(setAccount(res.data.account.id));
-          dispatch(setCommunity(res.data.account.communityId));
+          dispatch(setAccount(res.data.account));
           navigate(`/client/${res.data.account.id}/home`);
         } else {
           dispatch(setHasAccount(false));

@@ -2,8 +2,8 @@
 
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Outlet, useLocation } from "react-router";
 import React, { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 
 //icons
