@@ -13,6 +13,7 @@ import axios from "../features/axios";
 
 //actions
 import { setData } from "../store/reducers/community/data";
+import Invite from "../components/members/people/invite";
 
 const Members = () => {
   //config
@@ -27,6 +28,7 @@ const Members = () => {
   const community = useSelector((state) => state.community.data.community);
 
   //local data
+  const [invite, setInvite] = useState(true);
   const [loading, setLoading] = useState(true);
   const [active, setActive] = useState("members");
 
@@ -36,6 +38,10 @@ const Members = () => {
 
   const goToGroups = () => {
     navigate(`/client/${params?.account}/all/groups`);
+  };
+
+  const handleInvite = () => {
+    setInvite(!invite);
   };
 
   useEffect(() => {
@@ -67,6 +73,7 @@ const Members = () => {
 
   return (
     <Container>
+      {invite && <Invite close={handleInvite} />}
       <div className="container">
         <div className="top">
           <div className="navigation">

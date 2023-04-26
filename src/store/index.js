@@ -9,9 +9,10 @@ import persist from "./reducers/persist";
 import memories from "./reducers/memories";
 import countries from "./reducers/countries";
 import milestones from "./reducers/milestones";
+import membersReducer from "./reducers/members";
+import community from "./reducers/community/data";
 import achievements from "./reducers/achievements";
 import createCommunity from "./reducers/community/create";
-import community from "./reducers/community/data";
 
 //reducers
 
@@ -22,10 +23,11 @@ const communityReducers = combineReducers({
 
 const reducers = combineReducers({
   groups: groups,
-  memories: memories,
   persist: persist,
+  memories: memories,
   countries: countries,
   milestones: milestones,
+  members: membersReducer,
   achievements: achievements,
   community: communityReducers,
 });
@@ -36,6 +38,7 @@ const persistConfig = {
   key: "root",
   blacklist: [
     "groups",
+    "members",
     "memories",
     "community",
     "countries",
