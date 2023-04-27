@@ -28,7 +28,7 @@ const Members = () => {
   const community = useSelector((state) => state.community.data.community);
 
   //local data
-  const [invite, setInvite] = useState(true);
+  const [invite, setInvite] = useState(false);
   const [loading, setLoading] = useState(true);
   const [active, setActive] = useState("members");
 
@@ -97,7 +97,7 @@ const Members = () => {
             </div>
             <Line active={active} />
           </div>
-          <div className="new">
+          <div className="new" onClick={handleInvite}>
             <FaUserPlus className="icon" />
             <p>Invite members</p>
           </div>

@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const membersSlice = createSlice({
   name: "memebers",
-  initialState: [{}],
+  initialState: [],
   reducers: {
     addMember: (state, action) => {
       state.push(action.payload);
     },
     removeMember: (state, action) => {
-      return state.filter((member) => member.id !== action.payload);
+      return state.filter((member) => member.email !== action.payload);
     },
   },
 });
