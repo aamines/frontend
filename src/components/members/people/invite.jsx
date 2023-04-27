@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //icons
-import { GrFormAdd } from "react-icons/gr";
+import { GrAdd } from "react-icons/gr";
 import { IoMdClose } from "react-icons/io";
 import { RiUser3Fill } from "react-icons/ri";
 
@@ -41,9 +41,12 @@ const Invite = ({ close }) => {
   };
 
   const handleAdd = () => {
-    dispatch(addMember({ email: email, role: role }));
-    setEmail("");
-    setRole("admin");
+    if (add) {
+      dispatch(addMember({ email: email, role: role }));
+      setEmail("");
+      setRole("admin");
+      setAdd(false);
+    }
   };
 
   const handleRemove = (email) => {
@@ -98,7 +101,7 @@ const Invite = ({ close }) => {
         </div>
         <div className="buttons">
           <Add add={add} onClick={handleAdd}>
-            <GrFormAdd className="icon" />
+            <GrAdd className="icon" />
             <p>Add</p>
           </Add>
           <div className="right">
@@ -125,12 +128,17 @@ const Add = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background: ${(props) => (props.add ? "var(--bright)" : "var(--grayish)")};
+  background: ${(props) => (props.add ? "var(--bright)" : "var(--background)")};
   cursor: pointer;
 
+  p {
+    color: ${(props) => (props.add ? "var(--dark)" : "var(--grayish)")};
+  }
+
   .icon {
-    font-size: 1.4em;
+    font-size: 1.2em;
     margin: 0 5px 0 0;
+    color: ${(props) => (props.add ? "var(--dark)" : "var(--grayish)")};
   }
 `;
 
