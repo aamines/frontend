@@ -1,13 +1,20 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ResetPassword = () => {
+  ///configs
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
+  //local data
   const [loading, setLoading] = React.useState(false);
+
+  //redux data
+  const variants = useSelector((state) => state.variants);
 
   const handleSubmision = (data) => {
     setLoading(true);
@@ -16,7 +23,13 @@ const ResetPassword = () => {
 
   return (
     <Container>
-      <div className="content">
+      <motion.div
+        className="content"
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <div className="header">
           <p className="head">Reset password!</p>
           <p className="para">
@@ -47,7 +60,7 @@ const ResetPassword = () => {
             Feeling lost? <Link to="/login">Get back</Link>
           </p>
         </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };

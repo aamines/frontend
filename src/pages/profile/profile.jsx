@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { useNavigate, useParams } from "react-router";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,6 +31,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
 
   //redux data
+  const variants = useSelector((state) => state.variants);
   const account = useSelector((state) => state.persist.account);
   const hasAccount = useSelector((state) => state.persist.hasAccount);
 
@@ -62,7 +64,13 @@ const Profile = () => {
       banner={account?.media_banner?.media_url}
       profile={account?.media_profile?.media_url}
     >
-      <div className="container">
+      <motion.div
+        className="container"
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <div className="top">
           <button type="button" onClick={goToSettings}>
             <IoMdSettings className="icon" />
@@ -163,7 +171,7 @@ const Profile = () => {
         <div className="milestones">
           <Groups groups={groups} />
         </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };

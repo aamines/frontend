@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -17,6 +18,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   //redux data
+  const variants = useSelector((state) => state.variants);
   const tokenVerified = useSelector((state) => state.persist.tokenVerified);
   const authenticated = useSelector((state) => state.persist.authenticated);
 
@@ -28,7 +30,13 @@ const Home = () => {
 
   return (
     <Container>
-      <div className="container">
+      <motion.div
+        className="container"
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <div className="profile">
           <Profile />
         </div>
@@ -40,7 +48,7 @@ const Home = () => {
         <div className="stats">
           <Stats />
         </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };

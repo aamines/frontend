@@ -47,7 +47,9 @@ const Members = () => {
   useEffect(() => {
     if (location.pathname?.includes("members")) {
       setActive("members");
-    } else {
+    }
+
+    if (location.pathname?.includes("groups")) {
       setActive("groups");
     }
   }, [navigate]);
@@ -102,7 +104,7 @@ const Members = () => {
             <p>Invite members</p>
           </div>
         </div>
-        {!loading && <Outlet />}
+        <div className="outlet">{!loading && <Outlet />}</div>
       </div>
     </Container>
   );
@@ -115,7 +117,12 @@ const Line = styled.div`
   position: absolute;
   bottom: -1px;
   transition: all 0.3s ease-in-out;
-  left: ${(props) => (props.active === "members" ? "-18px" : "150px")};
+  left: ${(props) =>
+    props.active === "members"
+      ? "-18px"
+      : props.active === "groups"
+      ? "150px"
+      : ""};
 `;
 
 const Container = styled.div`
@@ -128,8 +135,10 @@ const Container = styled.div`
   .container {
     height: auto;
     display: flex;
-    flex-direction: column;
     margin: 25px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 
     @media only screen and (min-width: 1200px) {
       width: 1200px;
@@ -137,6 +146,11 @@ const Container = styled.div`
 
     @media only screen and (max-width: 1200px) {
       width: 90%;
+    }
+
+    .outlet {
+      width: 100%;
+      height: auto;
     }
 
     .top {

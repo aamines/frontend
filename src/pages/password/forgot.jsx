@@ -1,13 +1,20 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
+  //configs
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
+  //local data
   const [loading, setLoading] = React.useState(false);
+
+  //redux data
+  const variants = useSelector((state) => state.variants);
 
   const handleSubmision = (data) => {
     setLoading(true);
@@ -16,7 +23,13 @@ const ForgotPassword = () => {
 
   return (
     <Container>
-      <div className="content">
+      <motion.div
+        className="content"
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <div className="header">
           <p className="head">Forgot password!</p>
           <p className="para">
@@ -40,7 +53,7 @@ const ForgotPassword = () => {
             Feeling lost? <Link to="/login">Get back</Link>
           </p>
         </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };

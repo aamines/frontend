@@ -1,5 +1,7 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 //icons
@@ -8,6 +10,9 @@ import { HiUserGroup } from "react-icons/hi";
 const Welcome = () => {
   //config
   const navigate = useNavigate();
+
+  //redux data
+  const variants = useSelector((state) => state.variants);
 
   const goToCreate = () => {
     navigate("/community/new");
@@ -19,7 +24,13 @@ const Welcome = () => {
 
   return (
     <Container>
-      <div className="container">
+      <motion.div
+        className="container"
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <div className="welcome">
           <img src="/min_logo.svg" alt="logo" />
           <p className="title">Welcome to Projectia</p>
@@ -41,7 +52,7 @@ const Welcome = () => {
             </p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -13,6 +14,7 @@ const CreateText = () => {
   const navigate = useNavigate();
 
   //redux data
+  const variants = useSelector((state) => state.variants);
   const token = useSelector((state) => state.persist.token);
   const account = useSelector((state) => state.persist.account);
 
@@ -71,28 +73,36 @@ const CreateText = () => {
 
   return (
     <Container>
-      <div className="container">
-        <Textarea background={active}>
-          <textarea
-            value={value}
-            onChange={handleValue}
-            placeholder="Type something..."
-          />
-        </Textarea>
-        <div className="button" onClick={handleSend}>
-          {loading ? <img src="/loader.svg" alt="loader" /> : <p>Send</p>}
+      <motion.div
+        className="all"
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        <div className="container">
+          <Textarea background={active}>
+            <textarea
+              value={value}
+              onChange={handleValue}
+              placeholder="Type something..."
+            />
+          </Textarea>
+          <div className="button" onClick={handleSend}>
+            {loading ? <img src="/loader.svg" alt="loader" /> : <p>Send</p>}
+          </div>
         </div>
-      </div>
-      <div className="colors">
-        {colors.map((color, index) => (
-          <Color
-            main={color}
-            key={index}
-            active={active === color}
-            onClick={() => handleColor(color)}
-          ></Color>
-        ))}
-      </div>
+        <div className="colors">
+          {colors.map((color, index) => (
+            <Color
+              main={color}
+              key={index}
+              active={active === color}
+              onClick={() => handleColor(color)}
+            ></Color>
+          ))}
+        </div>
+      </motion.div>
     </Container>
   );
 };
@@ -142,59 +152,64 @@ const Textarea = styled.div`
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  position: relative;
 
-  .container {
-    width: 60%;
-    height: 80%;
+  .all {
+    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 
-    .button {
-      width: 140px;
-      height: 50px;
+    .container {
+      width: 60%;
+      height: 80%;
       display: flex;
-      border-radius: 5px;
-      align-items: center;
-      justify-content: center;
-      margin: 15px 0 0 0;
-      cursor: pointer;
-      background: var(--grayish);
-      transition: all 0.3s ease;
+      flex-direction: column;
+      align-items: flex-end;
 
-      img {
-        width: 30%;
-      }
-
-      p {
-        color: var(--white);
+      .button {
+        width: 140px;
+        height: 50px;
+        display: flex;
+        border-radius: 5px;
+        align-items: center;
+        justify-content: center;
+        margin: 15px 0 0 0;
+        cursor: pointer;
+        background: var(--grayish);
         transition: all 0.3s ease;
-      }
 
-      :hover {
-        background: var(--bright);
+        img {
+          width: 30%;
+        }
 
         p {
-          color: var(--dark);
+          color: var(--white);
+          transition: all 0.3s ease;
+        }
+
+        :hover {
+          background: var(--bright);
+
+          p {
+            color: var(--dark);
+          }
         }
       }
     }
-  }
 
-  .colors {
-    position: absolute;
-    width: 50px;
-    height: auto;
-    right: 10%;
-    top: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    .colors {
+      position: absolute;
+      width: 50px;
+      height: auto;
+      right: 10%;
+      top: 20%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 `;
 

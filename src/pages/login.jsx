@@ -1,8 +1,9 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 //features
@@ -13,7 +14,6 @@ import app from "../features/firebase";
 import {
   addToken,
   setAccount,
-  setCommunity,
   setHasAccount,
   setAuthenticated,
   setTokenVerified,
@@ -32,6 +32,9 @@ const Login = () => {
   //local data
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  //redux data
+  const variants = useSelector((state) => state.variants);
 
   //handle google login
   const handleGoogle = () => {
@@ -74,259 +77,271 @@ const Login = () => {
 
   return (
     <Container>
-      <div className="right">
-        <div className="header">
-          <p className="head">Welcome back!</p>
-          <p className="para">Welcome back to your professional community.</p>
-        </div>
-        <div className="error_message">
-          <p>{error}</p>
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="box">
-            <p className="error">
-              {errors.email?.type === "required" && "Email is required"}
-              {errors.email?.type === "minLength" && "Email is too short"}
-              {errors.email?.type === "maxLength" && "Email is too long"}
-            </p>
-            <input
-              type="text"
-              placeholder="Email"
-              className={errors.email ? "has_error" : ""}
-              {...register("email", {
-                required: true,
-                minLength: 10,
-                maxLength: 60,
-              })}
-            />
+      <motion.div
+        className="all"
+        variants={variants}
+        animate="animate"
+        initial="initial"
+        exit="exit"
+      >
+        <div className="right">
+          <div className="header">
+            <p className="head">Welcome back!</p>
+            <p className="para">Welcome back to your professional community.</p>
           </div>
-          <div className="box">
-            <p className="error">
-              {errors.password?.type === "required" && "Password is required"}
-              {errors.password?.type === "minLength" && "Password is too short"}
-              {errors.password?.type === "maxLength" && "Password is too long"}
-            </p>
-            <input
-              type="password"
-              placeholder="Password"
-              className={errors.password ? "has_error" : ""}
-              {...register("password", {
-                required: true,
-                minLength: 8,
-                maxLength: 15,
-              })}
-            />
+          <div className="error_message">
+            <p>{error}</p>
           </div>
-          <div className="row">
-            <div className="left_">
-              <input type="checkbox" name="remember" id="remember" />
-              <label htmlFor="remember">Remember Me</label>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="box">
+              <p className="error">
+                {errors.email?.type === "required" && "Email is required"}
+                {errors.email?.type === "minLength" && "Email is too short"}
+                {errors.email?.type === "maxLength" && "Email is too long"}
+              </p>
+              <input
+                type="text"
+                placeholder="Email"
+                className={errors.email ? "has_error" : ""}
+                {...register("email", {
+                  required: true,
+                  minLength: 10,
+                  maxLength: 60,
+                })}
+              />
             </div>
-            <div className="right_">
-              <Link to="/password/forgot">Forgot password?</Link>
+            <div className="box">
+              <p className="error">
+                {errors.password?.type === "required" && "Password is required"}
+                {errors.password?.type === "minLength" &&
+                  "Password is too short"}
+                {errors.password?.type === "maxLength" &&
+                  "Password is too long"}
+              </p>
+              <input
+                type="password"
+                placeholder="Password"
+                className={errors.password ? "has_error" : ""}
+                {...register("password", {
+                  required: true,
+                  minLength: 8,
+                  maxLength: 15,
+                })}
+              />
             </div>
-          </div>
-          <button type="submit">
-            {loading ? <img src="/loader.svg" alt="loader" /> : "Login"}
-          </button>
-          <div className="google" onClick={handleGoogle}>
-            <img src="/icons/google.png" alt="Google" />
-            <p>Sign in with google</p>
-          </div>
-        </form>
-        <p>
-          Don't have an account yet? <Link to="/signup">Sign up</Link>
-        </p>
-      </div>
-      <div className="left"></div>
+            <div className="row">
+              <div className="left_">
+                <input type="checkbox" name="remember" id="remember" />
+                <label htmlFor="remember">Remember Me</label>
+              </div>
+              <div className="right_">
+                <Link to="/password/forgot">Forgot password?</Link>
+              </div>
+            </div>
+            <button type="submit">
+              {loading ? <img src="/loader.svg" alt="loader" /> : "Login"}
+            </button>
+            <div className="google" onClick={handleGoogle}>
+              <img src="/icons/google.png" alt="Google" />
+              <p>Sign in with google</p>
+            </div>
+          </form>
+          <p>
+            Don't have an account yet? <Link to="/signup">Sign up</Link>
+          </p>
+        </div>
+        <div className="left"></div>
+      </motion.div>
     </Container>
   );
 };
 
 const Container = styled.div`
-  height: calc(100vh - 70px);
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  .left {
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-        0deg,
-        rgba(5, 17, 30, 0.5),
-        rgba(5, 17, 30, 0.1)
-      ),
-      url("/images/Hero/Login.png");
-    background-size: cover;
-  }
-
-  .right {
-    width: 50%;
-    height: 100%;
+  .all {
+    height: calc(100vh - 70px);
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 20px 0;
-    background: var(--background);
 
-    .header {
-      width: 100%;
-      height: 100px;
-      margin: 0 0 10px 0;
+    .left {
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+          0deg,
+          rgba(5, 17, 30, 0.5),
+          rgba(5, 17, 30, 0.1)
+        ),
+        url("/images/Hero/Login.png");
+      background-size: cover;
+    }
+
+    .right {
+      width: 50%;
+      height: 100%;
       display: flex;
-      padding: 0 40px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 20px 0;
+      background: var(--background);
 
-      p.head {
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--white);
-      }
-
-      p {
-        color: var(--bright);
-        text-align: center;
-      }
-    }
-
-    .error_message {
-      width: 100%;
-      height: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 30px;
-
-      p {
-        color: var(--red);
-      }
-    }
-
-    form {
-      width: 500px;
-      height: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 0 50px 0;
-
-      .box {
+      .header {
         width: 100%;
+        height: 100px;
+        margin: 0 0 10px 0;
+        display: flex;
+        padding: 0 40px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        p.head {
+          font-size: 2rem;
+          font-weight: 800;
+          color: var(--white);
+        }
+
+        p {
+          color: var(--bright);
+          text-align: center;
+        }
+      }
+
+      .error_message {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 30px;
+
+        p {
+          color: var(--red);
+        }
+      }
+
+      form {
+        width: 500px;
         height: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-end;
+        margin: 0 0 50px 0;
 
-        p.error {
-          color: var(--red);
-          margin: 0 0 5px 0;
+        .box {
+          width: 100%;
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-end;
+
+          p.error {
+            color: var(--red);
+            margin: 0 0 5px 0;
+          }
         }
-      }
 
-      .has_error {
-        border: 1px solid var(--red);
-      }
+        .has_error {
+          border: 1px solid var(--red);
+        }
 
-      input[type="text"],
-      input[type="password"] {
-        width: 100%;
-        height: 45px;
-        margin: 8px 0;
-        padding: 0 15px;
-        border: none;
-        border-radius: 5px;
-        outline: none;
-        background: var(--grayish);
-        color: var(--white);
-      }
-
-      .row {
-        width: 100%;
-        height: 45px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        margin: 8px 0;
-        padding: 0 5px;
-
-        a {
+        input[type="text"],
+        input[type="password"] {
+          width: 100%;
+          height: 45px;
+          margin: 8px 0;
+          padding: 0 15px;
+          border: none;
+          border-radius: 5px;
+          outline: none;
+          background: var(--grayish);
           color: var(--white);
-          text-decoration: none;
         }
 
-        .left_ {
-          width: 50%;
-          height: 100%;
+        .row {
+          width: 100%;
+          height: 45px;
           display: flex;
           flex-direction: row;
           align-items: center;
-          justify-content: flex-start;
+          justify-content: space-between;
+          margin: 8px 0;
+          padding: 0 5px;
 
-          label {
+          a {
+            color: var(--white);
+            text-decoration: none;
+          }
+
+          .left_ {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+
+            label {
+              color: var(--white);
+            }
+
+            input[type="checkbox"] {
+              margin: 0 5px 0 0;
+            }
+          }
+        }
+
+        button {
+          width: 100%;
+          height: 45px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 8px 0;
+          padding: 0 15px;
+          border: none;
+          border-radius: 5px;
+          outline: none;
+          background: var(--bright);
+          color: var(--dark);
+
+          img {
+            width: 40px;
+          }
+        }
+
+        .google {
+          width: 100%;
+          height: 45px;
+          display: flex;
+          margin: 8px 0;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid var(--white);
+          border-radius: 5px;
+          cursor: pointer;
+
+          p {
             color: var(--white);
           }
 
-          input[type="checkbox"] {
-            margin: 0 5px 0 0;
+          img {
+            margin: 0 10px;
           }
         }
       }
 
-      button {
-        width: 100%;
-        height: 45px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 8px 0;
-        padding: 0 15px;
-        border: none;
-        border-radius: 5px;
-        outline: none;
-        background: var(--bright);
-        color: var(--dark);
+      > p {
+        color: var(--white);
 
-        img {
-          width: 40px;
+        a {
+          color: var(--bright);
+          text-decoration: none;
         }
-      }
-
-      .google {
-        width: 100%;
-        height: 45px;
-        display: flex;
-        margin: 8px 0;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--white);
-        border-radius: 5px;
-        cursor: pointer;
-
-        p {
-          color: var(--white);
-        }
-
-        img {
-          margin: 0 10px;
-        }
-      }
-    }
-
-    > p {
-      color: var(--white);
-
-      a {
-        color: var(--bright);
-        text-decoration: none;
       }
     }
   }

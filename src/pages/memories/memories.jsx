@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 import React, { useEffect, useState } from "react";
@@ -25,6 +26,7 @@ const Memories = () => {
   const dispatch = useDispatch();
 
   //redux data
+  const variants = useSelector((state) => state.variants);
   const token = useSelector((state) => state.persist.token);
   const account = useSelector((state) => state.persist.account);
   const memories = useSelector((state) => state.memories.memories);
@@ -82,170 +84,182 @@ const Memories = () => {
 
   return (
     <Container>
-      <div className="view">
-        <div className="scroll" onClick={onPrevious}>
-          <BiChevronLeft className="icon" />
+      <motion.div
+        className="all"
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        <div className="view">
+          <div className="scroll" onClick={onPrevious}>
+            <BiChevronLeft className="icon" />
+          </div>
+          <div className="image">
+            {!loading && (
+              <Memory
+                memory={memories[activeAccount]?.Memory}
+                active={activeMemory}
+                next={onNext}
+              />
+            )}
+          </div>
+          <div className="scroll" onClick={onNext}>
+            <BiChevronRight className="icon" />
+          </div>
         </div>
-        <div className="image">
-          {!loading && (
-            <Memory
-              memory={memories[activeAccount]?.Memory}
-              active={activeMemory}
-              next={onNext}
-            />
-          )}
+        <div className="memories">
+          <div className="status" onClick={goToCreate}>
+            {ownMemories ? (
+              <Item
+                data={
+                  memories?.filter((memory) => memory?.id === account.id)[0]
+                }
+              />
+            ) : (
+              <>
+                <div className="one">
+                  <IoMdAdd className="icon" />
+                </div>
+                <p>You</p>
+              </>
+            )}
+          </div>
+          <div className="statuses">
+            {memories?.length > 0 && (
+              <>
+                <ul>
+                  {memories
+                    .filter((memory) => memory?.id !== account.id)
+                    .map((status, index) => (
+                      <Item key={index} data={status} />
+                    ))}
+                </ul>
+              </>
+            )}
+          </div>
         </div>
-        <div className="scroll" onClick={onNext}>
-          <BiChevronRight className="icon" />
-        </div>
-      </div>
-      <div className="memories">
-        <div className="status" onClick={goToCreate}>
-          {ownMemories ? (
-            <Item
-              data={memories?.filter((memory) => memory?.id === account.id)[0]}
-            />
-          ) : (
-            <>
-              <div className="one">
-                <IoMdAdd className="icon" />
-              </div>
-              <p>You</p>
-            </>
-          )}
-        </div>
-        <div className="statuses">
-          {memories?.length > 0 && (
-            <>
-              <ul>
-                {memories
-                  .filter((memory) => memory?.id !== account.id)
-                  .map((status, index) => (
-                    <Item key={index} data={status} />
-                  ))}
-              </ul>
-            </>
-          )}
-        </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .view {
-    height: calc(100vh - 300px);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    margin: 50px 0 0 0;
-    padding: 0 20px;
-
-    @media only screen and (min-width: 1200px) {
-      width: 1200px;
-    }
-
-    @media only screen and (max-width: 1200px) {
-      width: 90%;
-    }
-
-    .image {
-      width: 85%;
-      height: 100%;
-      overflow: hidden;
-      border-radius: 10px;
-      background: var(--grayish);
-    }
-
-    .scroll {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      cursor: pointer;
-      background: var(--grayish);
-
-      .icon {
-        font-size: 1.7em;
-        color: var(--white);
-      }
-    }
-  }
-
-  .memories {
+  .all {
+    width: 100%;
     height: auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    padding: 0 100px;
-    margin: 50px 0 0 0;
 
-    @media only screen and (min-width: 1200px) {
-      width: 1200px;
-    }
-
-    @media only screen and (max-width: 1200px) {
-      width: 90%;
-    }
-
-    .status {
-      width: 70px;
-      height: 100%;
+    .view {
+      height: calc(100vh - 300px);
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      margin: 0 10px 0 0;
-      cursor: pointer;
+      justify-content: space-evenly;
+      margin: 50px 0 0 0;
+      padding: 0 20px;
 
-      .one {
-        width: 70px;
-        height: 70px;
+      @media only screen and (min-width: 1200px) {
+        width: 1200px;
+      }
+
+      @media only screen and (max-width: 1200px) {
+        width: 90%;
+      }
+
+      .image {
+        width: 85%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 10px;
+        background: var(--grayish);
+      }
+
+      .scroll {
+        width: 40px;
+        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
+        cursor: pointer;
         background: var(--grayish);
 
         .icon {
-          font-size: 2em;
+          font-size: 1.7em;
+          color: var(--white);
+        }
+      }
+    }
+
+    .memories {
+      height: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 0 100px;
+      margin: 50px 0 0 0;
+
+      @media only screen and (min-width: 1200px) {
+        width: 1200px;
+      }
+
+      @media only screen and (max-width: 1200px) {
+        width: 90%;
+      }
+
+      .status {
+        width: 70px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 10px 0 0;
+        cursor: pointer;
+
+        .one {
+          width: 70px;
+          height: 70px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: var(--grayish);
+
+          .icon {
+            font-size: 2em;
+            color: var(--white);
+          }
+        }
+
+        p {
+          margin: 5px 0 0 0;
           color: var(--white);
         }
       }
 
-      p {
-        margin: 5px 0 0 0;
-        color: var(--white);
-      }
-    }
-
-    .statuses {
-      width: 87%;
-      height: 100%;
-      padding: 0 10px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-
-      ul {
-        width: 100%;
+      .statuses {
+        width: 87%;
         height: 100%;
+        padding: 0 10px;
         display: flex;
-        overflow: scroll;
         flex-direction: row;
         align-items: center;
-      }
 
-      ul::-webkit-scrollbar {
-        display: none;
+        ul {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          overflow: scroll;
+          flex-direction: row;
+          align-items: center;
+        }
+
+        ul::-webkit-scrollbar {
+          display: none;
+        }
       }
     }
   }

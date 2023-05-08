@@ -1,8 +1,9 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 
 //Actions
 import { setData } from "../../store/reducers/community/create";
@@ -17,6 +18,9 @@ const One = () => {
     formState: { errors },
   } = useForm();
 
+  //redux data
+  const variants = useSelector((state) => state.variants);
+
   const onSubmit = (data) => {
     dispatch(setData({ ...data }));
     navigate("/community/new/two");
@@ -24,7 +28,13 @@ const One = () => {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <motion.form
+        onSubmit={handleSubmit(onSubmit)}
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <div className="row">
           <input
             type="text"
@@ -64,7 +74,7 @@ const One = () => {
         <button type="submit" className="button">
           Next
         </button>
-      </form>
+      </motion.form>
     </Container>
   );
 };

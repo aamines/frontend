@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -25,6 +26,9 @@ const Signup = () => {
   //local data
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  //redux data
+  const variants = useSelector((state) => state.variants);
   const countries = useSelector((state) => state.countries);
 
   //handle google signup
@@ -68,7 +72,13 @@ const Signup = () => {
 
   return (
     <Container>
-      <div className="content">
+      <motion.div
+        className="content"
+        variants={variants}
+        animate="animate"
+        initial="initial"
+        exit="exit"
+      >
         <div className="header">
           <p className="head">Welcome here!</p>
           <p className="para">Create an account and start having fun.</p>
@@ -180,7 +190,7 @@ const Signup = () => {
             Already have an account? <Link to="/login">Login</Link>
           </p>
         </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };

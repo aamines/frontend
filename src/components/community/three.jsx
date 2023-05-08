@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,10 +18,11 @@ const Three = () => {
   //local data
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
-  const data = useSelector((state) => state.community.create);
 
   //redux data
+  const variants = useSelector((state) => state.variants);
   const token = useSelector((state) => state.persist.token);
+  const data = useSelector((state) => state.community.create);
 
   const handleSubmit = () => {
     if (disabled) return;
@@ -58,13 +60,21 @@ const Three = () => {
 
   return (
     <Container>
-      <p>
-        The soul should always stand ajar, ready to <br /> welcome the ecstatic
-        experience.
-      </p>
-      <div className="button" onClick={handleSubmit}>
-        {loading ? <img src="/loader.svg" alt="loader" /> : <p>Enjoy</p>}
-      </div>
+      <motion.div
+        className="all"
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
+        <p>
+          The soul should always stand ajar, ready to <br /> welcome the
+          ecstatic experience.
+        </p>
+        <div className="button" onClick={handleSubmit}>
+          {loading ? <img src="/loader.svg" alt="loader" /> : <p>Enjoy</p>}
+        </div>
+      </motion.div>
     </Container>
   );
 };
@@ -72,40 +82,45 @@ const Three = () => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 
-  p {
-    text-align: center;
-    font-size: 1.3em;
-    color: var(--white);
-  }
-
-  .button {
-    width: 150px;
-    height: 40px;
+  .all {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
-    border-radius: 5px;
-    background: var(--bright);
-    cursor: pointer;
 
     p {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: var(--dark);
+      text-align: center;
+      font-size: 1.3em;
+      color: var(--white);
     }
 
-    img {
-      width: 35%;
+    .button {
+      width: 150px;
+      height: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 20px 0;
+      border-radius: 5px;
+      background: var(--bright);
+      cursor: pointer;
+
+      p {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: var(--dark);
+      }
+
+      img {
+        width: 35%;
+      }
     }
   }
 `;

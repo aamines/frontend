@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 import styled from "styled-components";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -19,6 +20,7 @@ const Main = () => {
   const navigate = useNavigate();
 
   //redux data
+  const variants = useSelector((state) => state.variants);
   const accountId = useSelector((state) => state.persist.account);
   const tokenVerified = useSelector((state) => state.persist.tokenVerified);
 
@@ -30,95 +32,105 @@ const Main = () => {
 
   return (
     <Container>
-      <div className="hero">
-        <Hero />
-      </div>
-      <div className="some">
-        <Some />
-      </div>
-      <div className="about">
-        <About />
-      </div>
-      <div className="founder">
-        <Founder />
-      </div>
-      <div className="clients">
-        <Clients />
-      </div>
-      <div className="testimonials">
-        <Testimonials />
-      </div>
-      <div className="footer">
-        <Footer />
-      </div>
+      <motion.div
+        className="all"
+        variants={variants}
+        animate="animate"
+        initial="initial"
+        exit="exit"
+      >
+        <div className="hero">
+          <Hero />
+        </div>
+        <div className="some">
+          <Some />
+        </div>
+        <div className="about">
+          <About />
+        </div>
+        <div className="founder">
+          <Founder />
+        </div>
+        <div className="clients">
+          <Clients />
+        </div>
+        <div className="testimonials">
+          <Testimonials />
+        </div>
+        <div className="footer">
+          <Footer />
+        </div>
+      </motion.div>
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .hero {
+  .all {
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
 
-  .some {
-    width: 100%;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
+    .hero {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-  .about {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    .some {
+      width: 100%;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
 
-  .founder {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
+    .about {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-  .clients {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
+    .founder {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
 
-  .testimonials {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    .clients {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
 
-  .footer {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    .testimonials {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 `;
 

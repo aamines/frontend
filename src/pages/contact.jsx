@@ -1,5 +1,7 @@
 import React from "react";
+import { motion } from "framer-motion";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 //icons
 import { AiTwotoneMail } from "react-icons/ai";
@@ -10,73 +12,84 @@ import { IoLocationSharp } from "react-icons/io5";
 import Footer from "../components/footer";
 
 const Contact = () => {
+  //redux data
+  const variants = useSelector((state) => state.variants);
+
   return (
     <Container>
-      <div className="container">
-        <div className="header">
-          <p className="head">Contact Us</p>
-          <p className="para">
-            Any question or remarks? Just write us a message!
-          </p>
-        </div>
-        <div className="content">
-          <div className="left">
-            <div className="top">
-              <p className="head">Contact Information</p>
-              <p className="para">Say something to start a live chat!</p>
+      <motion.div
+        className="all"
+        variants={variants}
+        animate="animate"
+        initial="initial"
+        exit="exit"
+      >
+        <div className="container">
+          <div className="header">
+            <p className="head">Contact Us</p>
+            <p className="para">
+              Any question or remarks? Just write us a message!
+            </p>
+          </div>
+          <div className="content">
+            <div className="left">
+              <div className="top">
+                <p className="head">Contact Information</p>
+                <p className="para">Say something to start a live chat!</p>
+              </div>
+              <div className="middle">
+                <div className="row">
+                  <BsTelephoneFill className="icon" />
+                  <p>+250782138100</p>
+                </div>
+                <div className="row">
+                  <AiTwotoneMail className="icon" />
+                  <p>aa.projectia@gmail.com</p>
+                </div>
+                <div className="row">
+                  <IoLocationSharp className="big" />
+                  <p>Kigali city, Rwanda</p>
+                </div>
+              </div>
             </div>
-            <div className="middle">
+            <div className="right">
               <div className="row">
-                <BsTelephoneFill className="icon" />
-                <p>+250782138100</p>
+                <div className="chunk">
+                  <label htmlFor="fname">First Name</label>
+                  <input type="text" id="fname" />
+                </div>
+                <div className="chunk">
+                  <label htmlFor="lname">Last Name</label>
+                  <input type="text" id="lname" />
+                </div>
               </div>
               <div className="row">
-                <AiTwotoneMail className="icon" />
-                <p>aa.projectia@gmail.com</p>
+                <div className="chunk">
+                  <label htmlFor="email">Email</label>
+                  <input type="email" id="email" />
+                </div>
+                <div className="chunk">
+                  <label htmlFor="phone">Phone Number</label>
+                  <input type="text" id="phone" />
+                </div>
               </div>
               <div className="row">
-                <IoLocationSharp className="big" />
-                <p>Kigali city, Rwanda</p>
+                <div className="big">
+                  <label htmlFor="message">Message</label>
+                  <textarea id="message" cols="30" rows="10"></textarea>
+                </div>
+              </div>
+              <div className="button">
+                <button>Send Message</button>
+                <img src="/images/Contact/Four.png" alt="four" />
               </div>
             </div>
           </div>
-          <div className="right">
-            <div className="row">
-              <div className="chunk">
-                <label htmlFor="fname">First Name</label>
-                <input type="text" id="fname" />
-              </div>
-              <div className="chunk">
-                <label htmlFor="lname">Last Name</label>
-                <input type="text" id="lname" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="chunk">
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" />
-              </div>
-              <div className="chunk">
-                <label htmlFor="phone">Phone Number</label>
-                <input type="text" id="phone" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="big">
-                <label htmlFor="message">Message</label>
-                <textarea id="message" cols="30" rows="10"></textarea>
-              </div>
-            </div>
-            <div className="button">
-              <button>Send Message</button>
-              <img src="/images/Contact/Four.png" alt="four" />
-            </div>
-          </div>
         </div>
-      </div>
-      <div className="footer">
-        <Footer />
-      </div>
+        <div className="footer">
+          <Footer />
+        </div>
+      </motion.div>
     </Container>
   );
 };

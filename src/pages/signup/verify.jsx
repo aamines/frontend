@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 //features
@@ -14,6 +16,9 @@ const Verify = () => {
   //local data
   const [loading, setLoading] = React.useState(true);
   const params = new URLSearchParams(window.location.search);
+
+  //redux data
+  const variants = useSelector((state) => state.variants);
 
   const go = () => {
     navigate("/home");
@@ -32,7 +37,13 @@ const Verify = () => {
 
   return (
     <Container>
-      <div className="content">
+      <motion.div
+        className="content"
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <div className="header">
           <p className="head">
             {loading ? "Verifying..." : "Your email was verified!!"}
@@ -58,7 +69,7 @@ const Verify = () => {
             Feeling lost? <Link to="/login">Logout</Link>
           </p>
         </div>
-      </div>
+      </motion.div>
     </Container>
   );
 };

@@ -1,7 +1,8 @@
 //packages
 import React, { useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 //pages
 import Home from "./pages/home";
@@ -54,6 +55,7 @@ import {
 function App() {
   //config
   const dispatch = useDispatch();
+  const location = useLocation();
 
   //redux data
   const token = useSelector((state) => state.persist.token);
@@ -80,9 +82,9 @@ function App() {
   }, [token, dispatch]);
 
   return (
-    <Router>
+    <AnimatePresence>
       <Nav />
-      <Routes>
+      <Routes location={location} key={location.pathname}>
         {/* indexes */}
         <Route path="/" exact element={<Main />} />
         <Route path="/login" exact element={<Login />} />
@@ -128,7 +130,7 @@ function App() {
           element={<Memories />}
         />
       </Routes>
-    </Router>
+    </AnimatePresence>
   );
 }
 
