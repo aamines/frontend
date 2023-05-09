@@ -119,7 +119,7 @@ const Community = styled.li`
 const Container = styled.div`
   width: 210px;
   height: 300px;
-  background: var(--grayish);
+  background: var(--dark);
   z-index: 1000;
   position: absolute;
   bottom: -315px;
@@ -128,7 +128,7 @@ const Container = styled.div`
   flex-direction: column;
   right: -5px;
   padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.432) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
   .row {
     width: 100%;

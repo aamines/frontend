@@ -25,6 +25,7 @@ import {
   setTokenVerified,
 } from "../../store/reducers/persist";
 import Down from "./down";
+import Notifications from "./notifications";
 
 const Nav = () => {
   //configs
@@ -36,6 +37,7 @@ const Nav = () => {
   const [down, setDown] = useState(false);
   const [active, setActive] = useState("");
   const [render, setRender] = useState(false);
+  const [notifications, setNotifications] = useState(true);
 
   // redux data
   const account = useSelector((state) => state.persist.account);
@@ -53,11 +55,7 @@ const Nav = () => {
   };
 
   const goToNotifications = () => {
-    if (hasAccount) {
-      goTo("notifications");
-    } else {
-      navigate("/notifications");
-    }
+    setNotifications(!notifications);
   };
 
   const goToProfile = () => {
@@ -106,6 +104,7 @@ const Nav = () => {
     <Container>
       {authenticated ? (
         <div className="content">
+          {notifications && <Notifications />}
           <div className="logo">
             <img src="/min_logo.svg" onClick={goHome} alt="logo" />
             {hasAccount && <input type="text" placeholder="Search here..." />}
