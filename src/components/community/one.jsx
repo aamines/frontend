@@ -19,7 +19,7 @@ const One = () => {
   } = useForm();
 
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
 
   const onSubmit = (data) => {
     dispatch(setData({ ...data }));

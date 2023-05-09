@@ -9,7 +9,7 @@ import { BiEditAlt } from "react-icons/bi";
 
 const CommunitySettings = () => {
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
   const account = useSelector((state) => state.persist.account);
 
   const { register, handleSubmit } = useForm({

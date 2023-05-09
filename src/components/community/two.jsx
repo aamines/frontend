@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const Two = () => {
   //redux
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
 
   return (
     <Container>

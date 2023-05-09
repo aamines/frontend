@@ -26,8 +26,8 @@ const Memories = () => {
   const dispatch = useDispatch();
 
   //redux data
-  const variants = useSelector((state) => state.variants);
   const token = useSelector((state) => state.persist.token);
+  const variants = useSelector((state) => state.variants.page);
   const account = useSelector((state) => state.persist.account);
   const memories = useSelector((state) => state.memories.memories);
 

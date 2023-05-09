@@ -14,7 +14,7 @@ const ResetPassword = () => {
   const [loading, setLoading] = React.useState(false);
 
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
 
   const handleSubmision = (data) => {
     setLoading(true);

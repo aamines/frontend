@@ -103,6 +103,10 @@ const Members = () => {
             <FaUserPlus className="icon" />
             <p>Invite members</p>
           </div>
+          <div className="new" onClick={handleInvite}>
+            <FaUserPlus className="icon" />
+            <p>Invite members</p>
+          </div>
         </div>
         <div className="outlet">{!loading && <Outlet />}</div>
       </div>

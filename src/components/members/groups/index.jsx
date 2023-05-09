@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const Groups = () => {
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
 
   return (
     <Container>

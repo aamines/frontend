@@ -18,7 +18,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
   const tokenVerified = useSelector((state) => state.persist.tokenVerified);
   const authenticated = useSelector((state) => state.persist.authenticated);
 

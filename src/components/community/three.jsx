@@ -20,9 +20,9 @@ const Three = () => {
   const [disabled, setDisabled] = useState(false);
 
   //redux data
-  const variants = useSelector((state) => state.variants);
   const token = useSelector((state) => state.persist.token);
   const data = useSelector((state) => state.community.create);
+  const variants = useSelector((state) => state.variants.page);
 
   const handleSubmit = () => {
     if (disabled) return;

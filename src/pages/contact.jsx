@@ -13,7 +13,7 @@ import Footer from "../components/footer";
 
 const Contact = () => {
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
 
   return (
     <Container>

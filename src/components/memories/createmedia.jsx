@@ -9,7 +9,7 @@ import { FiUpload } from "react-icons/fi";
 
 const CreateMedia = () => {
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
 
   //drag and drop image
   const [image, setImage] = useState([]);

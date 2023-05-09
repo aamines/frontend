@@ -28,8 +28,8 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
 
   //redux data
-  const variants = useSelector((state) => state.variants);
   const countries = useSelector((state) => state.countries);
+  const variants = useSelector((state) => state.variants.page);
 
   //handle google signup
   const handleGoogle = () => {

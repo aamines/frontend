@@ -10,9 +10,12 @@ const membersSlice = createSlice({
     removeMember: (state, action) => {
       return state.filter((member) => member.email !== action.payload);
     },
+    removeAll: (state, action) => {
+      return [];
+    },
   },
 });
 
-export const { addMember, removeMember } = membersSlice.actions;
+export const { addMember, removeMember, removeAll } = membersSlice.actions;
 
 export default membersSlice.reducer;

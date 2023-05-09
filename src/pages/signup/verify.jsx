@@ -18,7 +18,7 @@ const Verify = () => {
   const params = new URLSearchParams(window.location.search);
 
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
 
   const go = () => {
     navigate("/home");

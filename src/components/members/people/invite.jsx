@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
@@ -9,10 +10,15 @@ import { IoMdClose } from "react-icons/io";
 import { RiUser3Fill } from "react-icons/ri";
 
 //features
+import axios from "../../../features/axios";
 import validateEmail from "../../../features/email";
 
 //actions
-import { addMember, removeMember } from "../../../store/reducers/members";
+import {
+  addMember,
+  removeMember,
+  removeAll,
+} from "../../../store/reducers/members";
 
 const Invite = ({ close }) => {
   //config
@@ -20,11 +26,16 @@ const Invite = ({ close }) => {
 
   //redux data
   const members = useSelector((state) => state.members);
+  const token = useSelector((state) => state.persist.token);
+  const variants = useSelector((state) => state.variants.modal);
+  const account = useSelector((state) => state.persist.account);
+  const community = useSelector((state) => state.community.data.community);
 
   //local data
   const [add, setAdd] = useState(false);
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("admin");
+  const [loading, setLoading] = useState(false);
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -53,9 +64,44 @@ const Invite = ({ close }) => {
     dispatch(removeMember(email));
   };
 
+  const handleInvite = () => {
+    if (members?.length > 0) {
+      setLoading(true);
+      axios
+        .post(
+          "/community/invite",
+          {
+            members: members,
+            account: account?.id,
+            community: community?.id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((_) => {
+          dispatch(removeAll());
+          close();
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  };
+
   return createPortal(
     <Container>
-      <div className="content">
+      <motion.div
+        className="content"
+        variants={variants}
+        initial="initial"
+        animate="animate"
+      >
         <div className="top">
           <p className="title">Invite new members</p>
         </div>
@@ -108,12 +154,12 @@ const Invite = ({ close }) => {
             <div className="cancel">
               <p>Cancel</p>
             </div>
-            <div className="invite">
-              <p>Invite</p>
+            <div className="invite" onClick={handleInvite}>
+              {loading ? <img src="/loader.svg" alt="loader" /> : <p>Invite</p>}
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <div className="background" onClick={() => close()}></div>
     </Container>,
     document.querySelector("#portal")
@@ -305,6 +351,10 @@ const Container = styled.div`
           margin: 0 0 0 20px;
           color: var(--dark);
           background: var(--bright);
+
+          img {
+            width: 40px;
+          }
         }
       }
     }

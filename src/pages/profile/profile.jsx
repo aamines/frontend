@@ -31,7 +31,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
 
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
   const account = useSelector((state) => state.persist.account);
   const hasAccount = useSelector((state) => state.persist.hasAccount);
 

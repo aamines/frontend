@@ -34,7 +34,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
 
   //handle google login
   const handleGoogle = () => {

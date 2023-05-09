@@ -12,7 +12,7 @@ const Welcome = () => {
   const navigate = useNavigate();
 
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
 
   const goToCreate = () => {
     navigate("/community/new");

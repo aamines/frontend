@@ -8,7 +8,8 @@ import Person from "./person";
 
 const People = () => {
   //redux data
-  const variants = useSelector((state) => state.variants);
+  const variants = useSelector((state) => state.variants.page);
+  const constraints = useSelector((state) => state.variants.items);
   const accounts = useSelector(
     (state) => state.community.data.community.accounts
   );
@@ -19,23 +20,6 @@ const People = () => {
     (account) => account?.roleId === 1 || account?.roleId === 2
   );
 
-  //animations
-  const constraints = {
-    initial: {
-      y: 50,
-    },
-    animate: {
-      y: 0,
-      transition: {
-        delay: 0.2,
-        duration: 0.5,
-        ease: "easeInOut",
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
   return (
     <Container>
       <motion.div
@@ -45,38 +29,38 @@ const People = () => {
         animate="animate"
         exit="exit"
       >
-        <motion.div
-          className="section"
-          variants={constraints}
-          initial="initial"
-          animate="animate"
-        >
+        <div className="section">
           <div className="header">
             <p>Administrators</p>
           </div>
-          <div className="content">
+          <motion.div
+            className="content"
+            variants={constraints}
+            initial="initial"
+            animate="animate"
+          >
             {administrators?.map((admin, index) => (
               <Person key={index} person={admin} />
             ))}
             {administrators?.length === 0 && <p className="no">No admins</p>}
-          </div>
-        </motion.div>
-        <motion.div
-          className="section"
-          variants={constraints}
-          initial="initial"
-          animate="animate"
-        >
+          </motion.div>
+        </div>
+        <div className="section">
           <div className="header">
             <p>Employees</p>
           </div>
-          <div className="content">
+          <motion.div
+            className="content"
+            variants={constraints}
+            initial="initial"
+            animate="animate"
+          >
             {employees?.map((employee, index) => (
               <Person key={index} person={employee} />
             ))}
             {employees?.length === 0 && <p className="no">No employees</p>}
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </motion.div>
     </Container>
   );
