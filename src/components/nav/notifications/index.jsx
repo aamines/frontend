@@ -72,7 +72,7 @@ const Line = styled.div`
   width: 110px;
   height: 2px;
   background: var(--bright);
-  position: absolute;
+  position: fixed;
   bottom: -1.5px;
   left: -5px;
   transition: all 0.3s ease-in-out;
