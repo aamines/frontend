@@ -21,12 +21,12 @@ const Main = () => {
 
   //redux data
   const variants = useSelector((state) => state.variants.page);
-  const accountId = useSelector((state) => state.persist.account);
+  const account = useSelector((state) => state.persist.account);
   const tokenVerified = useSelector((state) => state.persist.tokenVerified);
 
   useEffect(() => {
     if (tokenVerified) {
-      navigate(`/client/${accountId}/home`);
+      navigate(`/client/${account?.id}/home`);
     }
   }, []);
 

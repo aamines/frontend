@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+//components
+import Inbox from "./inbox";
+import Group from "./group";
+
 const Notifications = () => {
   const [active, setActive] = useState("inbox");
 
@@ -24,6 +28,10 @@ const Notifications = () => {
           <p className="number">0</p>
         </Item>
         <Line active={active} />
+      </div>
+      <div className="notifications">
+        {active === "inbox" && <Inbox />}
+        {active === "group" && <Group />}
       </div>
     </Container>
   );
@@ -112,6 +120,12 @@ const Container = styled.div`
     margin: 10px 0;
     align-items: center;
     justify-content: flex-start;
+  }
+
+  .notifications {
+    width: 100%;
+    padding: 0 10px;
+    height: calc(100% - 100px);
   }
 `;
 
