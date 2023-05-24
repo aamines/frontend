@@ -1,16 +1,47 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 
 //components
 import Inbox from "./inbox";
 import Group from "./group";
 
+//features
+import axios from "../../../features/axios";
+
 const Notifications = () => {
+  //local data
+  const [inbox, setInbox] = useState([]);
+  const [group, setGroup] = useState([]);
   const [active, setActive] = useState("inbox");
+
+  //redux data
+  const token = useSelector((state) => state.persist.token);
+  const account = useSelector((state) => state.persist.account);
 
   const handleActive = (value) => {
     setActive(value);
   };
+
+  useEffect(() => {
+    axios
+      .get(`/notifications/account/${account?.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        const data = res.data.data;
+        const inbox = data.filter((notification) => {
+          return notification?.type?.type === "inbox";
+        });
+        const group = data.filter((notification) => {
+          return notification?.type?.type === "group";
+        });
+        setInbox(inbox);
+        setGroup(group);
+      });
+  }, []);
 
   return (
     <Container>
@@ -30,8 +61,8 @@ const Notifications = () => {
         <Line active={active} />
       </div>
       <div className="notifications">
-        {active === "inbox" && <Inbox />}
-        {active === "group" && <Group />}
+        {active === "inbox" && <Inbox notifications={inbox} />}
+        {active === "group" && <Group notifications={group} />}
       </div>
     </Container>
   );

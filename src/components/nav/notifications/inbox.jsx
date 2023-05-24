@@ -9,7 +9,7 @@ import axios from "../../../features/axios";
 //components
 import Lower from "./lower";
 
-const Inbox = ({ inbox }) => {
+const Inbox = ({ notifications }) => {
   //redux data
   const token = useSelector((state) => state.persist?.token);
   const user = useSelector((state) => state.persist?.account?.userId);
@@ -44,7 +44,26 @@ const Inbox = ({ inbox }) => {
           </div>
         ))}
       </div>
-      <div className="inbox"></div>
+      <div className="inbox">
+        {notifications.map((notification, index) => (
+          <div className="notification" key={index}>
+            <div className="upper">
+              <div className="profile"></div>
+              <div className="contente">
+                <p className="white">{notification?.content}</p>
+                <p className="gray">1 hour ago</p>
+              </div>
+              {notification?.status?.status === "unseen" && (
+                <div className="read"></div>
+              )}
+            </div>
+            <Lower
+              trace={notification?.trace}
+              type={notification?.type?.type}
+            />
+          </div>
+        ))}
+      </div>
     </Container>
   );
 };
