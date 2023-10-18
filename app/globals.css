@@ -2,9 +2,6 @@
 @tailwind utilities;
 @tailwind components;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+body {
+  background: #f1f1f1;
 }
