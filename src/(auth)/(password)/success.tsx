@@ -10,7 +10,7 @@ const PasswordReseted = () => {
         <p>Your account password has been reset</p>
       </div>
       <div className="flex items-center justify-center">
-        <img src="/welcome.png" className="w-1/4" />
+        <img src="/password.png" className="w-1/4" />
       </div>
       <Link
         to={"/home"}
